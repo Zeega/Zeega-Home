@@ -17383,7 +17383,7 @@ function( app ) {
     Item.View.Standard = Backbone.View.extend({
 
         template: "item",
-        className: "item",
+        className: "collection-item standard",
         tagName: "a",
 
         serialize: function() {
@@ -17407,7 +17407,7 @@ function( app ) {
     Item.View.Mini = Item.View.Standard.extend({
 
         template: "item-mini",
-        className: "item-mini"
+        className: "collection-item mini"
 
     });
 
