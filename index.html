@@ -18,7 +18,6 @@
   <!(endif)-->
 
   <!--(if target dummy)><!-->
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="/assets/css/style.css">
   <!--<!(endif)-->
 </head>
@@ -29,16 +28,16 @@
 
   <!-- Application source. -->
 
-  <!--(if target release)>!-->
-  <script src="dist/debug/require.js"></script>
-  <!--<!(endif)-->
+  <!--(if target release)>
+  <script data-main="/app/config" src="source.min.js"></script>
+  <!(endif)-->
 
   <!--(if target debug)>
   <script data-main="/app/config" src="source.js"></script>
   <!(endif)-->
 
-  <!--(if target dummy)><
+  <!--(if target dummy)><!-->
   <script data-main="/app/config" src="/vendor/js/libs/require.js"></script>
-  <!(endif)-->
+  <!--<!(endif)-->
 </body>
 </html>
