@@ -1,13 +1,12 @@
  define([
     "app",
-    "backbone",
 
     "modules/navbar",
-    "modules/theme"
-
+    "modules/theme",
+    "backbone"
 ],
 
-function( app, Backbone, Navbar, Theme ) {
+function( app, Navbar, Theme ) {
 
     var MainCollection = Backbone.Collection.extend({
 
@@ -80,7 +79,7 @@ function( app, Backbone, Navbar, Theme ) {
             
             this.insertView( ".nav", new Navbar({ model: app }) );
             
-            _.each( _.toArray( this.themes ), function( theme ) {
+            _this.themes.each(function( theme ) {
                 _this.insertView( "#content", new Theme.View({ model: theme }) );
             });
            

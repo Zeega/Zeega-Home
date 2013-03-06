@@ -1,13 +1,11 @@
 define([
     "app",
-    "backbone",
     // Modules
-    "modules/layout-main"
-
- 
+    "modules/layout-main",
+    "backbone"
 ],
 
-function( app, Backbone, MainLayout) {
+function( app, MainLayout) {
 
     return Backbone.Model.extend({
         
