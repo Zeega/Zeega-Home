@@ -116,7 +116,7 @@ else {
 if (typeof exports !== "undefined" && typeof module !== "undefined") {
     module.exports = jam;
 };
-define("../vendor/jam/require.config", function(){});
+//define("../vendor/jam/require.config", function(){});
 
 /*!
  * jQuery JavaScript Library v1.8.0
