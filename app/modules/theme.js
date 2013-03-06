@@ -1,10 +1,10 @@
 define([
     "app",
-    "backbone",
-    "modules/item"
+    "modules/item",
+    "backbone"
 ],
 
-function( app, Backbone, Item ) {
+function( app, Item ) {
 
 
     Theme = {};
@@ -76,7 +76,7 @@ function( app, Backbone, Item ) {
                 mini = true;
             }
 
-            _.each( _.toArray( this.items ), function( item ){
+            this.items.each(function( item ){
                 if( mini ){
                     itemView = new Item.View.Mini( { model : item });
                 } else {

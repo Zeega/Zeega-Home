@@ -3,7 +3,7 @@ define([
     "backbone"
 ],
 
-function( app, Backbone ) {
+function( app ) {
 
 
     Item = {};
