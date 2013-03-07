@@ -424,6 +424,18 @@ __p+='<div class="nav container"></div>\n<div id="content"></div>';
 return __p;
 };
 
+this["JST"]["app/templates/theme-mini.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="row">       \n    <h2>'+
+( title )+
+' <span class="tagline">'+
+( description )+
+'</span> </h2>\n    <div class="items"></div>\n</div>              \n';
+}
+return __p;
+};
+
 this["JST"]["app/templates/theme.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
@@ -17339,7 +17351,7 @@ function( app ) {
 
         url: function() {
             
-            var url = app.api + "items/" + this.id + "/items";
+            var url = app.api + "items/search?collection=" + this.id + "&fields=id,thumbnail_url,title,display_name,headline,description";
             return url;
         },
 
@@ -17351,7 +17363,7 @@ function( app ) {
 
     Item.View = {};
 
-    Item.View.Standard = Backbone.View.extend({
+    Item.View.Large = Backbone.View.extend({
 
         template: "item",
         className: "collection-item standard",
@@ -17366,7 +17378,7 @@ function( app ) {
         },
 
         beforeRender: function() {
-            this.$el.css({"background-image": "url('" + this.model.get("text").cover_image + "')"});
+            this.$el.css({"background-image": "url('" + this.model.get("thumbnail_url") + "')"});
             this.$el.attr({"href": "http://zeega.com/" + this.model.get("id")});
         },
 
@@ -17375,7 +17387,7 @@ function( app ) {
         }
     });
 
-    Item.View.Mini = Item.View.Standard.extend({
+    Item.View.Mini = Item.View.Large.extend({
 
         template: "item-mini",
         className: "collection-item mini"
@@ -17417,7 +17429,11 @@ function( app, Item ) {
                         this.at(i).set(key, value);
                     }
                 }
+                if(_.isUndefined( this.at( i ).get("format"))){
+                    this.at( i ).set("format", "mini" );
+                }
             }
+
             this.sort();
         },
 
@@ -17428,7 +17444,9 @@ function( app, Item ) {
 
     });
 
-    Theme.View = Backbone.View.extend({
+    Theme.View ={};
+
+    Theme.View.Large = Backbone.View.extend({
 
         template: "theme",
         className: "theme",
@@ -17453,26 +17471,37 @@ function( app, Item ) {
         },
 
         onReset: function() {
-            var itemView, mini,
+            var itemView,
                 count = 0;
                 _this = this;
 
-            if( !_.isUndefined( this.model.get("mini"))){
-                mini = true;
-            } else {
-                mini = false;
-            }
 
             this.items.each(function( item ){
                 
-                if( (mini && count < 6) || count < 3 ){
-                    if( mini ){
-                        itemView = new Item.View.Mini( { model : item });
-                    } else {
-                        itemView = new Item.View.Standard( { model : item });
-                    }
+                if( count < 3 ){
+                    itemView = new Item.View.Large( { model : item });
                     itemView.render();
+                    _this.$(".items").append( itemView.$el );
+                }
+                count++;
+            });
+        }
+    });
 
+    Theme.View.Mini = Theme.View.Large.extend({
+        template: "theme-mini",
+        className: "theme mini",
+        onReset: function() {
+            var itemView,
+                count = 0;
+                _this = this;
+
+
+            this.items.each(function( item ){
+                
+                if( count < 6 ){
+                    itemView = new Item.View.Mini( { model : item });
+                    itemView.render();
                     _this.$(".items").append( itemView.$el );
                 }
                 count++;
@@ -17546,7 +17575,7 @@ function( app, Theme ) {
                     "title": "First Zeegas",
                     "description": "These Zeegas are my favorite :)",
                     "tags": [
-                        "backgroundColor(120, 201, 234, 1)","order-0"
+                        "backgroundColor-#ebebeb", "format-large", "order-0"
                     ]
                 },
 
@@ -17558,7 +17587,7 @@ function( app, Theme ) {
                     "title": "Second Zeegas",
                     "description": "Poop",
                     "tags": [
-                        "backgroundColor-rgba(0, 0, 255, 0.13)","mini-true", "order-1"
+                        "backgroundColor-#fdb2a6","format-mini", "order-1"
                     ]
                 },
                 
@@ -17570,7 +17599,7 @@ function( app, Theme ) {
                     "title": "Third Zeegas",
                     "description": "Poop",
                     "tags": [
-                        "backgroundColor-rgba(0, 0, 255, 0.13)", "order-2"
+                        "backgroundColor-#ebebeb", "format-large", "order-2"
                     ]
                 },
                 {
@@ -17581,7 +17610,7 @@ function( app, Theme ) {
                     "title": "Fourth Zeegas",
                     "description": "These Zeegas are my favorite :)",
                     "tags": [
-                        "backgroundColor-rgba(255, 0, 0, 0.13)", "mini-true", "order-3"
+                        "backgroundColor-#fdb2a6", "format-mini", "order-3"
                     ]
                 }
 
@@ -17598,8 +17627,11 @@ function( app, Theme ) {
             var _this = this;
             
             _this.themes.each(function( theme ) {
-                  console.log(theme.get("title"));
-                _this.insertView( "#content", new Theme.View({ model: theme }) );
+                if( theme.get("format") == "large"){
+                    _this.insertView( "#content", new Theme.View.Large({ model: theme }) );
+                } else {
+                    _this.insertView( "#content", new Theme.View.Mini({ model: theme }) );
+                }
             });
            
         },
