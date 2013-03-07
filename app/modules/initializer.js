@@ -10,8 +10,6 @@ function( app, MainLayout) {
     return Backbone.Model.extend({
         
         initialize: function() {
-            var meta = $("meta[name=zeega]");
-            app.root = meta.data("root");
             this.insertLayout();
         },
 
