@@ -27,7 +27,11 @@ function( app, Item ) {
                         this.at(i).set(key, value);
                     }
                 }
+                if(_.isUndefined( this.at( i ).get("format"))){
+                    this.at( i ).set("format", "mini" );
+                }
             }
+
             this.sort();
         },
 
@@ -38,7 +42,9 @@ function( app, Item ) {
 
     });
 
-    Theme.View = Backbone.View.extend({
+    Theme.View ={};
+
+    Theme.View.Large = Backbone.View.extend({
 
         template: "theme",
         className: "theme",
@@ -63,26 +69,37 @@ function( app, Item ) {
         },
 
         onReset: function() {
-            var itemView, mini,
+            var itemView,
                 count = 0;
                 _this = this;
 
-            if( !_.isUndefined( this.model.get("mini"))){
-                mini = true;
-            } else {
-                mini = false;
-            }
 
             this.items.each(function( item ){
                 
-                if( (mini && count < 6) || count < 3 ){
-                    if( mini ){
-                        itemView = new Item.View.Mini( { model : item });
-                    } else {
-                        itemView = new Item.View.Standard( { model : item });
-                    }
+                if( count < 3 ){
+                    itemView = new Item.View.Large( { model : item });
                     itemView.render();
+                    _this.$(".items").append( itemView.$el );
+                }
+                count++;
+            });
+        }
+    });
 
+    Theme.View.Mini = Theme.View.Large.extend({
+        template: "theme-mini",
+        className: "theme mini",
+        onReset: function() {
+            var itemView,
+                count = 0;
+                _this = this;
+
+
+            this.items.each(function( item ){
+                
+                if( count < 6 ){
+                    itemView = new Item.View.Mini( { model : item });
+                    itemView.render();
                     _this.$(".items").append( itemView.$el );
                 }
                 count++;

@@ -35,7 +35,7 @@ function( app ) {
 
     Item.View = {};
 
-    Item.View.Standard = Backbone.View.extend({
+    Item.View.Large = Backbone.View.extend({
 
         template: "item",
         className: "collection-item standard",
@@ -59,7 +59,7 @@ function( app ) {
         }
     });
 
-    Item.View.Mini = Item.View.Standard.extend({
+    Item.View.Mini = Item.View.Large.extend({
 
         template: "item-mini",
         className: "collection-item mini"

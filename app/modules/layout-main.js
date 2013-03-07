@@ -59,7 +59,7 @@ function( app, Theme ) {
                     "title": "First Zeegas",
                     "description": "These Zeegas are my favorite :)",
                     "tags": [
-                        "backgroundColor(120, 201, 234, 1)","order-0"
+                        "backgroundColor-#ebebeb", "format-large", "order-0"
                     ]
                 },
 
@@ -71,7 +71,7 @@ function( app, Theme ) {
                     "title": "Second Zeegas",
                     "description": "Poop",
                     "tags": [
-                        "backgroundColor-rgba(0, 0, 255, 0.13)","mini-true", "order-1"
+                        "backgroundColor-#fdb2a6","format-mini", "order-1"
                     ]
                 },
                 
@@ -83,7 +83,7 @@ function( app, Theme ) {
                     "title": "Third Zeegas",
                     "description": "Poop",
                     "tags": [
-                        "backgroundColor-rgba(0, 0, 255, 0.13)", "order-2"
+                        "backgroundColor-#ebebeb", "format-large", "order-2"
                     ]
                 },
                 {
@@ -94,7 +94,7 @@ function( app, Theme ) {
                     "title": "Fourth Zeegas",
                     "description": "These Zeegas are my favorite :)",
                     "tags": [
-                        "backgroundColor-rgba(255, 0, 0, 0.13)", "mini-true", "order-3"
+                        "backgroundColor-#fdb2a6", "format-mini", "order-3"
                     ]
                 }
 
@@ -111,8 +111,11 @@ function( app, Theme ) {
             var _this = this;
             
             _this.themes.each(function( theme ) {
-                  console.log(theme.get("title"));
-                _this.insertView( "#content", new Theme.View({ model: theme }) );
+                if( theme.get("format") == "large"){
+                    _this.insertView( "#content", new Theme.View.Large({ model: theme }) );
+                } else {
+                    _this.insertView( "#content", new Theme.View.Mini({ model: theme }) );
+                }
             });
            
         },
