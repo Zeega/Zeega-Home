@@ -410,7 +410,7 @@ __p+='\n<div class="item-content">\n    <h2>'+
 '">'+
 ( display_name )+
 '</a>\n</div>\n    \n<p class="headline">'+
-( description )+
+( headline )+
 '</p>';
 }
 return __p;
