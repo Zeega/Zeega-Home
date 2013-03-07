@@ -36,6 +36,8 @@ function( app, Navbar, Theme ) {
         template: "layout-main",
 
         initialize: function() {
+            
+            var collectionData;
             // var lazyResize = _.debounce(function() {
             //     this.lazyResize();
             // }.bind( this ), 300);
@@ -45,32 +47,39 @@ function( app, Navbar, Theme ) {
             // this.themes.on("reset", this.onReset, this );
             // 92990
 
-
-            this.themes = new Theme.Collection([
-                {
-                    "id": 92989,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Worst of Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "order-1","backgroundColor-rgba(0, 0, 255, 0.13)","mini-true"
-                    ]
-                },
-                {
-                    "id": 92569,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Best of Zeegas",
-                    "description": "These Zeegas are my favorite :)",
-                    "tags": [
-                        "backgroundColor-rgba(255, 0, 0, 0.13)","order-0"
-                    ]
-                }
-            ]);
+            if ( window.collections ) {
+                collectionData = jQuery.parseJSON( window.collections );
+                this.themes = new Theme.Collection(collectionData.items);
+                console.log(this.themes);
+            } else {
+                this.themes = new Theme.Collection([
+                    {
+                        "id": 92989,
+                        "user_id": null,
+                        "username": "",
+                        "display_name": "James Burns",
+                        "title": "Worst of Zeegas",
+                        "description": "Poop",
+                        "tags": [
+                            "order-1","backgroundColor-rgba(0, 0, 255, 0.13)","mini-true"
+                        ]
+                    },
+                    {
+                        "id": 92569,
+                        "user_id": null,
+                        "username": "",
+                        "display_name": "James Burns",
+                        "title": "Best of Zeegas",
+                        "description": "These Zeegas are my favorite :)",
+                        "tags": [
+                            "backgroundColor-rgba(255, 0, 0, 0.13)","order-0"
+                        ]
+                    }
+                ]);
+            }
             this.themes.parseTags();
+            
+            
         },
 
         beforeRender: function() {
