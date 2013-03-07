@@ -58,7 +58,7 @@ function( app, Item ) {
             
             this.items.fetch();
             if( !_.isUndefined( this.model.get("backgroundColor"))){
-                boxShadow = "5px 5px 5px " + this.model.get("backgroundColor");
+                boxShadow = "0px 0px 0px red";
                 this.$el.css({
                     "background-color": this.model.get("backgroundColor"),
                     "box-shadow": boxShadow

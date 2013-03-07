@@ -932,6 +932,7 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  background-color: white;
   font-family: 'Open Sans Condensed', sans-serif;
 }
 .container {
@@ -940,10 +941,14 @@ html {
   margin-left: auto;
 }
 .theme {
-  width: 100%;
   height: 370px;
   padding-top: 10px;
   background: transparent;
+  border-left: 10px solid #78c9ea;
+  border-right: 10px solid #78c9ea;
+  border-bottom: 10px solid red;
+  border-top: 10px solid red;
+  margin-top: 25px;
 }
 .theme .row {
   width: 1000px;
@@ -966,7 +971,7 @@ html {
   margin-right: 20px;
 }
 .collection-item {
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
   position: relative;
   float: left;
   background-color: black;
@@ -1029,4 +1034,52 @@ html {
   margin: 0;
   letter-spacing: 1px;
   font-size: 1em;
+}
+.nav {
+  margin-bottom: 20px;
+}
+.nav a {
+  text-decoration: none;
+}
+.nav .branding {
+  position: absolute;
+  top: 0px;
+  padding-top: 10px;
+}
+.nav .strapline {
+  font-family: georgia, Times, serif;
+  font-size: 11px;
+  font-style: italic;
+  color: #999999;
+}
+.navigation {
+  position: relative;
+  height: 60px;
+}
+.navigation div {
+  position: absolute;
+  bottom: -10px;
+  right: 0px;
+  font-style: italic;
+  font-family: georgia, Times, serif;
+}
+.navigation div a {
+  color: black;
+}
+.intro {
+  font-family: 'Open Sans Condensed', sans-serif;
+}
+.intro .row {
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.intro .intro-left {
+  float: left;
+  width: 700px;
+}
+.intro .intro-right {
+  float: right;
+  width: 200px;
+  margin-top: 40px;
 }

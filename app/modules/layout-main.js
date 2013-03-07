@@ -2,11 +2,12 @@
     "app",
 
     "modules/navbar",
+    "modules/intro",
     "modules/theme",
     "backbone"
 ],
 
-function( app, Navbar, Theme ) {
+function( app, Navbar, Intro, Theme ) {
 
     var MainCollection = Backbone.Collection.extend({
 
@@ -48,17 +49,6 @@ function( app, Navbar, Theme ) {
 
             this.themes = new Theme.Collection([
                 {
-                    "id": 92989,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Worst of Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "order-1","backgroundColor-rgba(0, 0, 255, 0.13)","mini-true"
-                    ]
-                },
-                {
                     "id": 92569,
                     "user_id": null,
                     "username": "",
@@ -66,9 +56,45 @@ function( app, Navbar, Theme ) {
                     "title": "Best of Zeegas",
                     "description": "These Zeegas are my favorite :)",
                     "tags": [
-                        "backgroundColor-rgba(255, 0, 0, 0.13)","order-0"
+                        "backgroundColor(120, 201, 234, 1)","order-0"
                     ]
-                }
+                },
+
+                {
+                    "id": 92989,
+                    "user_id": null,
+                    "username": "",
+                    "display_name": "James Burns",
+                    "title": "Worst of Zeegas",
+                    "description": "Poop",
+                    "tags": [
+                        "backgroundColor-rgba(0, 0, 255, 0.13)","mini-true", "order-1"
+                    ]
+                },
+                
+                {
+                    "id": 93607,
+                    "user_id": null,
+                    "username": "",
+                    "display_name": "James Burns",
+                    "title": "Worst of Zeegas",
+                    "description": "Poop",
+                    "tags": [
+                        "backgroundColor-rgba(0, 0, 255, 0.13)", "order-2"
+                    ]
+                },
+                {
+                    "id": 93608,
+                    "user_id": null,
+                    "username": "",
+                    "display_name": "James Burns",
+                    "title": "Best of Zeegas",
+                    "description": "These Zeegas are my favorite :)",
+                    "tags": [
+                        "backgroundColor-rgba(255, 0, 0, 0.13)", "mini-true", "order-3" 
+                    ]
+                },
+
             ]);
             this.themes.parseTags();
         },
@@ -78,6 +104,7 @@ function( app, Navbar, Theme ) {
             var _this = this;
             
             this.insertView( ".nav", new Navbar({ model: app }) );
+            this.insertView( "#content", new Intro({ model: app }) );
             
             _this.themes.each(function( theme ) {
                 _this.insertView( "#content", new Theme.View({ model: theme }) );
