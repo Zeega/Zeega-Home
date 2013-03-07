@@ -1,12 +1,22 @@
 .theme {
     height: 370px;
     padding-top: 10px;
-    border-left: 10px solid #78c9ea;
-    border-right: 10px solid #78c9ea;
-    border-bottom: 10px solid red;
-    border-top: 10px solid red;
+    border-left: 25px solid red;
+    border-right: 25px solid red;
+    border-bottom: 25px solid #78c9ea;
+    border-top: 25px solid #78c9ea;
     margin-top: 25px;
     background-color: #e0e0e0;
+    margin-bottom: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+
+    &:nth-child(2n+1) {
+    border-left: 25px solid #78c9ea;
+    border-right: 25px solid #78c9ea;
+    border-bottom: 25px solid red;
+    border-top: 25px solid red;
+    }
 
     .row {
         width: 1000px;
@@ -34,3 +44,18 @@
 
 
 }
+
+.mini {
+    height: 260px; 
+
+    .tagline {
+        font-family: Georgia,"Times New Roman",Times,serif;
+        font-style: italic;
+        font-size: 16px;
+        font-weight: normal;
+    }
+
+
+
+}
+
