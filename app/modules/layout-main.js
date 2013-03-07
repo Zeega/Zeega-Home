@@ -1,13 +1,10 @@
  define([
     "app",
-
-    "modules/navbar",
-    "modules/intro",
     "modules/theme",
     "backbone"
 ],
 
-function( app, Navbar, Intro, Theme ) {
+function( app, Theme ) {
 
     var MainCollection = Backbone.Collection.extend({
 
@@ -59,7 +56,7 @@ function( app, Navbar, Intro, Theme ) {
                     "user_id": null,
                     "username": "",
                     "display_name": "James Burns",
-                    "title": "Best of Zeegas",
+                    "title": "First Zeegas",
                     "description": "These Zeegas are my favorite :)",
                     "tags": [
                         "backgroundColor(120, 201, 234, 1)","order-0"
@@ -71,7 +68,7 @@ function( app, Navbar, Intro, Theme ) {
                     "user_id": null,
                     "username": "",
                     "display_name": "James Burns",
-                    "title": "Worst of Zeegas",
+                    "title": "Second Zeegas",
                     "description": "Poop",
                     "tags": [
                         "backgroundColor-rgba(0, 0, 255, 0.13)","mini-true", "order-1"
@@ -83,7 +80,7 @@ function( app, Navbar, Intro, Theme ) {
                     "user_id": null,
                     "username": "",
                     "display_name": "James Burns",
-                    "title": "Worst of Zeegas",
+                    "title": "Third Zeegas",
                     "description": "Poop",
                     "tags": [
                         "backgroundColor-rgba(0, 0, 255, 0.13)", "order-2"
@@ -94,12 +91,12 @@ function( app, Navbar, Intro, Theme ) {
                     "user_id": null,
                     "username": "",
                     "display_name": "James Burns",
-                    "title": "Best of Zeegas",
+                    "title": "Fourth Zeegas",
                     "description": "These Zeegas are my favorite :)",
                     "tags": [
-                        "backgroundColor-rgba(255, 0, 0, 0.13)", "mini-true", "order-3" 
+                        "backgroundColor-rgba(255, 0, 0, 0.13)", "mini-true", "order-3"
                     ]
-                },
+                }
 
             ]);
             }
@@ -113,10 +110,8 @@ function( app, Navbar, Intro, Theme ) {
 
             var _this = this;
             
-            this.insertView( ".nav", new Navbar({ model: app }) );
-            this.insertView( "#content", new Intro({ model: app }) );
-            
             _this.themes.each(function( theme ) {
+                  console.log(theme.get("title"));
                 _this.insertView( "#content", new Theme.View({ model: theme }) );
             });
            
@@ -128,11 +123,6 @@ function( app, Navbar, Intro, Theme ) {
         },
 
         lazyResize: function() {
-            // var height, width;
-
-            // width = window.innerWidth - $(".left-column").width();
-            // height = window.innerHeight - $(".project-navs").height();
-            // console.log("lazy resize", this, width, height)
             app.trigger("window-resize");
         }
     });

@@ -424,14 +424,6 @@ __p+='<div class="nav container"></div>\n<div id="content"></div>';
 return __p;
 };
 
-this["JST"]["app/templates/navbar.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="row">       \n    <div class="span6">\n        <a href="/"><img src="assets/img/zeega-logo.png" alt="zeega-logo" width="134" height="43"></a>\n        <div class="strapline">\n            Remake the Internet\n        </div>\n    </div>\n    \n    <div class="span8">\n        <div class="navigation">    \n            <div class="">\n                <a href="#" class="dropdown-toggle">About </a> |     \n                <a href="http://blog.zeega.com" target="_blank">Blog</a> | \n                <a href="/login">Login</a>\n            </div>\n        </div>\n    </div>\n</div>              \n';
-}
-return __p;
-};
-
 this["JST"]["app/templates/theme.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
@@ -17322,29 +17314,6 @@ define('app',[
 
 });
 
-define('modules/navbar',[
-    "app",
-    "backbone"
-],
-
-function( app ) {
-
-    // This will fetch the tutorial template and render it.
-    Navbar = Backbone.View.extend({
-
-        template: "navbar",
-        className: "navbar ZEEGA-hmenu dark",
-        
-        initialize: function() {
-            
-        }
-    });
-
-    // Required, return the module for AMD compliance
-    return Navbar;
-
-});
-
 define('modules/item',[
     "app",
     "backbone"
@@ -17476,9 +17445,9 @@ function( app, Item ) {
         beforeRender: function() {
             this.items.fetch();
             if( !_.isUndefined( this.model.get("backgroundColor"))){
+
                 this.$el.css({
-                    "background-color": this.model.get("backgroundColor"),
-                    "box-shadow": "5px 5px 5px " + this.model.get("boxShadow")
+                    "background-color": this.model.get("backgroundColor")
                 });
             }
         },
@@ -17503,6 +17472,7 @@ function( app, Item ) {
                         itemView = new Item.View.Standard( { model : item });
                     }
                     itemView.render();
+
                     _this.$(".items").append( itemView.$el );
                 }
                 count++;
@@ -17517,13 +17487,11 @@ function( app, Item ) {
 
  define('modules/layout-main',[
     "app",
-
-    "modules/navbar",
     "modules/theme",
     "backbone"
 ],
 
-function( app, Navbar, Theme ) {
+function( app, Theme ) {
 
     var MainCollection = Backbone.Collection.extend({
 
@@ -17569,31 +17537,57 @@ function( app, Navbar, Theme ) {
                 this.themes = new Theme.Collection(collectionData.items);
                 console.log(this.themes);
             } else {
-                this.themes = new Theme.Collection([
-                    {
-                        "id": 92989,
-                        "user_id": null,
-                        "username": "",
-                        "display_name": "James Burns",
-                        "title": "Worst of Zeegas",
-                        "description": "Poop",
-                        "tags": [
-                            "order-1","backgroundColor-rgba(0, 0, 255, 0.13)","mini-true"
-                        ]
-                    },
-                    {
-                        "id": 92569,
-                        "user_id": null,
-                        "username": "",
-                        "display_name": "James Burns",
-                        "title": "Best of Zeegas",
-                        "description": "These Zeegas are my favorite :)",
-                        "tags": [
-                            "backgroundColor-rgba(255, 0, 0, 0.13)","order-0"
-                        ]
-                    }
-                ]);
+                            this.themes = new Theme.Collection([
+                {
+                    "id": 92569,
+                    "user_id": null,
+                    "username": "",
+                    "display_name": "James Burns",
+                    "title": "First Zeegas",
+                    "description": "These Zeegas are my favorite :)",
+                    "tags": [
+                        "backgroundColor(120, 201, 234, 1)","order-0"
+                    ]
+                },
+
+                {
+                    "id": 92989,
+                    "user_id": null,
+                    "username": "",
+                    "display_name": "James Burns",
+                    "title": "Second Zeegas",
+                    "description": "Poop",
+                    "tags": [
+                        "backgroundColor-rgba(0, 0, 255, 0.13)","mini-true", "order-1"
+                    ]
+                },
+                
+                {
+                    "id": 93607,
+                    "user_id": null,
+                    "username": "",
+                    "display_name": "James Burns",
+                    "title": "Third Zeegas",
+                    "description": "Poop",
+                    "tags": [
+                        "backgroundColor-rgba(0, 0, 255, 0.13)", "order-2"
+                    ]
+                },
+                {
+                    "id": 93608,
+                    "user_id": null,
+                    "username": "",
+                    "display_name": "James Burns",
+                    "title": "Fourth Zeegas",
+                    "description": "These Zeegas are my favorite :)",
+                    "tags": [
+                        "backgroundColor-rgba(255, 0, 0, 0.13)", "mini-true", "order-3"
+                    ]
+                }
+
+            ]);
             }
+
             this.themes.parseTags();
             
             
@@ -17603,9 +17597,8 @@ function( app, Navbar, Theme ) {
 
             var _this = this;
             
-            this.insertView( ".nav", new Navbar({ model: app }) );
-            
             _this.themes.each(function( theme ) {
+                  console.log(theme.get("title"));
                 _this.insertView( "#content", new Theme.View({ model: theme }) );
             });
            
@@ -17617,11 +17610,6 @@ function( app, Navbar, Theme ) {
         },
 
         lazyResize: function() {
-            // var height, width;
-
-            // width = window.innerWidth - $(".left-column").width();
-            // height = window.innerHeight - $(".project-navs").height();
-            // console.log("lazy resize", this, width, height)
             app.trigger("window-resize");
         }
     });

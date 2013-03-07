@@ -57,7 +57,7 @@ function( app, Item ) {
             if( !_.isUndefined( this.model.get("backgroundColor"))){
 
                 this.$el.css({
-                    "background-color": this.model.get("backgroundColor"),
+                    "background-color": this.model.get("backgroundColor")
                 });
             }
         },
@@ -82,6 +82,7 @@ function( app, Item ) {
                         itemView = new Item.View.Standard( { model : item });
                     }
                     itemView.render();
+
                     _this.$(".items").append( itemView.$el );
                 }
                 count++;
