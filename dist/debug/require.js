@@ -17250,11 +17250,14 @@ define('app',[
     "backbone.layoutmanager"
 ], function() {
 
+    var meta = $("meta[name=zeega]");
+    console.log(meta.data("root"));
+
     // Provide a global location to place configuration settings and module
     // creation.
     var app = {
         // The root path to run the application.
-        root: "/",
+        root: meta.data("root"),
         api: "http://zeega.com/api/"
     };
 
@@ -17630,8 +17633,6 @@ function( app, MainLayout) {
     return Backbone.Model.extend({
         
         initialize: function() {
-            var meta = $("meta[name=zeega]");
-            app.root = meta.data("root");
             this.insertLayout();
         },
 
