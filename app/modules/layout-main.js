@@ -37,6 +37,8 @@ function( app, Navbar, Intro, Theme ) {
         template: "layout-main",
 
         initialize: function() {
+            
+            var collectionData;
             // var lazyResize = _.debounce(function() {
             //     this.lazyResize();
             // }.bind( this ), 300);
@@ -46,8 +48,12 @@ function( app, Navbar, Intro, Theme ) {
             // this.themes.on("reset", this.onReset, this );
             // 92990
 
-
-            this.themes = new Theme.Collection([
+            if ( window.collections ) {
+                collectionData = jQuery.parseJSON( window.collections );
+                this.themes = new Theme.Collection(collectionData.items);
+                console.log(this.themes);
+            } else {
+                            this.themes = new Theme.Collection([
                 {
                     "id": 92569,
                     "user_id": null,
@@ -96,7 +102,11 @@ function( app, Navbar, Intro, Theme ) {
                 },
 
             ]);
+            }
+
             this.themes.parseTags();
+            
+            
         },
 
         beforeRender: function() {

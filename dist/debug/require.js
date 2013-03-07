@@ -17250,12 +17250,14 @@ define('app',[
     "backbone.layoutmanager"
 ], function() {
 
+    var meta = $("meta[name=zeega]");
+
     // Provide a global location to place configuration settings and module
     // creation.
     var app = {
         // The root path to run the application.
-        root: "/",
-        api: "http://zeega.com/api/"
+        root: meta.data("root"),
+        api: meta.data("api")
     };
 
     // Localize or create a new JavaScript Template object.
@@ -17468,41 +17470,42 @@ function( app, Item ) {
 
             this.items = new Item.Collection({ id: this.model.id });
             this.items.on("reset", this.onReset, this );
-            
-            
+
         },
 
         beforeRender: function() {
-            var boxShadow;
-            
             this.items.fetch();
             if( !_.isUndefined( this.model.get("backgroundColor"))){
-                boxShadow = "5px 5px 5px " + this.model.get("backgroundColor");
                 this.$el.css({
                     "background-color": this.model.get("backgroundColor"),
-                    "box-shadow": boxShadow
+                    "box-shadow": "5px 5px 5px " + this.model.get("boxShadow")
                 });
-
             }
         },
 
         onReset: function() {
-            var itemView,
-                mini = false;
+            var itemView, mini,
+                count = 0;
                 _this = this;
 
             if( !_.isUndefined( this.model.get("mini"))){
                 mini = true;
+            } else {
+                mini = false;
             }
 
             this.items.each(function( item ){
-                if( mini ){
-                    itemView = new Item.View.Mini( { model : item });
-                } else {
-                    itemView = new Item.View.Standard( { model : item });
+                
+                if( (mini && count < 6) || count < 3 ){
+                    if( mini ){
+                        itemView = new Item.View.Mini( { model : item });
+                    } else {
+                        itemView = new Item.View.Standard( { model : item });
+                    }
+                    itemView.render();
+                    _this.$(".items").append( itemView.$el );
                 }
-                itemView.render();
-                _this.$(".items").append( itemView.$el );
+                count++;
             });
         }
     });
@@ -17550,6 +17553,8 @@ function( app, Navbar, Theme ) {
         template: "layout-main",
 
         initialize: function() {
+            
+            var collectionData;
             // var lazyResize = _.debounce(function() {
             //     this.lazyResize();
             // }.bind( this ), 300);
@@ -17559,32 +17564,39 @@ function( app, Navbar, Theme ) {
             // this.themes.on("reset", this.onReset, this );
             // 92990
 
-
-            this.themes = new Theme.Collection([
-                {
-                    "id": 92989,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Worst of Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "order-1","backgroundColor-rgba(0, 0, 255, 0.13)","mini-true"
-                    ]
-                },
-                {
-                    "id": 92569,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Best of Zeegas",
-                    "description": "These Zeegas are my favorite :)",
-                    "tags": [
-                        "backgroundColor-rgba(255, 0, 0, 0.13)","order-0"
-                    ]
-                }
-            ]);
+            if ( window.collections ) {
+                collectionData = jQuery.parseJSON( window.collections );
+                this.themes = new Theme.Collection(collectionData.items);
+                console.log(this.themes);
+            } else {
+                this.themes = new Theme.Collection([
+                    {
+                        "id": 92989,
+                        "user_id": null,
+                        "username": "",
+                        "display_name": "James Burns",
+                        "title": "Worst of Zeegas",
+                        "description": "Poop",
+                        "tags": [
+                            "order-1","backgroundColor-rgba(0, 0, 255, 0.13)","mini-true"
+                        ]
+                    },
+                    {
+                        "id": 92569,
+                        "user_id": null,
+                        "username": "",
+                        "display_name": "James Burns",
+                        "title": "Best of Zeegas",
+                        "description": "These Zeegas are my favorite :)",
+                        "tags": [
+                            "backgroundColor-rgba(255, 0, 0, 0.13)","order-0"
+                        ]
+                    }
+                ]);
+            }
             this.themes.parseTags();
+            
+            
         },
 
         beforeRender: function() {

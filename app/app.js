@@ -2,12 +2,14 @@ define([
     "backbone.layoutmanager"
 ], function() {
 
+    var meta = $("meta[name=zeega]");
+
     // Provide a global location to place configuration settings and module
     // creation.
     var app = {
         // The root path to run the application.
-        root: "/",
-        api: "http://zeega.com/api/"
+        root: meta.data("root"),
+        api: meta.data("api")
     };
 
     // Localize or create a new JavaScript Template object.

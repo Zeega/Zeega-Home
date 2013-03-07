@@ -49,41 +49,42 @@ function( app, Item ) {
 
             this.items = new Item.Collection({ id: this.model.id });
             this.items.on("reset", this.onReset, this );
-            
-            
+
         },
 
         beforeRender: function() {
-            var boxShadow;
-            
             this.items.fetch();
             if( !_.isUndefined( this.model.get("backgroundColor"))){
-                boxShadow = "0px 0px 0px red";
+
                 this.$el.css({
                     "background-color": this.model.get("backgroundColor"),
-                    "box-shadow": boxShadow
                 });
-
             }
         },
 
         onReset: function() {
-            var itemView,
-                mini = false;
+            var itemView, mini,
+                count = 0;
                 _this = this;
 
             if( !_.isUndefined( this.model.get("mini"))){
                 mini = true;
+            } else {
+                mini = false;
             }
 
             this.items.each(function( item ){
-                if( mini ){
-                    itemView = new Item.View.Mini( { model : item });
-                } else {
-                    itemView = new Item.View.Standard( { model : item });
+                
+                if( (mini && count < 6) || count < 3 ){
+                    if( mini ){
+                        itemView = new Item.View.Mini( { model : item });
+                    } else {
+                        itemView = new Item.View.Standard( { model : item });
+                    }
+                    itemView.render();
+                    _this.$(".items").append( itemView.$el );
                 }
-                itemView.render();
-                _this.$(".items").append( itemView.$el );
+                count++;
             });
         }
     });
