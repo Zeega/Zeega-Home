@@ -410,7 +410,7 @@ __p+='\n<div class="item-content">\n    <h2>'+
 '">'+
 ( display_name )+
 '</a>\n</div>\n    \n<p class="headline">'+
-( description )+
+( headline )+
 '</p>';
 }
 return __p;
@@ -17351,7 +17351,7 @@ function( app ) {
 
         url: function() {
             
-            var url = app.api + "items/" + this.id + "/items";
+            var url = app.api + "items/search?collection=" + this.id + "&fields=id,thumbnail_url,title,display_name,headline,description";
             return url;
         },
 
@@ -17378,7 +17378,7 @@ function( app ) {
         },
 
         beforeRender: function() {
-            this.$el.css({"background-image": "url('" + this.model.get("text").cover_image + "')"});
+            this.$el.css({"background-image": "url('" + this.model.get("thumbnail_url") + "')"});
             this.$el.attr({"href": "http://zeega.com/" + this.model.get("id")});
         },
 
@@ -17487,6 +17487,7 @@ function( app, Item ) {
             });
         }
     });
+<<<<<<< HEAD
 
     Theme.View.Mini = Theme.View.Large.extend({
         template: "theme-mini",
@@ -17496,6 +17497,17 @@ function( app, Item ) {
                 count = 0;
                 _this = this;
 
+=======
+
+    Theme.View.Mini = Theme.View.Large.extend({
+        template: "theme-mini",
+        className: "theme mini",
+        onReset: function() {
+            var itemView,
+                count = 0;
+                _this = this;
+
+>>>>>>> 0d9db380d05ba62d8c59283a9859cbf4a183f2b4
 
             this.items.each(function( item ){
                 

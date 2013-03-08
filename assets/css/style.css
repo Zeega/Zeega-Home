@@ -1028,6 +1028,7 @@ html {
 }
 .collection-item .item-profile {
   position: absolute;
+  bottom: 10px;
   text-decoration: none;
   padding: 5px;
   color: white;
@@ -1043,7 +1044,7 @@ html {
   height: 100%;
 }
 .collection-item .item-content .item-overlay {
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 .collection-item .item-content h2 {
   text-shadow: 2px 2px 2px #000;
