@@ -17339,7 +17339,7 @@ function( app ) {
 
         url: function() {
             
-            var url = app.api + "items/" + this.id + "/items";
+          var url = app.api + "items/search?collection=" + this.id + "&fields=id,thumbnail_url,title,display_name,headline,description";
             return url;
         },
 
@@ -17366,7 +17366,7 @@ function( app ) {
         },
 
         beforeRender: function() {
-            this.$el.css({"background-image": "url('" + this.model.get("text").cover_image + "')"});
+            this.$el.css({"background-image": "url('" + this.model.get("thumbnail_url") + "')"});
             this.$el.attr({"href": "http://zeega.com/" + this.model.get("id")});
         },
 
