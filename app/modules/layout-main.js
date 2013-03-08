@@ -48,7 +48,6 @@ function( app, Theme ) {
             if ( window.collections ) {
                 collectionData = jQuery.parseJSON( window.collections );
                 this.themes = new Theme.Collection(collectionData.items);
-                console.log(this.themes);
             } else {
                             this.themes = new Theme.Collection([
                 {
@@ -102,7 +101,7 @@ function( app, Theme ) {
             }
 
             this.themes.parseTags();
-            
+            console.log(this.themes);
             
         },
 
