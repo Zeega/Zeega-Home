@@ -386,10 +386,54 @@ var requirejs, require, define;
 
 this["JST"] = this["JST"] || {};
 
+this["JST"]["app/templates/navbar.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="row">       \n        <div class="span6">\n            <div class="branding"\n                <a href="/"><img src="assets/img/zeega-logo.png" alt="zeega-logo" width="134" height="43"></a>\n                <div class="strapline">\n              Remake the Internet\n                </div>\n            </div>\n    </div>\n    \n    <div class="span8">\n        <div class="navigation">    \n            <div class="">\n                <a href="http://blog.zeega.com/about">About </a> |      \n                <a href="http://zeega.com/team">Team </a> |      \n                <a href="http://blog.zeega.com" target="_blank">News</a> | \n                <a href="/register">Sign Up</a> |\n                <a href="/login">Login</a>\n            </div>\n        </div>\n    </div>\n\n</div>              \n';
+}
+return __p;
+};
+
+this["JST"]["app/templates/theme.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="row">       \n    <h2>'+
+( title )+
+'<span class="tagline">'+
+( description )+
+'</span> </h2>\n    <div class="items"></div>\n</div>              \n            \n';
+}
+return __p;
+};
+
 this["JST"]["app/templates/intro.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<div class="row">\n\n    <div class="intro-left">\n\n        <br>\n        <h2>\n        Zeega is revolutionizing web publishing and interactive storytelling for a future beyond blogs.<br><br>\n\n        With Zeega, you can use any media in the cloud, transform the entire screen into your playground, and share your interactive creations with the world.\n        </h2>\n\n    </div>\n\n    <div class="intro-right">\n\n        <a href="#" onclick="fbLogin();" style="width: 200px;" ><img src="http://zeega.com/images/registration/login-facebook.png" width="200px"/></a><br>\n        <a href="{{ path("ZeegaSocialBundle_twitter_connect") }}"><img src="http://zeega.com/images/registration/login-twitter.png" width="200px"/ ></a> <br/>\n    </div>\n\n    <div style="clear: both;"></div>\n\n</div>';
+}
+return __p;
+};
+
+this["JST"]["app/templates/layout-main.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="nav container"></div>\n<div id="content"></div>';
+}
+return __p;
+};
+
+this["JST"]["app/templates/item.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='\n<div class="item-content">\n    \t<h2>'+
+( title )+
+'</h2>\n   \t\t<a class="item-profile" href = "http://zeega.com/profile/'+
+( user_id )+
+'">'+
+( display_name )+
+'</a>\n</div>\n    \n<p class="headline">'+
+( headline )+
+'</p>';
 }
 return __p;
 };
@@ -408,38 +452,6 @@ __p+='\n<div class="item-content">\n\t<div class="item-overlay">\n\t\t<h3>'+
 return __p;
 };
 
-this["JST"]["app/templates/item.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='\n<div class="item-content">\n    \t<h2>'+
-( title )+
-'</h2>\n   \t\t<a class="item-profile" href = "http://zeega.com/profile/'+
-( user_id )+
-'">'+
-( display_name )+
-'</a>\n</div>\n    \n<p class="headline">'+
-( description )+
-'</p>';
-}
-return __p;
-};
-
-this["JST"]["app/templates/layout-main.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="nav container"></div>\n<div id="content"></div>';
-}
-return __p;
-};
-
-this["JST"]["app/templates/navbar.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="row">       \n        <div class="span6">\n            <div class="branding"\n                <a href="/"><img src="assets/img/zeega-logo.png" alt="zeega-logo" width="134" height="43"></a>\n                <div class="strapline">\n              Remake the Internet\n                </div>\n            </div>\n    </div>\n    \n    <div class="span8">\n        <div class="navigation">    \n            <div class="">\n                <a href="http://blog.zeega.com/about">About </a> |      \n                <a href="http://zeega.com/team">Team </a> |      \n                <a href="http://blog.zeega.com" target="_blank">News</a> | \n                <a href="/register">Sign Up</a> |\n                <a href="/login">Login</a>\n            </div>\n        </div>\n    </div>\n\n</div>              \n';
-}
-return __p;
-};
-
 this["JST"]["app/templates/theme-mini.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
@@ -448,18 +460,6 @@ __p+='<div class="row">       \n    <h2>'+
 ' <span class="tagline">'+
 ( description )+
 '</span> </h2>\n    <div class="items"></div>\n</div>              \n';
-}
-return __p;
-};
-
-this["JST"]["app/templates/theme.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="row">       \n    <h2>'+
-( title )+
-'</h2>\n    <p>'+
-( description )+
-'</p>\n\n\n    <div class="items"></div>\n</div>              \n';
 }
 return __p;
 };
@@ -17360,7 +17360,6 @@ function( app ) {
         model: Item.Model,
 
         initialize: function( options ){
-            console.log("ok");
             _.extend( this, options );
 
         },
@@ -17505,7 +17504,7 @@ function( app, Item ) {
     });
 
     Theme.View.Mini = Theme.View.Large.extend({
-        template: "theme-mini",
+        template: "theme",
         className: "theme mini",
         onReset: function() {
             var itemView,
@@ -17677,12 +17676,75 @@ function( app, MainLayout) {
     return Backbone.Model.extend({
         
         initialize: function() {
+            this.addHeaderUX();
             this.insertLayout();
         },
 
         insertLayout: function() {
             app.layout = new MainLayout();
             app.layout.render();
+        },
+
+        addHeaderUX: function() {
+            $(".bug-report").click( function( e ){ e.stopPropagation(); });
+  
+            $(".bug-report").parent().click( function(){
+                $(".bug-unsubmitted").show();
+                $(".bug-submitted").hide();
+            });
+  
+            $(".close-bug").click( function(){
+                $(".bug-report").parent().trigger("click");
+            });
+  
+  
+            $(".submit-bug").click(function(){
+
+                var bug = new Backbone.Model({
+                    url: window.location.href,
+                    hash: window.location.hash.substr( 1 ),
+                    description: $(".bug-description").val(),
+                    email: $(".bug-email").val(),
+                    login: sessionStorage.getItem("user")
+
+                });
+
+                if(!_.isUndefined( window.BrowserDetect )){
+
+                    bug.browser=BrowserDetect.browser;
+                    bug.version=BrowserDetect.version;
+                    bug.os=BrowserDetect.OS;
+
+                }
+
+                bug.url = sessionStorage.getItem("hostname") + sessionStorage.getItem("directory") + "bugs/report.php";
+                bug.save();
+                $(".bug-description").attr("value", "");
+                $(".bug-unsubmitted").fadeOut("fast", function(){
+                    $(".bug-submitted").fadeIn();
+                });
+
+            });
+
+            $(".drop-down").click( function(){
+                var that = $(this);
+
+                if( $(this).hasClass("open") ) {
+                    $(this).removeClass("open");
+                } else {
+                    $(this).addClass("open");
+                    $("body").bind("click",function(){
+                        that.removeClass("open");
+                        $(this).unbind();
+                    });
+                    return false;
+                }
+            });
+  
+            $("#header-add-media").click( function(){
+                $("#add-media").modal();
+                return false;
+            });
         }
 
     });
@@ -17742,24 +17804,24 @@ function(app, Router) {
   // All navigation that is relative should be passed through the navigate
   // method, to be processed by the router. If the link has a `data-bypass`
   // attribute, bypass the delegation completely.
-  $(document).on("click", "a[href]:not([data-bypass])", function(evt) {
-    // Get the absolute anchor href.
-    var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
-    // Get the absolute root.
-    var root = location.protocol + "//" + location.host + app.root;
+  // $(document).on("click", "a[href]:not([data-bypass])", function(evt) {
+  //   // Get the absolute anchor href.
+  //   var href = { prop: $(this).prop("href"), attr: $(this).attr("href") };
+  //   // Get the absolute root.
+  //   var root = location.protocol + "//" + location.host + app.root;
 
-    // Ensure the root is part of the anchor href, meaning it's relative.
-    if (href.prop.slice(0, root.length) === root) {
-      // Stop the default event to ensure the link will not cause a page
-      // refresh.
-      evt.preventDefault();
+  //   // Ensure the root is part of the anchor href, meaning it's relative.
+  //   if (href.prop.slice(0, root.length) === root) {
+  //     // Stop the default event to ensure the link will not cause a page
+  //     // refresh.
+  //     evt.preventDefault();
 
-      // `Backbone.history.navigate` is sufficient for all Routers and will
-      // trigger the correct events. The Router's internal `navigate` method
-      // calls this anyways.  The fragment is sliced from the root.
-      Backbone.history.navigate(href.attr, true);
-    }
-  });
+  //     // `Backbone.history.navigate` is sufficient for all Routers and will
+  //     // trigger the correct events. The Router's internal `navigate` method
+  //     // calls this anyways.  The fragment is sliced from the root.
+  //     Backbone.history.navigate(href.attr, true);
+  //   }
+  // });
 
 });
 

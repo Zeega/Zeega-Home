@@ -87,7 +87,7 @@ function( app, Item ) {
     });
 
     Theme.View.Mini = Theme.View.Large.extend({
-        template: "theme-mini",
+        template: "theme",
         className: "theme mini",
         onReset: function() {
             var itemView,

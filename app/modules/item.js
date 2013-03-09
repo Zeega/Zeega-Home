@@ -16,7 +16,6 @@ function( app ) {
         model: Item.Model,
 
         initialize: function( options ){
-            console.log("ok");
             _.extend( this, options );
 
         },
