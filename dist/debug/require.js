@@ -17366,7 +17366,7 @@ function( app ) {
 
         url: function() {
             
-            var url = app.api + "items/search?collection=" + this.id + "&fields=id,thumbnail_url,title,display_name,headline,description";
+            var url = app.api + "items/search?collection=" + this.id + "&fields=id,user_id,thumbnail_url,title,display_name,headline,description";
             return url;
         },
 
