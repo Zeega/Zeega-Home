@@ -15,26 +15,6 @@ function( app, Item ) {
 
     Theme.Collection = Backbone.Collection.extend({
         model: Theme.Model,
-        parseTags: function() {
-            var tag, index, key, value;
-            for(var i = 0; i < this.length; i++){
-                for( var j = 0; j< this.at( i ).get("tags").length; j++){
-                    tag = this.at( i ).get("tags")[ j ];
-                    index = tag.indexOf("-");
-                    if( index > -1 ){
-                        key = tag.substr( 0, index );
-                        value = tag.substr( index + 1 );
-                        this.at(i).set(key, value);
-                    }
-                }
-                if(_.isUndefined( this.at( i ).get("format"))){
-                    this.at( i ).set("format", "mini" );
-                }
-            }
-
-            this.sort();
-        },
-
         comparator: function(theme){
             return theme.get("order");
         }
@@ -53,19 +33,13 @@ function( app, Item ) {
         },
         initialize: function() {
 
-            this.items = new Item.Collection({ id: this.model.id });
+            this.items = new Item.Collection({ id: this.model.id, tags: this.model.get("tags") });
             this.items.on("reset", this.onReset, this );
 
         },
 
         beforeRender: function() {
             this.items.fetch();
-            if( !_.isUndefined( this.model.get("backgroundColor"))){
-
-                this.$el.css({
-                    "background-color": this.model.get("backgroundColor")
-                });
-            }
         },
 
         onReset: function() {
@@ -96,7 +70,6 @@ function( app, Item ) {
 
 
             this.items.each(function( item ){
-                
                 if( count < 6 ){
                     itemView = new Item.View.Mini( { model : item });
                     itemView.render();

@@ -22,12 +22,12 @@ function( app ) {
 
         url: function() {
             
-            var url = app.api + "items/search?collection=" + this.id + "&fields=id,user_id,thumbnail_url,title,display_name,headline,description";
+            var url = app.api + "projects/search?tags=" + this.tags;
             return url;
         },
 
         parse: function( response ) {
-            return response.items;
+            return response.projects;
         }
 
     });
@@ -41,7 +41,7 @@ function( app ) {
         tagName: "a",
 
         serialize: function() {
-            return this.model.toJSON();
+            return _.extend({ "hostname": app.hostname },this.model.toJSON());
         },
         
         initialize: function() {
@@ -49,8 +49,8 @@ function( app ) {
         },
 
         beforeRender: function() {
-            this.$el.css({"background-image": "url('" + this.model.get("thumbnail_url") + "')"});
-            this.$el.attr({"href": "http://zeega.com/" + this.model.get("id")});
+            this.$el.css({"background-image": "url('" + this.model.get("cover_image") + "')"});
+            this.$el.attr({"href": app.hostname + this.model.get("id")});
         },
 
         onReset: function() {

@@ -9,7 +9,8 @@ define([
     var app = {
         // The root path to run the application.
         root: meta.data("root"),
-        api: meta.data("api")
+        api: meta.data("api"),
+        hostname: "http:" + meta.data("hostname")
     };
 
     // Localize or create a new JavaScript Template object.

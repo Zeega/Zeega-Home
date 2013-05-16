@@ -6,24 +6,7 @@
 
 function( app, Theme ) {
 
-    var MainCollection = Backbone.Collection.extend({
-
-        initialize: function( options ){
-            _.extend( this, options );
-
-        },
-
-        url: function() {
-            
-            var url = app.api + "items/" + this.id + "/items?fields=media_geo_latitude,media_geo_longitude,media_creator_username,media_creator_realname,id,attribution_uri,thumbnail_url,uri,title,description,date_created,media_type,tags,layer_type,display_name,eidtable,published";
-            return url;
-        },
-
-        parse: function( response ) {
-            return response.items;
-        }
-
-    });
+    var MainCollection = Backbone.Collection.extend();
     
 
 
@@ -36,72 +19,60 @@ function( app, Theme ) {
         initialize: function() {
             
             var collectionData;
-            // var lazyResize = _.debounce(function() {
-            //     this.lazyResize();
-            // }.bind( this ), 300);
-
-            // $( window ).resize( lazyResize );
-            // this.themes = new MainCollection({ id: this.id });
-            // this.themes.on("reset", this.onReset, this );
-            // 92990
-
-            if ( window.collections ) {
-                collectionData = jQuery.parseJSON( window.collections );
-                this.themes = new Theme.Collection(collectionData.items);
-            } else {
-                            this.themes = new Theme.Collection([
+            
+            this.themes = new Theme.Collection([
                 {
-                    "id": 92569,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "First Zeegas",
-                    "description": "These Zeegas are my favorite :)",
-                    "tags": [
-                        "backgroundColor-#ebebeb", "format-large", "order-0"
-                    ]
+                    "id": 1,
+                    "title": "#Fresh",
+                    "description": "The latest to emerge from the Zeegaverse.",
+                    "tags": "fresh",
+                    "format": "small",
+                    "order": 1
                 },
 
                 {
-                    "id": 92989,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Second Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "backgroundColor-#fdb2a6","format-mini", "order-1"
-                    ]
-                },
-                
-                {
-                    "id": 93607,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Third Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "backgroundColor-#ebebeb", "format-large", "order-2"
-                    ]
+                    "id": 2,
+                    "title": "#Featured",
+                    "description": "Recent Zeegas that are blowing our minds.",
+                    "tags": "featured",
+                    "format": "large",
+                    "order": 2
                 },
                 {
-                    "id": 93608,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Fourth Zeegas",
-                    "description": "These Zeegas are my favorite :)",
-                    "tags": [
-                        "backgroundColor-#fdb2a6", "format-mini", "order-3"
-                    ]
+                    "id": 3,
+                    "title": "#Personal",
+                    "description": "Personal stories that speak to us all.",
+                    "tags": "personal",
+                    "format": "small",
+                    "order": 3
+                },
+
+                {
+                    "id": 4,
+                    "title": "#World",
+                    "description": "Zeegas about what’s goin’ on in this world of ours.",
+                    "tags": "world",
+                    "format": "large",
+                    "order": 4
+                },
+                {
+                    "id": 5,
+                    "title": "#Music",
+                    "description": "Zeegas that make us wanna dance, showcase new tunes/upcoming albums, or explore specific genres/individual works.",
+                    "tags": "audiogif",
+                    "format": "small",
+                    "order": 5
+                },
+
+                {
+                    "id": 6,
+                    "title": "#TheClassics",
+                    "description": "The heavy hitters. The big kahunas. A selection of the most awesome Zeegas of all time. Oh baby!",
+                    "tags": "theclassics",
+                    "format": "large",
+                    "order": 6
                 }
-
             ]);
-            }
-
-            this.themes.parseTags();
-            console.log(this.themes);
             
         },
 

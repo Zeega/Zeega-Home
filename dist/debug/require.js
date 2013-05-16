@@ -386,30 +386,42 @@ var requirejs, require, define;
 
 this["JST"] = this["JST"] || {};
 
-this["JST"]["app/templates/navbar.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="row">       \n        <div class="span6">\n            <div class="branding"\n                <a href="/"><img src="assets/img/zeega-logo.png" alt="zeega-logo" width="134" height="43"></a>\n                <div class="strapline">\n              Remake the Internet\n                </div>\n            </div>\n    </div>\n    \n    <div class="span8">\n        <div class="navigation">    \n            <div class="">\n                <a href="http://blog.zeega.com/about">About </a> |      \n                <a href="http://zeega.com/team">Team </a> |      \n                <a href="http://blog.zeega.com" target="_blank">News</a> | \n                <a href="/register">Sign Up</a> |\n                <a href="/login">Login</a>\n            </div>\n        </div>\n    </div>\n\n</div>              \n';
-}
-return __p;
-};
-
-this["JST"]["app/templates/theme.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="row">       \n    <h2>'+
-( title )+
-'<span class="tagline">'+
-( description )+
-'</span> </h2>\n    <div class="items"></div>\n</div>              \n            \n';
-}
-return __p;
-};
-
 this["JST"]["app/templates/intro.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<div class="row">\n\n    <div class="intro-left">\n\n        <br>\n        <h2>\n        Zeega is revolutionizing web publishing and interactive storytelling for a future beyond blogs.<br><br>\n\n        With Zeega, you can use any media in the cloud, transform the entire screen into your playground, and share your interactive creations with the world.\n        </h2>\n\n    </div>\n\n    <div class="intro-right">\n\n        <a href="#" onclick="fbLogin();" style="width: 200px;" ><img src="http://zeega.com/images/registration/login-facebook.png" width="200px"/></a><br>\n        <a href="{{ path("ZeegaSocialBundle_twitter_connect") }}"><img src="http://zeega.com/images/registration/login-twitter.png" width="200px"/ ></a> <br/>\n    </div>\n\n    <div style="clear: both;"></div>\n\n</div>';
+}
+return __p;
+};
+
+this["JST"]["app/templates/item-mini.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='\n<div class="item-content">\n\t<div class="item-overlay">\n\t\t<h3>'+
+( title )+
+'</h3>\n\t\t<a class="item-profile" href = "'+
+( hostname )+
+'profile/'+
+( user_id )+
+'">'+
+( username )+
+'</a>\n\t</div>\n</div>\n    \n';
+}
+return __p;
+};
+
+this["JST"]["app/templates/item.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='\n<div class="item-content">\n    \t<h2>'+
+( title )+
+'</h2>\n   \t\t<a class="item-profile" href = "'+
+( hostname )+
+'profile/'+
+( user_id )+
+'">'+
+( username )+
+'</a>\n</div>';
 }
 return __p;
 };
@@ -422,32 +434,10 @@ __p+='<div class="nav container"></div>\n<div id="content"></div>';
 return __p;
 };
 
-this["JST"]["app/templates/item.html"] = function(obj){
+this["JST"]["app/templates/navbar.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='\n<div class="item-content">\n    \t<h2>'+
-( title )+
-'</h2>\n   \t\t<a class="item-profile" href = "http://zeega.com/profile/'+
-( user_id )+
-'">'+
-( display_name )+
-'</a>\n</div>\n    \n<p class="headline">'+
-( headline )+
-'</p>';
-}
-return __p;
-};
-
-this["JST"]["app/templates/item-mini.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='\n<div class="item-content">\n\t<div class="item-overlay">\n\t\t<h3>'+
-( title )+
-'</h3>\n\t\t<a class="item-profile" href = "http://zeega.com/profile/'+
-( user_id )+
-'">'+
-( display_name )+
-'</a>\n\t</div>\n</div>\n    \n';
+__p+='<div class="row">       \n        <div class="span6">\n            <div class="branding"\n                <a href="/"><img src="assets/img/zeega-logo.png" alt="zeega-logo" width="134" height="43"></a>\n                <div class="strapline">\n              Remake the Internet\n                </div>\n            </div>\n    </div>\n    \n    <div class="span8">\n        <div class="navigation">    \n            <div class="">\n                <a href="http://blog.zeega.com/about">About </a> |      \n                <a href="http://zeega.com/team">Team </a> |      \n                <a href="http://blog.zeega.com" target="_blank">News</a> | \n                <a href="/register">Sign Up</a> |\n                <a href="/login">Login</a>\n            </div>\n        </div>\n    </div>\n\n</div>              \n';
 }
 return __p;
 };
@@ -460,6 +450,18 @@ __p+='<div class="row">       \n    <h2>'+
 ' <span class="tagline">'+
 ( description )+
 '</span> </h2>\n    <div class="items"></div>\n</div>              \n';
+}
+return __p;
+};
+
+this["JST"]["app/templates/theme.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="row">       \n    <h2>'+
+( title )+
+'<span class="tagline">'+
+( description )+
+'</span> </h2>\n    <div class="items"></div>\n</div>              \n            \n';
 }
 return __p;
 };
@@ -17277,7 +17279,8 @@ define('app',[
     var app = {
         // The root path to run the application.
         root: meta.data("root"),
-        api: meta.data("api")
+        api: meta.data("api"),
+        hostname: "http:" + meta.data("hostname")
     };
 
     // Localize or create a new JavaScript Template object.
@@ -17366,12 +17369,12 @@ function( app ) {
 
         url: function() {
             
-            var url = app.api + "items/search?collection=" + this.id + "&fields=id,user_id,thumbnail_url,title,display_name,headline,description";
+            var url = app.api + "projects/search?tags=" + this.tags;
             return url;
         },
 
         parse: function( response ) {
-            return response.items;
+            return response.projects;
         }
 
     });
@@ -17385,7 +17388,7 @@ function( app ) {
         tagName: "a",
 
         serialize: function() {
-            return this.model.toJSON();
+            return _.extend({ "hostname": app.hostname },this.model.toJSON());
         },
         
         initialize: function() {
@@ -17393,8 +17396,8 @@ function( app ) {
         },
 
         beforeRender: function() {
-            this.$el.css({"background-image": "url('" + this.model.get("thumbnail_url") + "')"});
-            this.$el.attr({"href": "http://zeega.com/" + this.model.get("id")});
+            this.$el.css({"background-image": "url('" + this.model.get("cover_image") + "')"});
+            this.$el.attr({"href": app.hostname + this.model.get("id")});
         },
 
         onReset: function() {
@@ -17432,26 +17435,6 @@ function( app, Item ) {
 
     Theme.Collection = Backbone.Collection.extend({
         model: Theme.Model,
-        parseTags: function() {
-            var tag, index, key, value;
-            for(var i = 0; i < this.length; i++){
-                for( var j = 0; j< this.at( i ).get("tags").length; j++){
-                    tag = this.at( i ).get("tags")[ j ];
-                    index = tag.indexOf("-");
-                    if( index > -1 ){
-                        key = tag.substr( 0, index );
-                        value = tag.substr( index + 1 );
-                        this.at(i).set(key, value);
-                    }
-                }
-                if(_.isUndefined( this.at( i ).get("format"))){
-                    this.at( i ).set("format", "mini" );
-                }
-            }
-
-            this.sort();
-        },
-
         comparator: function(theme){
             return theme.get("order");
         }
@@ -17470,19 +17453,13 @@ function( app, Item ) {
         },
         initialize: function() {
 
-            this.items = new Item.Collection({ id: this.model.id });
+            this.items = new Item.Collection({ id: this.model.id, tags: this.model.get("tags") });
             this.items.on("reset", this.onReset, this );
 
         },
 
         beforeRender: function() {
             this.items.fetch();
-            if( !_.isUndefined( this.model.get("backgroundColor"))){
-
-                this.$el.css({
-                    "background-color": this.model.get("backgroundColor")
-                });
-            }
         },
 
         onReset: function() {
@@ -17513,7 +17490,6 @@ function( app, Item ) {
 
 
             this.items.each(function( item ){
-                
                 if( count < 6 ){
                     itemView = new Item.View.Mini( { model : item });
                     itemView.render();
@@ -17537,24 +17513,7 @@ function( app, Item ) {
 
 function( app, Theme ) {
 
-    var MainCollection = Backbone.Collection.extend({
-
-        initialize: function( options ){
-            _.extend( this, options );
-
-        },
-
-        url: function() {
-            
-            var url = app.api + "items/" + this.id + "/items?fields=media_geo_latitude,media_geo_longitude,media_creator_username,media_creator_realname,id,attribution_uri,thumbnail_url,uri,title,description,date_created,media_type,tags,layer_type,display_name,eidtable,published";
-            return url;
-        },
-
-        parse: function( response ) {
-            return response.items;
-        }
-
-    });
+    var MainCollection = Backbone.Collection.extend();
     
 
 
@@ -17567,72 +17526,60 @@ function( app, Theme ) {
         initialize: function() {
             
             var collectionData;
-            // var lazyResize = _.debounce(function() {
-            //     this.lazyResize();
-            // }.bind( this ), 300);
-
-            // $( window ).resize( lazyResize );
-            // this.themes = new MainCollection({ id: this.id });
-            // this.themes.on("reset", this.onReset, this );
-            // 92990
-
-            if ( window.collections ) {
-                collectionData = jQuery.parseJSON( window.collections );
-                this.themes = new Theme.Collection(collectionData.items);
-            } else {
-                            this.themes = new Theme.Collection([
+            
+            this.themes = new Theme.Collection([
                 {
-                    "id": 92569,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "First Zeegas",
-                    "description": "These Zeegas are my favorite :)",
-                    "tags": [
-                        "backgroundColor-#ebebeb", "format-large", "order-0"
-                    ]
+                    "id": 1,
+                    "title": "#Fresh",
+                    "description": "The latest to emerge from the Zeegaverse.",
+                    "tags": "fresh",
+                    "format": "small",
+                    "order": 1
                 },
 
                 {
-                    "id": 92989,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Second Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "backgroundColor-#fdb2a6","format-mini", "order-1"
-                    ]
-                },
-                
-                {
-                    "id": 93607,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Third Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "backgroundColor-#ebebeb", "format-large", "order-2"
-                    ]
+                    "id": 2,
+                    "title": "#Featured",
+                    "description": "Recent Zeegas that are blowing our minds.",
+                    "tags": "featured",
+                    "format": "large",
+                    "order": 2
                 },
                 {
-                    "id": 93608,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Fourth Zeegas",
-                    "description": "These Zeegas are my favorite :)",
-                    "tags": [
-                        "backgroundColor-#fdb2a6", "format-mini", "order-3"
-                    ]
+                    "id": 3,
+                    "title": "#Personal",
+                    "description": "Personal stories that speak to us all.",
+                    "tags": "personal",
+                    "format": "small",
+                    "order": 3
+                },
+
+                {
+                    "id": 4,
+                    "title": "#World",
+                    "description": "Zeegas about what’s goin’ on in this world of ours.",
+                    "tags": "world",
+                    "format": "large",
+                    "order": 4
+                },
+                {
+                    "id": 5,
+                    "title": "#Music",
+                    "description": "Zeegas that make us wanna dance, showcase new tunes/upcoming albums, or explore specific genres/individual works.",
+                    "tags": "audiogif",
+                    "format": "small",
+                    "order": 5
+                },
+
+                {
+                    "id": 6,
+                    "title": "#TheClassics",
+                    "description": "The heavy hitters. The big kahunas. A selection of the most awesome Zeegas of all time. Oh baby!",
+                    "tags": "theclassics",
+                    "format": "large",
+                    "order": 6
                 }
-
             ]);
-            }
-
-            this.themes.parseTags();
-            console.log(this.themes);
             
         },
 
@@ -17686,46 +17633,6 @@ function( app, MainLayout) {
         },
 
         addHeaderUX: function() {
-            $(".bug-report").click( function( e ){ e.stopPropagation(); });
-  
-            $(".bug-report").parent().click( function(){
-                $(".bug-unsubmitted").show();
-                $(".bug-submitted").hide();
-            });
-  
-            $(".close-bug").click( function(){
-                $(".bug-report").parent().trigger("click");
-            });
-  
-  
-            $(".submit-bug").click(function(){
-
-                var bug = new Backbone.Model({
-                    url: window.location.href,
-                    hash: window.location.hash.substr( 1 ),
-                    description: $(".bug-description").val(),
-                    email: $(".bug-email").val(),
-                    login: sessionStorage.getItem("user")
-
-                });
-
-                if(!_.isUndefined( window.BrowserDetect )){
-
-                    bug.browser=BrowserDetect.browser;
-                    bug.version=BrowserDetect.version;
-                    bug.os=BrowserDetect.OS;
-
-                }
-
-                bug.url = sessionStorage.getItem("hostname") + sessionStorage.getItem("directory") + "bugs/report.php";
-                bug.save();
-                $(".bug-description").attr("value", "");
-                $(".bug-unsubmitted").fadeOut("fast", function(){
-                    $(".bug-submitted").fadeIn();
-                });
-
-            });
-
             $(".drop-down").click( function(){
                 var that = $(this);
 
@@ -17739,11 +17646,6 @@ function( app, MainLayout) {
                     });
                     return false;
                 }
-            });
-  
-            $("#header-add-media").click( function(){
-                $("#add-media").modal();
-                return false;
             });
         }
 
