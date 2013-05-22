@@ -45,63 +45,11 @@ function( app, Theme ) {
             // this.themes.on("reset", this.onReset, this );
             // 92990
 
-            if ( window.collections ) {
-                collectionData = jQuery.parseJSON( window.collections );
-                this.themes = new Theme.Collection(collectionData.items);
-            } else {
-                            this.themes = new Theme.Collection([
-                {
-                    "id": 92569,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "First Zeegas",
-                    "description": "These Zeegas are my favorite :)",
-                    "tags": [
-                        "backgroundColor-#ebebeb", "format-large", "order-0"
-                    ]
-                },
-
-                {
-                    "id": 92989,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Second Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "backgroundColor-#fdb2a6","format-mini", "order-1"
-                    ]
-                },
-                
-                {
-                    "id": 93607,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Third Zeegas",
-                    "description": "Poop",
-                    "tags": [
-                        "backgroundColor-#ebebeb", "format-large", "order-2"
-                    ]
-                },
-                {
-                    "id": 93608,
-                    "user_id": null,
-                    "username": "",
-                    "display_name": "James Burns",
-                    "title": "Fourth Zeegas",
-                    "description": "These Zeegas are my favorite :)",
-                    "tags": [
-                        "backgroundColor-#fdb2a6", "format-mini", "order-3"
-                    ]
-                }
-
-            ]);
-            }
+            collectionData = jQuery.parseJSON( window.collections );
+            this.themes = new Theme.Collection(collectionData.items);
+            
 
             this.themes.parseTags();
-            console.log(this.themes);
             
         },
 
