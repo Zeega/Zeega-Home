@@ -17477,12 +17477,6 @@ function( app, Item ) {
 
         beforeRender: function() {
             this.items.fetch();
-            if( !_.isUndefined( this.model.get("backgroundColor"))){
-
-                this.$el.css({
-                    "background-color": this.model.get("backgroundColor")
-                });
-            }
         },
 
         onReset: function() {
