@@ -490,7 +490,7 @@ html {
   font-family: 'Open Sans Condensed', sans-serif;
 }
 .container {
-  width: 1000px;
+  width: 960px;
   margin-right: auto;
   margin-left: auto;
 }
@@ -504,7 +504,7 @@ html {
   font-size: 28px;
 }
 .theme .row {
-  width: 1000px;
+  width: 960px;
   padding-left: 5px;
   padding-bottom: 20px;
   margin-left: auto;
