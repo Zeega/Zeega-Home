@@ -22,7 +22,7 @@ function( app ) {
 
         url: function() {
             
-            var url = app.api + "projects/search?tags=" + this.tags;
+            var url = app.metadata.api + "projects/search?tags=" + this.tags;
             return url;
         },
 
@@ -41,7 +41,9 @@ function( app ) {
         tagName: "a",
 
         serialize: function() {
-            return _.extend({ "hostname": app.hostname },this.model.toJSON());
+            return _.extend({
+                "path": "http:" + app.metadata.hostname + app.metadata.directory
+            },this.model.toJSON());
         },
         
         initialize: function() {
@@ -50,7 +52,7 @@ function( app ) {
 
         beforeRender: function() {
             this.$el.css({"background-image": "url('" + this.model.get("cover_image") + "')"});
-            this.$el.attr({"href": app.hostname + this.model.get("id")});
+            this.$el.attr({"href": "http:" + app.metadata.hostname + app.metadata.directory + this.model.get("id")});
         },
 
         onReset: function() {
