@@ -386,26 +386,6 @@ var requirejs, require, define;
 
 this["JST"] = this["JST"] || {};
 
-this["JST"]["app/templates/navbar.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="row">       \n        <div class="span6">\n            <div class="branding"\n                <a href="/"><img src="assets/img/zeega-logo.png" alt="zeega-logo" width="134" height="43"></a>\n                <div class="strapline">\n              Remake the Internet\n                </div>\n            </div>\n    </div>\n    \n    <div class="span8">\n        <div class="navigation">    \n            <div class="">\n                <a href="http://blog.zeega.com/about">About </a> |      \n                <a href="http://zeega.com/team">Team </a> |      \n                <a href="http://blog.zeega.com" target="_blank">News</a> | \n                <a href="/register">Sign Up</a> |\n                <a href="/login">Login</a>\n            </div>\n        </div>\n    </div>\n\n</div>              \n';
-}
-return __p;
-};
-
-this["JST"]["app/templates/theme.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="row">       \n    <h2>'+
-( title )+
-'<span class="tagline">'+
-( description )+
-'</span> </h2>\n    <div class="items"></div>\n</div>              \n            \n';
-}
-return __p;
-};
-
 this["JST"]["app/templates/intro.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
@@ -414,10 +394,18 @@ __p+='<div class="row">\n\n    <div class="intro-left">\n\n        <br>\n       
 return __p;
 };
 
-this["JST"]["app/templates/layout-main.html"] = function(obj){
+this["JST"]["app/templates/item-mini.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="nav container"></div>\n<div id="content"></div>';
+__p+='\n<div class="item-content">\n\t<div class="item-overlay">\n\t\t<h3>'+
+( title )+
+'</h3>\n\t\t<a class="item-profile" href = "'+
+( hostname )+
+'profile/'+
+( user.id )+
+'">'+
+( user.display_name )+
+'</a>\n\t</div>\n</div>\n    \n';
 }
 return __p;
 };
@@ -430,10 +418,26 @@ __p+='\n<div class="item-content">\n    \t<h2>'+
 '</h2>\n   \t\t<a class="item-profile" href = "'+
 ( hostname )+
 'profile/'+
-( user_id )+
+( user.id )+
 '">'+
-( username )+
+( user.display_name )+
 '</a>\n</div>';
+}
+return __p;
+};
+
+this["JST"]["app/templates/layout-main.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="nav container"></div>\n<div id="content"></div>';
+}
+return __p;
+};
+
+this["JST"]["app/templates/navbar.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="row">       \n        <div class="span6">\n            <div class="branding"\n                <a href="/"><img src="assets/img/zeega-logo.png" alt="zeega-logo" width="134" height="43"></a>\n                <div class="strapline">\n              Remake the Internet\n                </div>\n            </div>\n    </div>\n    \n    <div class="span8">\n        <div class="navigation">    \n            <div class="">\n                <a href="http://blog.zeega.com/about">About </a> |      \n                <a href="http://zeega.com/team">Team </a> |      \n                <a href="http://blog.zeega.com" target="_blank">News</a> | \n                <a href="/register">Sign Up</a> |\n                <a href="/login">Login</a>\n            </div>\n        </div>\n    </div>\n\n</div>              \n';
 }
 return __p;
 };
@@ -450,18 +454,14 @@ __p+='<div class="row">       \n    <h2>'+
 return __p;
 };
 
-this["JST"]["app/templates/item-mini.html"] = function(obj){
+this["JST"]["app/templates/theme.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='\n<div class="item-content">\n\t<div class="item-overlay">\n\t\t<h3>'+
+__p+='<div class="row">       \n    <h2>'+
 ( title )+
-'</h3>\n\t\t<a class="item-profile" href = "'+
-( hostname )+
-'profile/'+
-( user_id )+
-'">'+
-( username )+
-'</a>\n\t</div>\n</div>\n    \n';
+'<span class="tagline">'+
+( description )+
+'</span> </h2>\n    <div class="items"></div>\n</div>              \n            \n';
 }
 return __p;
 };
@@ -17526,20 +17526,60 @@ function( app, Theme ) {
         initialize: function() {
             
             var collectionData;
-            // var lazyResize = _.debounce(function() {
-            //     this.lazyResize();
-            // }.bind( this ), 300);
-
-            // $( window ).resize( lazyResize );
-            // this.themes = new MainCollection({ id: this.id });
-            // this.themes.on("reset", this.onReset, this );
-            // 92990
-
-            collectionData = jQuery.parseJSON( window.collections );
-            this.themes = new Theme.Collection(collectionData.items);
             
+            this.themes = new Theme.Collection([
+                {
+                    "id": 1,
+                    "title": "#Fresh",
+                    "description": "The latest to emerge from the Zeegaverse.",
+                    "tags": "fresh",
+                    "format": "small",
+                    "order": 1
+                },
 
-            this.themes.parseTags();
+                {
+                    "id": 2,
+                    "title": "#Featured",
+                    "description": "Recent Zeegas that are blowing our minds.",
+                    "tags": "featured",
+                    "format": "large",
+                    "order": 2
+                },
+                {
+                    "id": 3,
+                    "title": "#Personal",
+                    "description": "Personal stories that speak to us all.",
+                    "tags": "personal",
+                    "format": "small",
+                    "order": 3
+                },
+
+                {
+                    "id": 4,
+                    "title": "#World",
+                    "description": "Zeegas about what’s goin’ on in this world of ours.",
+                    "tags": "world",
+                    "format": "large",
+                    "order": 4
+                },
+                {
+                    "id": 5,
+                    "title": "#Music",
+                    "description": "Zeegas that make us wanna dance, showcase new tunes/upcoming albums, or explore specific genres/individual works.",
+                    "tags": "audiogif",
+                    "format": "small",
+                    "order": 5
+                },
+
+                {
+                    "id": 6,
+                    "title": "#TheClassics",
+                    "description": "The heavy hitters. The big kahunas. A selection of the most awesome Zeegas of all time. Oh baby!",
+                    "tags": "theclassics",
+                    "format": "large",
+                    "order": 6
+                }
+            ]);
             
         },
 
@@ -17570,7 +17610,6 @@ function( app, Theme ) {
     return MainLayout;
 
 });
-
 define('modules/initializer',[
     "app",
     // Modules
