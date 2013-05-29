@@ -15,6 +15,7 @@ function( app, MainLayout) {
         },
 
         insertLayout: function() {
+            console.log("inserting Layout")
             app.layout = new MainLayout();
             app.layout.render();
         },
