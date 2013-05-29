@@ -17646,6 +17646,7 @@ define('router',[
 
 function(app, Initializer) {
 
+    console.log("laoding router");
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({
         routes: {
@@ -17653,6 +17654,7 @@ function(app, Initializer) {
         },
 
         index: function() {
+            console.log("initializing index");
             initialize();
         }
 
