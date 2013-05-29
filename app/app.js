@@ -8,7 +8,8 @@ define([
     // creation.
     var app = {
         // The root path to run the application.
-        metadata: $("meta[name=zeega]").data()
+        metadata: $("meta[name=zeega]").data(),
+        root: ""
     };
 
     // Localize or create a new JavaScript Template object.
