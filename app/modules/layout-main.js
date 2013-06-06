@@ -64,9 +64,9 @@ function( app, Theme ) {
                     "tags": "pizza",
                     "format": "small",
                     "order": 5
-                }
+                },
                 
-                  {
+                {
                     "id": 6,
                     "title": "The Making Of... Cats",
                     "description": "",

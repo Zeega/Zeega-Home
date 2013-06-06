@@ -17515,53 +17515,55 @@ function( app, Theme ) {
             this.themes = new Theme.Collection([
                 {
                     "id": 1,
-                    "title": "#Fresh",
-                    "description": "The latest to emerge from the Zeegaverse.",
-                    "tags": "fresh",
+                    "title": "The Making Of... Journeys",
+                    "description": "",
+                    "tags": "journeys",
                     "format": "small",
                     "order": 1
                 },
 
+                
                 {
                     "id": 2,
-                    "title": "#Featured",
-                    "description": "Recent Zeegas that are blowing our minds.",
-                    "tags": "featured",
-                    "format": "large",
+                    "title": "The Making Of... The City",
+                    "description": "",
+                    "tags": "city",
+                    "format": "small",
                     "order": 2
                 },
+
                 {
                     "id": 3,
-                    "title": "#Personal",
-                    "description": "Personal stories that speak to us all.",
-                    "tags": "personal",
+                    "title": "The Making Of... Poetry",
+                    "description": "",
+                    "tags": "poetry",
                     "format": "small",
                     "order": 3
                 },
-
                 {
                     "id": 4,
-                    "title": "#World",
-                    "description": "Zeegas about what’s goin’ on in this world of ours.",
-                    "tags": "world",
+                    "title": "The Making Of... Rhythm",
+                    "description": "",
+                    "tags": "rhythm",
                     "format": "large",
                     "order": 4
                 },
+
                 {
                     "id": 5,
-                    "title": "#Music",
-                    "description": "Zeegas that make us wanna dance, showcase new tunes/upcoming albums, or explore specific genres/individual works.",
-                    "tags": "audiogif",
+                    "title": "The Making Of... The Pizza Wars",
+                    "description": "",
+                    "tags": "pizza",
                     "format": "small",
                     "order": 5
                 },
-
+                
                 {
                     "id": 6,
-                    "title": "#TheClassics",
-                    "description": "The heavy hitters. The big kahunas. A selection of the most awesome Zeegas of all time. Oh baby!",
-                    "tags": "theclassics",
-                    "format": "large",
+                    "title": "The Making Of... Cats",
+                    "description": "",
+                    "tags": "cats",
+                    "format": "small",
                     "order": 6
                 }
             ]);
@@ -17595,6 +17597,7 @@ function( app, Theme ) {
     return MainLayout;
 
 });
+
 define('modules/initializer',[
     "app",
     // Modules
