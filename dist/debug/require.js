@@ -17528,7 +17528,7 @@ function( app, Theme ) {
                     "title": "The Making Of... The City",
                     "description": "",
                     "tags": "city",
-                    "format": "small",
+                    "format": "large",
                     "order": 2
                 },
 
@@ -17563,7 +17563,7 @@ function( app, Theme ) {
                     "title": "The Making Of... Cats",
                     "description": "",
                     "tags": "cats",
-                    "format": "small",
+                    "format": "large",
                     "order": 6
                 }
             ]);
