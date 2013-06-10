@@ -533,11 +533,16 @@ a.tag-link:hover {
 .create-a-zeega:hover {
   background-color: orangered;
 }
+.login {
+  margin: 3px 7px 0 0;
+  position: absolute;
+  z-index: 2;
+  right: 0;
+}
 .logged-in-user {
   margin: 3px 7px 0 0;
   position: absolute;
   z-index: 2;
-  margin: 7px;
   right: 0;
 }
 .logged-in-user .profile-token {
