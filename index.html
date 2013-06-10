@@ -11,7 +11,10 @@
             data-hostname="//dev.zeega.com/"
             data-api= "http://dev.zeega.com/jmongo/web/api/"
             data-root= ""
-         />
+            data-tags="homepage"
+            data-user=null
+
+    />
 
 
 
@@ -31,27 +34,43 @@
   <!(endif)-->
 
   <!--(if target dummy)><!-->
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/dist/debug/index.css">
   <!--<!(endif)-->
 
 
 
 </head>
 
-<body>
+  <body>
 
+
+  <header>
+          <a href="http://www.zeega.com" class="ZEEGA-tab">
+              <span class="ZTab-logo"></span>
+          </a>
+          <div class="cover" style="display:none;">
+            <span class="headline home">
+              <h2> Make the web</h2><h2> you want</h2>
+            </span>
+            <span class ="join">
+              <h1>
+                <a href="http://zeega.com/m/register" >Join Zeega</a>
+              </h1>
+            </span>
+          </div>
+</header>
 
   <!-- Main container. -->
   <div role="main" id="main"></div>
 
   <!-- Application source. -->
  
-  <!--
+  
   <script data-main="/app/config" src="/vendor/js/libs/require.js"></script>
-  -->
-
+ 
+<!--
   <script  src="dist/release/require.js"></script>
-
+ -->
 
 
 </body>

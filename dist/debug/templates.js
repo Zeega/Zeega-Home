@@ -1,33 +1,9 @@
 this["JST"] = this["JST"] || {};
 
-this["JST"]["app/templates/item-mini.html"] = function(obj){
+this["JST"]["app/templates/feed.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='\n<div class="item-content">\n\t<div class="item-overlay">\n\t\t<h3>'+
-( title )+
-'</h3>\n\t\t<a class="item-profile" href = "'+
-( path )+
-'profile/'+
-( user.id )+
-'">'+
-( user.display_name )+
-'</a>\n\t</div>\n</div>\n    \n';
-}
-return __p;
-};
-
-this["JST"]["app/templates/item.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='\n<div class="item-content">\n    \t<h2>'+
-( title )+
-'</h2>\n   \t\t<a class="item-profile" href = "'+
-( path )+
-'profile/'+
-( user.id )+
-'">'+
-( user.display_name )+
-'</a>\n</div>';
+__p+='<div clas="feed"></div>';
 }
 return __p;
 };
@@ -35,31 +11,51 @@ return __p;
 this["JST"]["app/templates/layout-main.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="nav container"></div>\n<div id="content"></div>';
+__p+='<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n</div>';
 }
 return __p;
 };
 
-this["JST"]["app/templates/theme-mini.html"] = function(obj){
+this["JST"]["app/templates/sidebar.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="row">       \n    <h2>'+
-( title )+
-' <span class="tagline">'+
-( description )+
-'</span> </h2>\n    <div class="items"></div>\n</div>              \n';
+__p+='<div class="about" />\n    <h2> Zeega is a new for of interactive media. Learn more. <h2>\n</div>\n\n<div class="explore" />\n    <h2>Explore</h2>\n    <a data-bypass="true" href="'+
+(path )+
+'tag/bestof" class="tag-link">#bestof</a>\n    <a data-bypass="true" href="'+
+(path )+
+'tag/stories" class="tag-link">#stories</a>\n    <a data-bypass="true" href="'+
+(path )+
+'tag/funny" class="tag-link">#funny</a>\n    <a data-bypass="true" href="'+
+(path )+
+'tag/music" class="tag-link">#music</a>\n</div>';
 }
 return __p;
 };
 
-this["JST"]["app/templates/theme.html"] = function(obj){
+this["JST"]["app/templates/zeega.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="row">       \n    <h2>'+
+__p+='<article style="background-image: url('+
+(cover_image )+
+');" >\n            <div class="info-overlay">\n                <div class="left-column">\n                  <a data-bypass="true" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n                    <div class="profile-token" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n                   </a>\n                </div>\n                <div class="right-column">\n                  <h1 class = "caption">'+
 ( title )+
-'<span class="tagline">'+
-( description )+
-'</span> </h2>\n    <div class="items"></div>\n</div>              \n            \n';
+'</h1>\n                  \n                  <div class="profile-name">\n                    <a data-bypass="true" href="'+
+(path )+
+'profile/'+
+(user.id)+
+'" >\n                      '+
+(user.display_name)+
+'\n                    </a>\n                   \n                  </div>\n                 \n                </div>\n                  \n            \n            </div>\n        <a href="'+
+(path )+
+''+
+(id )+
+'" class="mobile-play" data-bypass="true"></a>\n</article>';
 }
 return __p;
 };

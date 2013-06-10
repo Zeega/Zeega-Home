@@ -1,23 +1,69 @@
 html {
-    /* background: url(../img/home.jpg); */
-    background-repeat:no-repeat;
-    background-position:center; 
-    background-attachment:fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    min-width: 1024px;
-
-    font-family: 'Open Sans Condensed',sans-serif;
-
+    background: url(../img/graphpaper.png);
+    font-family: 'Open Sans Condensed', sans-serif;
+    width: 100%;
+    height:100%;
+    min-width: 960px;
 }
 
-.container {
-    width: 960px;
-    margin-right: auto;
-    margin-left: auto;
-    
+body {
+    margin:0;
+    height:100%;
+    width: 100%;
 }
+
+header {
+    height: 48px;
+    padding-bottom: 25px;
+}
+
+#main {
+    position: absolute;
+    width:100%;
+    height: 100%;
+    overflow:auto;
+    max-height:100%;
+    min-height: 800px;
+}
+
+.ZEEGA-content-wrapper{
+    width: 550px;
+
+    background-color: rgba(0,0,0,0.1);
+    margin: 0 auto 0 auto;
+
+    .content{
+
+    }
+    .sidebar-wrapper{
+        height:0;
+    }
+}
+
+
+.ZEEGA-tab {
+    background: orangered;
+    display: block;
+    padding: 5px;
+    width: 30px;
+    height: 35px;
+    border-radius: 0 0 2px 2px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 10px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+
+    .ZTab-logo {
+        display: block;
+        height: 30px;
+        width: 30px;
+        background-image: url(../img/zeega-logo-white.png);
+        background-size: 30px 30px;
+        margin-top: 2px;
+    }
+}
+
 
 

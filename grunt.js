@@ -51,6 +51,10 @@ module.exports = function(grunt) {
                 "vendor/js/libs/almond.js",
                 "dist/debug/templates.js",
                 "dist/debug/require.js"
+            ],
+            "dist/debug/index.css": [
+                "assets/css/h5bp.css",
+                "assets/css/style.css"
             ]
         },
 
@@ -70,6 +74,21 @@ module.exports = function(grunt) {
             "dist/release/require.js": [
                 "dist/debug/require.js"
             ]
+        },
+
+
+        copy: {
+
+            dist: {
+                options: {
+                    cwd: "/",
+                    flatten : true
+                },
+                files: {
+                    "dist/img/": "assets/img/*"
+                }
+            }
+
         },
 
         // Running the server without specifying an action will run the defaults,
@@ -139,7 +158,6 @@ module.exports = function(grunt) {
                 files: {
                     "assets/css/style.css": [
                         "vendor/h5bp/normalize.css",
-                        //"assets/js/plugins/jquery-ui/css/smoothness/jquery-ui-1.10.0.custom.css",
                         "assets/css/less/_all.less"
                     ]
                 }
@@ -153,7 +171,7 @@ module.exports = function(grunt) {
     // dist/debug/templates.js, compile all the application code into
     // dist/debug/require.js, and then concatenate the require/define shim
     // almond.js and dist/debug/templates.js into the require.js file.
-    grunt.registerTask("default", "clean lint jst requirejs concat");
+    grunt.registerTask("default", "clean lint jst requirejs concat copy");
 
     // The debug task is simply an alias to default to remain consistent with
     // debug/release.
