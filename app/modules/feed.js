@@ -13,13 +13,37 @@ function( app, Zeega ) {
         className: "ZEEGA-feed",
 
         initialize: function(){
+
+
+
             this.collection.on( "add", function( model, b, c){
-               
                 var zeegaView = new Zeega.View({ model: model }) ;
                 this.$el.append( zeegaView.render().view.el);
+            }, this );
+
+            this.collection.on( "sync", function( model, b, c){
                 this.$el.find(".loading").remove();
             }, this );
             
+        },
+
+        serialize: function(){
+
+            var headline;
+
+            if( app.metadata.tags !== "" ){
+                if( app.metadata.tags == "homepage" ){
+                    headline = "Latest Zeegas";
+                } else {
+                    headline = "#"+app.metadata.tags;
+                }
+            } else if( this.profileId !== "" ){
+                headline = "Latest Zeegas";
+            }
+
+            return {
+                headline: headline
+            };
         },
 
         afterRender:function(){

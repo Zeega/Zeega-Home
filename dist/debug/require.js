@@ -389,7 +389,9 @@ this["JST"] = this["JST"] || {};
 this["JST"]["app/templates/feed.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='';
+__p+='<h2>'+
+( headline )+
+' &darr;</h2>';
 }
 return __p;
 };
@@ -423,7 +425,7 @@ return __p;
 this["JST"]["app/templates/sidebar.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="about" />\n    <h2> Zeega is a new for of interactive media. Learn more. <h2>\n</div>\n\n<div class="explore" />\n    <h2>Explore</h2>\n    <a data-bypass="true" href="'+
+__p+='<div class="about" />\n    <h2> Zeega is a new form of interactive media. Learn more. <h2>\n</div>\n\n<div class="explore" />\n    <h2>Explore</h2>\n    <a data-bypass="true" href="'+
 (path )+
 'tag/bestof" class="tag-link">#bestof</a>\n    <a data-bypass="true" href="'+
 (path )+
@@ -17521,13 +17523,37 @@ function( app, Zeega ) {
         className: "ZEEGA-feed",
 
         initialize: function(){
+
+
+
             this.collection.on( "add", function( model, b, c){
-               
                 var zeegaView = new Zeega.View({ model: model }) ;
                 this.$el.append( zeegaView.render().view.el);
+            }, this );
+
+            this.collection.on( "sync", function( model, b, c){
                 this.$el.find(".loading").remove();
             }, this );
             
+        },
+
+        serialize: function(){
+
+            var headline;
+
+            if( app.metadata.tags !== "" ){
+                if( app.metadata.tags == "homepage" ){
+                    headline = "Latest Zeegas";
+                } else {
+                    headline = "#"+app.metadata.tags;
+                }
+            } else if( this.profileId !== "" ){
+                headline = "Latest Zeegas";
+            }
+
+            return {
+                headline: headline
+            };
         },
 
         afterRender:function(){

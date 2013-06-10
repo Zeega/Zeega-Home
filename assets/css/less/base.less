@@ -14,7 +14,7 @@ body {
 
 header {
     height: 48px;
-    padding-bottom: 25px;
+    width: 100%;
     position: absolute;
     background:transparent;
 }
@@ -53,8 +53,56 @@ a{
     }
 }
 
+.create-a-zeega{
+    position: absolute;
+    z-index:2;
+    width: 150px;
+    margin-top: 7px;
+    left: 60px;
+    &:hover{
+        background-color:orangered;
+    }
+}
 
+.logged-in-user{
+    position: absolute;
+    z-index:2;
+    margin:7px;
+    right: 0;
+    .profile-token{
+        background-position: center;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        border-radius: 28px;
+        height: 35px;
+        width: 35px;
+        overflow: hidden;
+        float: left;
+        border: 2px solid grey;
+        &:hover{
+            border: 2px solid orangered;
+        }
+    }
+}
 
+.btnz{
+    background: url(../img/tiny-stripes-dark.png);
+    background-color: #666666;
+    border-radius: 2px;
+    padding: 5px 10px;
+    font-size: 15px;
+    top: 0;
+    height: 20px;
+    color: white;
+    text-align: center;
+    font-family: "futura", sans-serif;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
 
 .ZEEGA-tab {
     background: orangered;
