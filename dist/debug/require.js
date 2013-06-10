@@ -399,17 +399,17 @@ return __p;
 this["JST"]["app/templates/footer.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class ="footer">\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n            <a class="tag-link" data-bypass="true" href="'+
+__p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n            <a class="tag-link" data-bypass="true" href="'+
 (path )+
-'tags/bestof" >#bestof</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/bestof" >#bestof</a>\n            <a class="tag-link" data-bypass="true" href="'+
 (path )+
-'tags/stories" >#stories</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/stories" >#stories</a>\n            <a class="tag-link" data-bypass="true" href="'+
 (path )+
-'tags/funny" >#funny</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/funny" >#funny</a>\n            <a class="tag-link" data-bypass="true" href="'+
 (path )+
-'tags/music" >#music</a>\n        </h1>\n    </span>\n    <span >\n        <a class ="join" href="'+
+'tag/music" >#music</a>\n        </h1>\n    </span>\n    <span >\n        <h1>\n            <a class ="join" href="'+
 (path )+
-'/register">Join Zeega</a>\n        \n    </span>   \n  </div>';
+'/register">Join Zeega</a>\n        </h1>\n    </span>   \n  ';
 }
 return __p;
 };
@@ -425,15 +425,23 @@ return __p;
 this["JST"]["app/templates/sidebar.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="about" />\n    <h2> Zeega is a new form of interactive media. Learn more. <h2>\n</div>\n\n<div class="explore" />\n    <h2>Explore</h2>\n    <a data-bypass="true" href="'+
+__p+='<div class="about" />\n    <h2> Zeega is a new form of interactive media. <a class="about-link" href="'+
 (path )+
-'tag/bestof" class="tag-link">#bestof</a>\n    <a data-bypass="true" href="'+
+'/about">Learn more.</a> <h2>\n\n    ';
+ if (userId == -1 ){ 
+;__p+='\n    <a class="btnz join-zeega" href="'+
 (path )+
-'tag/stories" class="tag-link">#stories</a>\n    <a data-bypass="true" href="'+
+'register" > Sign Up</a>\n\n    ';
+ } 
+;__p+='\n\n</div>\n\n<div class="explore" />\n    <h2>\n        Explore:\n        <a data-bypass="true" href="'+
 (path )+
-'tag/funny" class="tag-link">#funny</a>\n    <a data-bypass="true" href="'+
+'tag/bestof" class="tag-link">#bestof</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/music" class="tag-link">#music</a>\n</div>';
+'tag/stories" class="tag-link">#stories</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/funny" class="tag-link">#funny</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/music" class="tag-link">#music</a>\n    </h2>\n</div>';
 }
 return __p;
 };
@@ -17430,9 +17438,11 @@ function( app ) {
         template: "sidebar",
         className: "sidebar",
         serialize: function() {
-            return {
-                    path: "http:" + app.metadata.hostname + app.metadata.directory
-                };
+            return  _.extend( app.metadata,
+                        {
+                            path: "http:" + app.metadata.hostname + app.metadata.directory
+                        }
+                    );
         }
 
     });

@@ -1,11 +1,19 @@
 <div class="about" />
-    <h2> Zeega is a new form of interactive media. Learn more. <h2>
+    <h2> Zeega is a new form of interactive media. <a class="about-link" href="<%=path %>/about">Learn more.</a> <h2>
+
+    <% if (userId == -1 ){ %>
+    <a class="btnz join-zeega" href="<%=path %>register" > Sign Up</a>
+
+    <% } %>
+
 </div>
 
 <div class="explore" />
-    <h2>Explore</h2>
-    <a data-bypass="true" href="<%=path %>tag/bestof" class="tag-link">#bestof</a>
-    <a data-bypass="true" href="<%=path %>tag/stories" class="tag-link">#stories</a>
-    <a data-bypass="true" href="<%=path %>tag/funny" class="tag-link">#funny</a>
-    <a data-bypass="true" href="<%=path %>tag/music" class="tag-link">#music</a>
+    <h2>
+        Explore:
+        <a data-bypass="true" href="<%=path %>tag/bestof" class="tag-link">#bestof</a>
+        <a data-bypass="true" href="<%=path %>tag/stories" class="tag-link">#stories</a>
+        <a data-bypass="true" href="<%=path %>tag/funny" class="tag-link">#funny</a>
+        <a data-bypass="true" href="<%=path %>tag/music" class="tag-link">#music</a>
+    </h2>
 </div>

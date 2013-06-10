@@ -11,9 +11,11 @@ function( app ) {
         template: "sidebar",
         className: "sidebar",
         serialize: function() {
-            return {
-                    path: "http:" + app.metadata.hostname + app.metadata.directory
-                };
+            return  _.extend( app.metadata,
+                        {
+                            path: "http:" + app.metadata.hostname + app.metadata.directory
+                        }
+                    );
         }
 
     });
