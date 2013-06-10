@@ -13,13 +13,11 @@ function( app, Zeega ) {
         className: "ZEEGA-feed",
 
         initialize: function(){
-
-            
-            
             this.collection.on( "add", function( model, b, c){
                
                 var zeegaView = new Zeega.View({ model: model }) ;
                 this.$el.append( zeegaView.render().view.el);
+                this.$el.find(".loading").remove();
             }, this );
             
         },
@@ -33,14 +31,15 @@ function( app, Zeega ) {
         onScroll: function(e){
 
             var a = $(window).scrollTop() + $(window).innerHeight();
-            var b = $(".content")[0].scrollHeight;
-
-
-            if( b !== 0 && a >= b && this.collection.more ){
+            var b = $("body")[0].scrollHeight;
+            
+            if( b !== 0 && a >= b - 500 && this.collection.more ){
+                console.log("loading more");
                 
+                this.$el.append("<div class='zeega-card'><article class='loading'></article> </div>");
                 this.collection.more = false;
                 this.collection.page ++;
-                this.collection.fetch();
+                //this.collection.fetch();
             }
         }
 

@@ -3,7 +3,25 @@ this["JST"] = this["JST"] || {};
 this["JST"]["app/templates/feed.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div clas="feed"></div>';
+__p+='';
+}
+return __p;
+};
+
+this["JST"]["app/templates/footer.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class ="footer">\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n            <a class="tag-link" data-bypass="true" href="'+
+(path )+
+'tags/bestof" >#bestof</a>\n            <a class="tag-link" data-bypass="true" href="'+
+(path )+
+'tags/stories" >#stories</a>\n            <a class="tag-link" data-bypass="true" href="'+
+(path )+
+'tags/funny" >#funny</a>\n            <a class="tag-link" data-bypass="true" href="'+
+(path )+
+'tags/music" >#music</a>\n        </h1>\n    </span>\n    <span class ="join">\n        <h1>\n            <a href="'+
+(path )+
+'/register">Join Zeega</a>\n        </h1>\n    </span>   \n  </div>';
 }
 return __p;
 };

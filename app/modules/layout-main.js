@@ -2,11 +2,13 @@
     "app",
     "modules/sidebar",
     "modules/feed",
-    "modules/zeega",
+
+    "modules/footer",
+        "modules/zeega",
     "backbone"
 ],
 
-function( app, SidebarView, FeedView, Zeega ) {
+function( app, SidebarView, FeedView, FooterView, Zeega ) {
 
     var MainCollection = Backbone.Collection.extend();
     
@@ -23,6 +25,7 @@ function( app, SidebarView, FeedView, Zeega ) {
             zeegas = new Zeega.Collection( app.metadata );
             this.insertView( ".sidebar-wrapper", new SidebarView() );
             this.insertView( ".content", new FeedView({ collection: zeegas }) );
+            this.insertView( ".content", new FooterView() );
         }
     });
 

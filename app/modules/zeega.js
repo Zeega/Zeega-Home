@@ -14,13 +14,14 @@ function( app ) {
         page: 1,
         tags: null,
         user: null,
+        limit: 10,
 
         initialize: function( options ){
             _.extend( this, options );
         },
         
         url: function() {
-            var url =  app.metadata.api + "projects/search?limit=20&page=" + this.page;
+            var url =  app.metadata.api + "projects/search?limit=" + this.limit + "&page=" + this.page;
  
             if( this.tags !== "" ){
                 url += "&tags=" + this.tags;
@@ -34,7 +35,7 @@ function( app ) {
         },
 
         parse: function( response ) {
-            if( response.projects.length == 20 ){
+            if( response.projects.length == this.limit ){
                 this.more = true;
             } else {
                 this.more = false;

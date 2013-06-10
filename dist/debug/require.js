@@ -389,7 +389,25 @@ this["JST"] = this["JST"] || {};
 this["JST"]["app/templates/feed.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div clas="feed"></div>';
+__p+='';
+}
+return __p;
+};
+
+this["JST"]["app/templates/footer.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class ="footer">\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n            <a class="tag-link" data-bypass="true" href="'+
+(path )+
+'tags/bestof" >#bestof</a>\n            <a class="tag-link" data-bypass="true" href="'+
+(path )+
+'tags/stories" >#stories</a>\n            <a class="tag-link" data-bypass="true" href="'+
+(path )+
+'tags/funny" >#funny</a>\n            <a class="tag-link" data-bypass="true" href="'+
+(path )+
+'tags/music" >#music</a>\n        </h1>\n    </span>\n    <span class ="join">\n        <h1>\n            <a href="'+
+(path )+
+'/register">Join Zeega</a>\n        </h1>\n    </span>   \n  </div>';
 }
 return __p;
 };
@@ -17438,13 +17456,14 @@ function( app ) {
         page: 1,
         tags: null,
         user: null,
+        limit: 10,
 
         initialize: function( options ){
             _.extend( this, options );
         },
         
         url: function() {
-            var url =  app.metadata.api + "projects/search?limit=20&page=" + this.page;
+            var url =  app.metadata.api + "projects/search?limit=" + this.limit + "&page=" + this.page;
  
             if( this.tags !== "" ){
                 url += "&tags=" + this.tags;
@@ -17458,7 +17477,7 @@ function( app ) {
         },
 
         parse: function( response ) {
-            if( response.projects.length == 20 ){
+            if( response.projects.length == this.limit ){
                 this.more = true;
             } else {
                 this.more = false;
@@ -17502,13 +17521,11 @@ function( app, Zeega ) {
         className: "ZEEGA-feed",
 
         initialize: function(){
-
-            
-            
             this.collection.on( "add", function( model, b, c){
                
                 var zeegaView = new Zeega.View({ model: model }) ;
                 this.$el.append( zeegaView.render().view.el);
+                this.$el.find(".loading").remove();
             }, this );
             
         },
@@ -17522,14 +17539,15 @@ function( app, Zeega ) {
         onScroll: function(e){
 
             var a = $(window).scrollTop() + $(window).innerHeight();
-            var b = $(".content")[0].scrollHeight;
-
-
-            if( b !== 0 && a >= b && this.collection.more ){
+            var b = $("body")[0].scrollHeight;
+            
+            if( b !== 0 && a >= b - 500 && this.collection.more ){
+                console.log("loading more");
                 
+                this.$el.append("<div class='zeega-card'><article class='loading'></article> </div>");
                 this.collection.more = false;
                 this.collection.page ++;
-                this.collection.fetch();
+                //this.collection.fetch();
             }
         }
 
@@ -17540,15 +17558,42 @@ function( app, Zeega ) {
 
 });
 
+define('modules/footer',[
+    "app",
+    "backbone"
+],
+
+function( app ) {
+
+
+    FooterView = Backbone.View.extend({
+
+        template: "footer",
+        className: "footer",
+        serialize: function() {
+            return {
+                    path: "http:" + app.metadata.hostname + app.metadata.directory
+                };
+        }
+
+    });
+
+    // Required, return the module for AMD compliance
+    return FooterView;
+
+});
+
  define('modules/layout-main',[
     "app",
     "modules/sidebar",
     "modules/feed",
-    "modules/zeega",
+
+    "modules/footer",
+        "modules/zeega",
     "backbone"
 ],
 
-function( app, SidebarView, FeedView, Zeega ) {
+function( app, SidebarView, FeedView, FooterView, Zeega ) {
 
     var MainCollection = Backbone.Collection.extend();
     
@@ -17565,6 +17610,7 @@ function( app, SidebarView, FeedView, Zeega ) {
             zeegas = new Zeega.Collection( app.metadata );
             this.insertView( ".sidebar-wrapper", new SidebarView() );
             this.insertView( ".content", new FeedView({ collection: zeegas }) );
+            this.insertView( ".content", new FooterView() );
         }
     });
 
@@ -17679,7 +17725,7 @@ require.config({
 
   // Initialize the application with the main application file and the JamJS
   // generated configuration file.
-  deps: ["../vendor/jam/require.config", "main"],
+  deps: [ "../vendor/jam/require.config", "main"],
 
   paths: {
 
