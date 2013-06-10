@@ -17445,12 +17445,12 @@ function( app ) {
         
         url: function() {
             var url =  app.metadata.api + "projects/search?limit=20&page=" + this.page;
-
-            if(!_.isNull( this.tags )){
+ 
+            if( this.tags !== "" ){
                 url += "&tags=" + this.tags;
             }
 
-            if(!_.isNull(this.profileId)){
+            if( this.profileId !== "" ){
                 url += "&user=" + this.profileId;
             }
 
