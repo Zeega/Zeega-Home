@@ -17547,7 +17547,7 @@ function( app, Zeega ) {
                 this.$el.append("<div class='zeega-card'><article class='loading'></article> </div>");
                 this.collection.more = false;
                 this.collection.page ++;
-                //this.collection.fetch();
+                this.collection.fetch();
             }
         }
 
