@@ -39,9 +39,7 @@ return __p;
 this["JST"]["app/templates/sidebar.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="about" />\n    <h2> Zeega is a new form of interactive media. <a class="about-link" href="'+
-(path )+
-'/about">Learn more.</a> <h2>\n\n    ';
+__p+='<div class="about" />\n    <h2> Zeega is a new form of interactive media. <a class="about-link" href="http://blog.zeega.com/about">Learn more.</a> <h2>\n\n    ';
  if (userId == -1 ){ 
 ;__p+='\n    <a class="btnz join-zeega" href="'+
 (path )+
