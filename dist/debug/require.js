@@ -17621,7 +17621,7 @@ function( app, Zeega ) {
         },
 
         afterRender:function(){
-            
+           
             if ( window.feedData !== false ){
                 this.collection.add( $.parseJSON(window.feedData).projects );
                 if( this.collection.length == this.collection.limit ){
@@ -17630,9 +17630,6 @@ function( app, Zeega ) {
             } else {
                 this.collection.fetch();
             }
-
-            this.collection.fetch();
-            
             var onScroll = $.proxy( function(e){ this.onScroll(e); }, this );
             $(window).scroll( onScroll );
         },
