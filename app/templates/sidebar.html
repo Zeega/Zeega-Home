@@ -1,14 +1,18 @@
 <div class="about" />
-    <h2> Zeega is a new form of interactive media. <a class="about-link" href="http://blog.zeega.com/about">Learn more.</a> <h2>
+    
+    <div class="logo-wrapper"><span class="logo-mini"></span></div>
+    <div>
+        <h2>is a new form of interactive media. <a class="about-link" href="http://blog.zeega.com/about">Learn more.</a> <h2>
+        <br>
+        <% if (userId == -1 ){ %>
+        <a class="btnz join-zeega" href="<%=path %>register" > Sign Up</a>
 
-    <% if (userId == -1 ){ %>
-    <a class="btnz join-zeega" href="<%=path %>register" > Sign Up</a>
-
-    <% } %>
+        <% } %>
+    </div>
 
 </div>
 
-<div class="explore" />
+<div class="explore">
     <h2>
         Explore:
         <a data-bypass="true" href="<%=path %>tag/bestof" class="tag-link">#bestof</a>

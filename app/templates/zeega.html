@@ -1,7 +1,7 @@
-<article style="background-image: url(<%=cover_image %>);" >
+<article class="card" style="background-image: url(<%=cover_image %>);" >
             <div class="info-overlay">
                 <div class="left-column">
-                  <a data-bypass="true" href="<%=path %>profile/<%=user.id %>" >
+                  <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
                     <div class="profile-token" style="background-image: url(<%= user.thumbnail_url %>);"></div>
                    </a>
                 </div>
@@ -9,7 +9,7 @@
                   <h1 class = "caption"><%= title %></h1>
                   
                   <div class="profile-name">
-                    <a data-bypass="true" href="<%=path %>profile/<%=user.id%>" >
+                    <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id%>" >
                       <%=user.display_name%>
                     </a>
                    
@@ -19,5 +19,5 @@
                   
             
             </div>
-        <a href="<%=path %><%=id %>" class="mobile-play" data-bypass="true"></a>
+        <a href="<%=path %><%=id %>" class="play" data-bypass="true"></a>
 </article>

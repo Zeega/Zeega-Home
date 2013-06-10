@@ -39,13 +39,13 @@ return __p;
 this["JST"]["app/templates/sidebar.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="about" />\n    <h2> Zeega is a new form of interactive media. <a class="about-link" href="http://blog.zeega.com/about">Learn more.</a> <h2>\n\n    ';
+__p+='<div class="about" />\n    \n    <div class="logo-wrapper"><span class="logo-mini"></span></div>\n    <div>\n        <h2>is a new form of interactive media. <a class="about-link" href="http://blog.zeega.com/about">Learn more.</a> <h2>\n        <br>\n        ';
  if (userId == -1 ){ 
-;__p+='\n    <a class="btnz join-zeega" href="'+
+;__p+='\n        <a class="btnz join-zeega" href="'+
 (path )+
-'register" > Sign Up</a>\n\n    ';
+'register" > Sign Up</a>\n\n        ';
  } 
-;__p+='\n\n</div>\n\n<div class="explore" />\n    <h2>\n        Explore:\n        <a data-bypass="true" href="'+
+;__p+='\n    </div>\n\n</div>\n\n<div class="explore">\n    <h2>\n        Explore:\n        <a data-bypass="true" href="'+
 (path )+
 'tag/bestof" class="tag-link">#bestof</a>\n        <a data-bypass="true" href="'+
 (path )+
@@ -58,12 +58,22 @@ __p+='<div class="about" />\n    <h2> Zeega is a new form of interactive media. 
 return __p;
 };
 
+this["JST"]["app/templates/zeega-viewer.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<iframe src="'+
+(path )+
+'" endpage="true"  webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>\n<a href="#" class="modal-close">×</a>';
+}
+return __p;
+};
+
 this["JST"]["app/templates/zeega.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<article style="background-image: url('+
+__p+='<article class="card" style="background-image: url('+
 (cover_image )+
-');" >\n            <div class="info-overlay">\n                <div class="left-column">\n                  <a data-bypass="true" href="'+
+');" >\n            <div class="info-overlay">\n                <div class="left-column">\n                  <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id )+
@@ -71,7 +81,7 @@ __p+='<article style="background-image: url('+
 ( user.thumbnail_url )+
 ');"></div>\n                   </a>\n                </div>\n                <div class="right-column">\n                  <h1 class = "caption">'+
 ( title )+
-'</h1>\n                  \n                  <div class="profile-name">\n                    <a data-bypass="true" href="'+
+'</h1>\n                  \n                  <div class="profile-name">\n                    <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id)+
@@ -81,7 +91,7 @@ __p+='<article style="background-image: url('+
 (path )+
 ''+
 (id )+
-'" class="mobile-play" data-bypass="true"></a>\n</article>';
+'" class="play" data-bypass="true"></a>\n</article>';
 }
 return __p;
 };
