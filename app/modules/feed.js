@@ -51,8 +51,9 @@ function( app, Zeega ) {
             if ( window.feedData !== false ){
                 this.collection.add( $.parseJSON(window.feedData).projects );
                 if( this.collection.length >= this.collection.limit ){
-                    
                     this.collection.more = true;
+                } else {
+                    $(".footer").show();
                 }
             } else {
                 this.collection.fetch();
@@ -67,7 +68,6 @@ function( app, Zeega ) {
             var b = $("body")[0].scrollHeight;
             
             if( b !== 0 && a >= b - 500 && this.collection.more ){
-                console.log("loading more");
                 
                 this.$el.append("<div class='zeega-card'><article class='loading'></article> </div>");
                 this.collection.more = false;
