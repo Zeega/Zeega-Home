@@ -17450,8 +17450,8 @@ function( app ) {
                 url += "&tags=" + this.tags;
             }
 
-            if(!_.isNull(this.user)){
-                url += "&user=" + this.user;
+            if(!_.isNull(this.profileId)){
+                url += "&user=" + this.profileId;
             }
 
             return url;
@@ -17584,6 +17584,7 @@ function( app, MainLayout) {
     return Backbone.Model.extend({
         
         initialize: function() {
+            console.log("initializing");
             this.insertLayout();
         },
 
