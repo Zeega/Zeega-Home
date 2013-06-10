@@ -40,6 +40,7 @@ function( app, ZeegaViewer ) {
                 this.more = true;
             } else {
                 this.more = false;
+                $(".footer").show();
             }
             return response.projects;
         }

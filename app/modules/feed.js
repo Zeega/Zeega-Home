@@ -50,7 +50,8 @@ function( app, Zeega ) {
            
             if ( window.feedData !== false ){
                 this.collection.add( $.parseJSON(window.feedData).projects );
-                if( this.collection.length == this.collection.limit ){
+                if( this.collection.length >= this.collection.limit ){
+                    
                     this.collection.more = true;
                 }
             } else {
