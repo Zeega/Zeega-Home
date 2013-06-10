@@ -17621,7 +17621,18 @@ function( app, Zeega ) {
         },
 
         afterRender:function(){
+            
+            if ( window.feedData ){
+                this.collection.add( $.parseJSON(feedData).projects );
+                if( this.collection.length == this.collection.limit ){
+                    this.collection.more = true;
+                }
+            } else {
+                this.collection.fetch();
+            }
+
             this.collection.fetch();
+            
             var onScroll = $.proxy( function(e){ this.onScroll(e); }, this );
             $(window).scroll( onScroll );
         },
