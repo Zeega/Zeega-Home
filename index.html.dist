@@ -49,12 +49,33 @@
                 <span class="ZTab-logo"></span>
             </a>
             
+
+
             <!-- logged in nav -->
-            <a class="btnz create-a-zeega" href="http://www.zeega.com/project/new" > Create A New Zeega</a>
+            
+            <div class="nav col-left navbar">
+              <ul class="pull-left">
+                  <li>
+                      <a class="logged-in-user" data-bypass="true" ><span class="profile-token" style="
+                                  background-image:url(http://static.zeega.org/community/users/6/profile/5117fb5023f85.jpg);
+                                  background-size: cover;
+                              "></span></a>
+                  </li>
+                  <li>
+                      <a class="btnz create-a-zeega" href="http://www.zeega.com/project/new" > Create A New Zeega</a>
+                  </li>
+                 
+              </ul>
+          </div>
+
+          <a class="btnz login" href="http://dev.zeega.com/jmongo/web/logout">Logout</a> 
+
+            <!--
+            
             <a class="logged-in-user" data-bypass="true" href="http://dev.zeega.com/jmongo/web/profile/51aff18b8d34d4601200a6ab">
               <div class="profile-token" style="background-image: url(http://zeegaimages1.s3.amazonaws.com/7ace87ce485c12477472337af9153e61_6.jpg);"></div>
             </a>
-            <!-- end logged in nav -->
+            end logged in nav -->
 
             <!-- logged out nav -->
 
@@ -64,7 +85,7 @@
 
     </header>
     
-    <!-- User Profile Page Header -->
+    <!-- User Profile Page Header --><!--
      <div class="cover" style ="background-image:url(http://farm5.staticflickr.com/4096/4827587717_c362a1b42e_b.jpg)" >
             <div class="profile-token-large" style="background-image:url(http://zeegaimages1.s3.amazonaws.com/d519e5d5ba22fb66842b3755a594107c_6.jpg)"></div>
             <span class="headline">
@@ -72,9 +93,16 @@
               <p class="bio">The man behind the movie camera</p>
             </span>
       </div>
-    
+    -->
     <!-- End User Profile Page Header -->
 
+    <!-- Home Page Header -->
+    <div class="cover homepage" >
+            <span class="tagline">
+              <h2>Make the web you want</h2>
+            </span>
+    </div>
+    <!-- Home Page Header -->
 
     <!-- Main container. -->
     <div role="main" id="main">

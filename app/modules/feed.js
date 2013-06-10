@@ -48,8 +48,8 @@ function( app, Zeega ) {
 
         afterRender:function(){
             
-            if ( window.feedData ){
-                this.collection.add( $.parseJSON(feedData).projects );
+            if ( window.feedData !== false ){
+                this.collection.add( $.parseJSON(window.feedData).projects );
                 if( this.collection.length == this.collection.limit ){
                     this.collection.more = true;
                 }
