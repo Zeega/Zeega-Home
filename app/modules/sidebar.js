@@ -11,11 +11,9 @@ function( app ) {
         template: "sidebar",
         className: "sidebar",
         serialize: function() {
-            return _.extend({
-                    path: "http:" + metadata.hostname + metadata.directory
-                },
-                this.model.toJSON()
-            );
+            return {
+                    path: "http:" + app.metadata.hostname + app.metadata.directory
+                };
         }
 
     });
