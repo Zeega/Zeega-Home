@@ -55,7 +55,7 @@ function( app, ZeegaViewer ) {
             "click":"onPlay"
         },
         onPlay: function( e ){
-            if( e.target.className != "profile-link" || e.target.className != "profile-token"){
+            if( e.target.className != "profile-link" && e.target.className != "profile-token"){
                 console.log(e.target.className);
                 var zeegaViewer = new ZeegaViewer({model: this.model});
                 $("body").append(zeegaViewer.render().view.el);
