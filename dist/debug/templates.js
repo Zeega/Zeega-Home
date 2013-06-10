@@ -21,9 +21,9 @@ __p+='<div class ="footer">\n    <span class="tags">\n        <h1>Explore more Z
 (path )+
 'tags/funny" >#funny</a>\n            <a class="tag-link" data-bypass="true" href="'+
 (path )+
-'tags/music" >#music</a>\n        </h1>\n    </span>\n    <span class ="join">\n        <h1>\n            <a href="'+
+'tags/music" >#music</a>\n        </h1>\n    </span>\n    <span >\n        <a class ="join" href="'+
 (path )+
-'/register">Join Zeega</a>\n        </h1>\n    </span>   \n  </div>';
+'/register">Join Zeega</a>\n        \n    </span>   \n  </div>';
 }
 return __p;
 };

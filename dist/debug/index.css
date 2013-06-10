@@ -505,6 +505,7 @@ header {
 }
 .ZEEGA-content-wrapper {
   width: 550px;
+  padding-top: 50px;
   margin: 0 auto 0 auto;
 }
 .ZEEGA-content-wrapper .sidebar-wrapper {
@@ -533,6 +534,7 @@ a.tag-link:hover {
   background-color: orangered;
 }
 .logged-in-user {
+  margin: 3px 7px 0 0;
   position: absolute;
   z-index: 2;
   margin: 7px;
