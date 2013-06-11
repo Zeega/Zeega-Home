@@ -10,12 +10,8 @@
 
 function( app, SidebarView, FeedView, FooterView, Zeega ) {
 
-    var MainCollection = Backbone.Collection.extend();
     
-
-
-
-    var MainLayout = Backbone.Layout.extend({
+    return Backbone.Layout.extend({
 
         el: "#main",
         template: "layout-main",
@@ -28,7 +24,5 @@ function( app, SidebarView, FeedView, FooterView, Zeega ) {
             this.insertView( ".content", new FooterView() );
         }
     });
-
-    return MainLayout;
 
 });

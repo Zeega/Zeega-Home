@@ -6,19 +6,15 @@ define([
 
 function( app, Zeega ) {
 
-
-    FeedView = Backbone.View.extend({
+    return Backbone.View.extend({
 
         template: "feed",
         className: "ZEEGA-feed",
 
         initialize: function(){
 
-
-
-            this.collection.on( "add", function( model, b, c){
-                var zeegaView = new Zeega.View({ model: model }) ;
-                this.$el.append( zeegaView.render().view.el);
+            this.collection.on( "add", function( model ){
+                this.$el.append( model.card.render().view.el);
             }, this );
 
             this.collection.on( "sync", function( model, b, c){
@@ -29,21 +25,13 @@ function( app, Zeega ) {
 
         serialize: function(){
 
-            var headline;
+            var headline = "Latest Zeegas";
 
-            if( app.metadata.tags !== "" ){
-                if( app.metadata.tags == "homepage" ){
-                    headline = "Latest Zeegas";
-                } else {
-                    headline = "#"+app.metadata.tags;
-                }
-            } else if( this.profileId !== "" ){
-                headline = "Latest Zeegas";
+            if( app.metadata.tags !== "" && app.metadata.tags == "homepage" ){
+                headline =  "#" + app.metadata.tags;
             }
 
-            return {
-                headline: headline
-            };
+            return { headline: headline };
         },
 
         afterRender:function(){
@@ -64,11 +52,10 @@ function( app, Zeega ) {
 
         onScroll: function(e){
 
-            var a = $(window).scrollTop() + $(window).innerHeight();
-            var b = $("body")[0].scrollHeight;
+            var loc = $(window).scrollTop() + $(window).innerHeight();
+            var height = $("body")[0].scrollHeight;
             
-            if( b !== 0 && a >= b - 500 && this.collection.more ){
-                
+            if( height !== 0 && loc >= height - 500 && this.collection.more ){
                 this.$el.append("<div class='zeega-card'><article class='loading'></article> </div>");
                 this.collection.more = false;
                 this.collection.page ++;
@@ -78,7 +65,4 @@ function( app, Zeega ) {
 
 
     });
-
-    return FeedView;
-
 });

@@ -6,9 +6,7 @@ define([
 function( app ) {
 
 
-    
-
-    ZeegaViewer = Backbone.Layout.extend({
+    return Backbone.Layout.extend({
 
         template: "zeega-viewer",
         className: "zeega-viewer",
@@ -23,10 +21,8 @@ function( app ) {
             return {
                 path: "http:" + app.metadata.hostname + app.metadata.directory + this.model.id
             };
-        }    });
+        }
+    });
 
-
-    // Required, return the module for AMD compliance
-    return ZeegaViewer;
 
 });

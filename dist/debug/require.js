@@ -17445,7 +17445,7 @@ define('modules/sidebar',[
 function( app ) {
 
 
-    SidebarView = Backbone.View.extend({
+    return Backbone.View.extend({
 
         template: "sidebar",
         className: "sidebar",
@@ -17459,8 +17459,6 @@ function( app ) {
 
     });
 
-    // Required, return the module for AMD compliance
-    return SidebarView;
 
 });
 
@@ -17472,9 +17470,7 @@ define('modules/zeega-viewer',[
 function( app ) {
 
 
-    
-
-    ZeegaViewer = Backbone.Layout.extend({
+    return Backbone.Layout.extend({
 
         template: "zeega-viewer",
         className: "zeega-viewer",
@@ -17489,11 +17485,9 @@ function( app ) {
             return {
                 path: "http:" + app.metadata.hostname + app.metadata.directory + this.model.id
             };
-        }    });
+        }
+    });
 
-
-    // Required, return the module for AMD compliance
-    return ZeegaViewer;
 
 });
 
@@ -17508,9 +17502,15 @@ function( app, ZeegaViewer ) {
 
     Zeega = {};
     
+    Zeega.Item = Backbone.Model.extend({
+        initialize: function(){
+            this.card = new Zeega.View({ model: this });
+        }
+    });
 
     Zeega.Collection = Backbone.Collection.extend({
 
+        model: Zeega.Item,
         page: 1,
         tags: null,
         user: null,
@@ -17583,19 +17583,15 @@ define('modules/feed',[
 
 function( app, Zeega ) {
 
-
-    FeedView = Backbone.View.extend({
+    return Backbone.View.extend({
 
         template: "feed",
         className: "ZEEGA-feed",
 
         initialize: function(){
 
-
-
-            this.collection.on( "add", function( model, b, c){
-                var zeegaView = new Zeega.View({ model: model }) ;
-                this.$el.append( zeegaView.render().view.el);
+            this.collection.on( "add", function( model ){
+                this.$el.append( model.card.render().view.el);
             }, this );
 
             this.collection.on( "sync", function( model, b, c){
@@ -17606,21 +17602,13 @@ function( app, Zeega ) {
 
         serialize: function(){
 
-            var headline;
+            var headline = "Latest Zeegas";
 
-            if( app.metadata.tags !== "" ){
-                if( app.metadata.tags == "homepage" ){
-                    headline = "Latest Zeegas";
-                } else {
-                    headline = "#"+app.metadata.tags;
-                }
-            } else if( this.profileId !== "" ){
-                headline = "Latest Zeegas";
+            if( app.metadata.tags !== "" && app.metadata.tags == "homepage" ){
+                headline =  "#" + app.metadata.tags;
             }
 
-            return {
-                headline: headline
-            };
+            return { headline: headline };
         },
 
         afterRender:function(){
@@ -17641,11 +17629,10 @@ function( app, Zeega ) {
 
         onScroll: function(e){
 
-            var a = $(window).scrollTop() + $(window).innerHeight();
-            var b = $("body")[0].scrollHeight;
+            var loc = $(window).scrollTop() + $(window).innerHeight();
+            var height = $("body")[0].scrollHeight;
             
-            if( b !== 0 && a >= b - 500 && this.collection.more ){
-                
+            if( height !== 0 && loc >= height - 500 && this.collection.more ){
                 this.$el.append("<div class='zeega-card'><article class='loading'></article> </div>");
                 this.collection.more = false;
                 this.collection.page ++;
@@ -17655,9 +17642,6 @@ function( app, Zeega ) {
 
 
     });
-
-    return FeedView;
-
 });
 
 define('modules/footer',[
@@ -17699,12 +17683,8 @@ function( app ) {
 
 function( app, SidebarView, FeedView, FooterView, Zeega ) {
 
-    var MainCollection = Backbone.Collection.extend();
     
-
-
-
-    var MainLayout = Backbone.Layout.extend({
+    return Backbone.Layout.extend({
 
         el: "#main",
         template: "layout-main",
@@ -17717,8 +17697,6 @@ function( app, SidebarView, FeedView, FooterView, Zeega ) {
             this.insertView( ".content", new FooterView() );
         }
     });
-
-    return MainLayout;
 
 });
 

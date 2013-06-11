@@ -6,7 +6,7 @@ define([
 function( app ) {
 
 
-    SidebarView = Backbone.View.extend({
+    return Backbone.View.extend({
 
         template: "sidebar",
         className: "sidebar",
@@ -20,7 +20,5 @@ function( app ) {
 
     });
 
-    // Required, return the module for AMD compliance
-    return SidebarView;
 
 });

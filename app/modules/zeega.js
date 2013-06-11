@@ -9,9 +9,15 @@ function( app, ZeegaViewer ) {
 
     Zeega = {};
     
+    Zeega.Item = Backbone.Model.extend({
+        initialize: function(){
+            this.card = new Zeega.View({ model: this });
+        }
+    });
 
     Zeega.Collection = Backbone.Collection.extend({
 
+        model: Zeega.Item,
         page: 1,
         tags: null,
         user: null,
