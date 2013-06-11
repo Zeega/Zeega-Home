@@ -21,9 +21,13 @@ __p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n     
 (path )+
 'tag/funny" >#funny</a>\n            <a class="tag-link" data-bypass="true" href="'+
 (path )+
-'tag/music" >#music</a>\n        </h1>\n    </span>\n    <span >\n        <h1>\n            <a class="btnz join-zeega" href="'+
+'tag/music" >#music</a>\n        </h1>\n    </span>\n    ';
+ if (userId == -1 ){ 
+;__p+='\n        <span >\n            <h1>\n                <a class="btnz join-zeega" href="'+
 (path )+
-'register" >Join Zeega</a>\n        </h1>\n    </span>   \n  ';
+'register" >Join Zeega</a>\n            </h1>\n        </span>   \n    ';
+ } 
+;__p+='';
 }
 return __p;
 };

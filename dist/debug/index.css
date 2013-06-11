@@ -803,7 +803,7 @@ article .play:hover {
   height: 350px;
 }
 .cover.homepage {
-  background-image: url(../img/default_cover.png);
+  background-image: url(../img/default_cover.jpg);
 }
 .cover.homepage .tagline {
   position: absolute;
