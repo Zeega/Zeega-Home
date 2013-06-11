@@ -12,10 +12,10 @@ function( app ) {
         className: "sidebar",
         serialize: function() {
             return  _.extend( app.metadata,
-                        {
-                            path: "http:" + app.metadata.hostname + app.metadata.directory
-                        }
-                    );
+                {
+                    path: "http:" + app.metadata.hostname + app.metadata.directory
+                }
+            );
         }
 
     });
