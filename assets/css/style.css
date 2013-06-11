@@ -637,9 +637,11 @@ a.tag-link:hover {
 }
 .zeega-card .edit-actions a:link,
 .zeega-card .edit-actions a:visited,
-.zeega-card .edit-actions a:hover,
 .zeega-card .edit-actions a:active {
   color: #666;
+}
+.zeega-card .edit-actions a:hover {
+  color: orangered;
 }
 .zeega-card:hover .edit-actions {
   display: inline;
@@ -822,6 +824,16 @@ article .play:hover {
   background-color: red;
   padding: 0 5px;
 }
+.editing {
+  background: url(../img/tiny-stripes-dark.png);
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.profile-image-inputs {
+  margin-top: 10px;
+  padding-left: 233px;
+  font-size: 13px;
+  display: none;
+}
 .cover {
   background: url(../img/default_profile_cover.gif);
   background-repeat: no-repeat;
@@ -831,7 +843,15 @@ article .play:hover {
   background-position: center;
   position: relative;
   width: 100%;
-  height: 350px;
+  height: 185px;
+}
+.cover .edit-bio-wrapper {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+}
+.cover .edit-bio-wrapper .save-bio {
+  display: none;
 }
 .cover.homepage {
   background-image: url(../img/default_cover.jpg);
@@ -857,28 +877,30 @@ article .play:hover {
   background-size: cover;
   left: 60px;
   top: 100px;
-  border-radius: 75px;
+  border-radius: 80px;
   height: 150px;
   width: 150px;
   overflow: hidden;
-  border: 3px solid orangered;
+  border: 5px solid white;
 }
 .cover .headline {
   position: absolute;
   left: 205px;
-  bottom: 100px;
+  bottom: 0;
   text-align: left;
 }
 .cover .headline.home {
   bottom: 20px;
 }
-.cover h2 {
+.cover .display-name {
+  padding: 0 5px;
   margin: 0px 25px;
   color: white;
   font-size: 1.7em;
   text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
 }
 .cover .bio {
+  padding: 0 5px;
   width: 500px;
   color: white;
   text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);

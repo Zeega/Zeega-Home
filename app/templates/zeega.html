@@ -18,6 +18,8 @@
   <a href="<%=path %><%=id %>" class="play" data-bypass="true"></a>
 </article>
 
-<div class="edit-actions">
-  <a href="/edit-zeega" class="edit-zeega">edit</a> | <a href="/delete-zeega" class="delete-zeega">delete</a>
-</div>
+<% if ( editable ) { %>
+  <div class="edit-actions">
+    <a href="/edit-zeega" class="edit-zeega">edit</a> | <a href="/delete-zeega" class="delete-zeega">delete</a>
+  </div>
+<% } %>

@@ -13,8 +13,6 @@ function( app, Zeega ) {
 
         initialize: function(){
 
-            console.log("MODEL", this.collection)
-
             this.collection.on( "add", function( model ){
                 this.$el.append( model.card.render().view.el);
             }, this );
