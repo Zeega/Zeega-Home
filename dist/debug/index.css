@@ -533,7 +533,7 @@ a.tag-link:hover {
   background-color: orangered;
 }
 .login {
-  margin: 10px 10px 0 0;
+  margin: 10px 25px 0 0;
   position: absolute;
   z-index: 2;
   right: 0;
@@ -836,7 +836,6 @@ article .play:hover {
   position: absolute;
   left: 205px;
   bottom: 100px;
-  width: 100%;
   text-align: left;
 }
 .cover .headline.home {
