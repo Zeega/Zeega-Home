@@ -10,7 +10,6 @@ function( app, MainLayout) {
     return Backbone.Model.extend({
         
         initialize: function() {
-            console.log("initializing");
             this.insertLayout();
         },
 

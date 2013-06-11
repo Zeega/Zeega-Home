@@ -20,7 +20,6 @@ function( app ) {
         },
         
         serialize: function() {
-            console.log(this, this.model, "hmm");
             return {
                 path: "http:" + app.metadata.hostname + app.metadata.directory + this.model.id
             };
