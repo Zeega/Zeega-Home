@@ -10,9 +10,11 @@ function( app ) {
 
         template: "zeega-viewer",
         className: "zeega-viewer",
+        
         events:{
             "click":"onClick"
         },
+
         onClick: function() {
             this.$el.remove();
         },

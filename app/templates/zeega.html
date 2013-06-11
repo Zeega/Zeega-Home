@@ -1,23 +1,23 @@
 <article class="card" style="background-image: url(<%=cover_image %>);" >
-            <div class="info-overlay">
-                <div class="left-column">
-                  <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
-                    <div class="profile-token" style="background-image: url(<%= user.thumbnail_url %>);"></div>
-                   </a>
-                </div>
-                <div class="right-column">
-                  <h1 class = "caption"><%= title %></h1>
-                  
-                  <div class="profile-name">
-                    <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id%>" >
-                      <%=user.display_name%>
-                    </a>
-                   
-                  </div>
-                 
-                </div>
-                  
-            
-            </div>
-        <a href="<%=path %><%=id %>" class="play" data-bypass="true"></a>
+  <div class="info-overlay">
+    <div class="left-column">
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="profile-token" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+       </a>
+    </div>
+    <div class="right-column">
+      <h1 class = "caption"><%= title %></h1>
+      
+      <div class="profile-name">
+        <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id%>" >
+          <%=user.display_name%>
+        </a>
+      </div>
+    </div>
+  </div>
+  <a href="<%=path %><%=id %>" class="play" data-bypass="true"></a>
 </article>
+
+<div class="edit-actions">
+  <a href="/edit-zeega" class="edit-zeega">edit</a> | <a href="/delete-zeega" class="delete-zeega">delete</a>
+</div>
