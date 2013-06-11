@@ -418,10 +418,42 @@ __p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n     
 return __p;
 };
 
+this["JST"]["app/templates/home-cover.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="cover homepage" >\n    <span class="tagline">\n      <h2>Make the web you want</h2>\n    </span>\n</div>';
+}
+return __p;
+};
+
 this["JST"]["app/templates/layout-main.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n</div>';
+__p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n</div>';
+}
+return __p;
+};
+
+this["JST"]["app/templates/profile-cover.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="cover" \n    ';
+ if (background_image_url !=""){ 
+;__p+='\n    style ="background-image:url('+
+( background_image_url )+
+')" \n    ';
+ } 
+;__p+='\n    >\n    <div class="profile-token-large" \n    ';
+ if (thumbnail_url !=""){ 
+;__p+='\n    style="background-image:url('+
+( thumbnail_url )+
+')"\n    ';
+ } 
+;__p+='\n    >\n    ></div>\n            <span class="headline">\n              <h2>'+
+( display_name )+
+'</h2>\n              <p class="bio">T'+
+( bio )+
+'</p>\n            </span>\n</div>';
 }
 return __p;
 };
@@ -17644,6 +17676,49 @@ function( app, Zeega ) {
     });
 });
 
+define('modules/cover',[
+    "app",
+    "backbone"
+],
+
+function( app ) {
+
+    var User = Backbone.Model.extend({
+
+        url: function(){
+            return app.metadata.dataApi + "users/" + this.id;
+        }
+
+    });
+
+    var Cover = {};
+
+
+    Cover.HomeView = Backbone.View.extend({
+        
+        template: "home-cover",
+        className: "home-cover"
+
+    });
+
+    Cover.ProfileView = Backbone.View.extend({
+        
+        template: "profile-cover",
+        className: "profile-cover",
+        initialize: function() {
+            this.model = new User( $.parseJSON(window.profileData) );
+        },
+        serialize: function() {
+            return this.model.toJSON();
+        }
+
+    });
+
+    return Cover;
+
+
+});
+
 define('modules/footer',[
     "app",
     "backbone"
@@ -17652,7 +17727,7 @@ define('modules/footer',[
 function( app ) {
 
 
-    FooterView = Backbone.View.extend({
+    return Backbone.View.extend({
 
         template: "footer",
         className: "footer",
@@ -17666,22 +17741,19 @@ function( app ) {
 
     });
 
-    // Required, return the module for AMD compliance
-    return FooterView;
-
 });
 
  define('modules/layout-main',[
     "app",
     "modules/sidebar",
     "modules/feed",
-
+    "modules/cover",
     "modules/footer",
-        "modules/zeega",
+    "modules/zeega",
     "backbone"
 ],
 
-function( app, SidebarView, FeedView, FooterView, Zeega ) {
+function( app, SidebarView, FeedView, Cover, FooterView, Zeega ) {
 
     
     return Backbone.Layout.extend({
@@ -17692,6 +17764,15 @@ function( app, SidebarView, FeedView, FooterView, Zeega ) {
         beforeRender: function(){
             
             zeegas = new Zeega.Collection( app.metadata );
+            
+            if( _.isUndefined( window.profileData )){
+                this.insertView( ".cover-wrapper", new Cover.HomeView() );
+            } else {
+                this.insertView( ".cover-wrapper", new Cover.ProfileView() );
+            }
+            
+            
+
             this.insertView( ".sidebar-wrapper", new SidebarView() );
             this.insertView( ".content", new FeedView({ collection: zeegas }) );
             this.insertView( ".content", new FooterView() );

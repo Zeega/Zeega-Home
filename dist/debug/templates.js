@@ -32,10 +32,42 @@ __p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n     
 return __p;
 };
 
+this["JST"]["app/templates/home-cover.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="cover homepage" >\n    <span class="tagline">\n      <h2>Make the web you want</h2>\n    </span>\n</div>';
+}
+return __p;
+};
+
 this["JST"]["app/templates/layout-main.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n</div>';
+__p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n</div>';
+}
+return __p;
+};
+
+this["JST"]["app/templates/profile-cover.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="cover" \n    ';
+ if (background_image_url !=""){ 
+;__p+='\n    style ="background-image:url('+
+( background_image_url )+
+')" \n    ';
+ } 
+;__p+='\n    >\n    <div class="profile-token-large" \n    ';
+ if (thumbnail_url !=""){ 
+;__p+='\n    style="background-image:url('+
+( thumbnail_url )+
+')"\n    ';
+ } 
+;__p+='\n    >\n    ></div>\n            <span class="headline">\n              <h2>'+
+( display_name )+
+'</h2>\n              <p class="bio">T'+
+( bio )+
+'</p>\n            </span>\n</div>';
 }
 return __p;
 };
