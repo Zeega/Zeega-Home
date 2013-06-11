@@ -7,9 +7,10 @@
             <a class="tag-link" data-bypass="true" href="<%=path %>tag/music" >#music</a>
         </h1>
     </span>
-    <span >
-        <h1>
-            <a class="btnz join-zeega" href="<%=path %>register" >Join Zeega</a>
-        </h1>
-    </span>   
-  
+    <% if (userId == -1 ){ %>
+        <span >
+            <h1>
+                <a class="btnz join-zeega" href="<%=path %>register" >Join Zeega</a>
+            </h1>
+        </span>   
+    <% } %>
