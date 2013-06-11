@@ -6,7 +6,7 @@ define([
 function( app ) {
 
 
-    FooterView = Backbone.View.extend({
+    return Backbone.View.extend({
 
         template: "footer",
         className: "footer",
@@ -19,8 +19,5 @@ function( app ) {
         }
 
     });
-
-    // Required, return the module for AMD compliance
-    return FooterView;
 
 });
