@@ -40,8 +40,7 @@ function( app ) {
             "keydown .display-name": "onKeydown",
             "keydown .bio": "onKeydown",
 
-            "change input.profile-image": "onChangeProfileImage",
-            "change input.background-image": "onChangeBackgroundImage"
+            "change input": "onChangeInput"
         },
 
         onKeydown: function( e ) {
@@ -65,27 +64,55 @@ function( app ) {
             return false;
         },
 
-        onChangeBackgroundImage: function( event ) {
+        // onChangeBackgroundImage: function( event ) {
             
+        //     this.uploadImage( event );
+
+
+        // },
+
+        // onChangeProfileImage: function() {
+        //     console.log('prof img updated')
+        // },
+
+        saveBio: function() {
+            this.$(".display-name, .bio")
+                .removeClass("editing")
+                .prop("contenteditable", "false");
+            this.$(".profile-image-inputs").slideUp();
+
+            this.$(".save-bio").hide();
+            this.$(".edit-bio").show();
+
+            this.model.save({
+                "display-name": this.$(".display-name").text(),
+                bio: this.$(".bio").text()
+            });
+
+            return false;
+        },
+
+        onChangeInput: function( event ) {
             var fileInput = event.target,
                 imageData,
-                _this = this;
+                sizes;
 
             imageData = new FormData();
             imageData.append( "file", fileInput.files[0] );
 
             var updateProgress = function( e ){
-                var w = e.loaded * 141 / e.total;
-                _this.$('.upload-progress').clearQueue().animate ({ "width": w + "px"}, 1000);
-                if(  w == 141 ) {
-                    _this.$('.upload-progress').clearQueue().animate ({ "width": "283px"}, 10000);
-                }
+                
 
             };
 
+            if ( $(event.target).hasClass(".profile-image") ) {
+                sizes ="4";
+            } else {
+                sizes = "7";
+            }
 
             $.ajax({
-                url: app.metadata.mediaServer + "image",
+                url: app.metadata.mediaServer + "image?sizes="+sizes,
                 type: "POST",
                 data: imageData,
                 dataType: "json",
@@ -102,37 +129,20 @@ function( app ) {
                 },
                 
                 success: function( data ) {
-                    
-                    this.model.save({
-                        background_image_url: data.fullsize_url
-                    });
-                    this.$(".cover").css("background-image", data.fullsize_url);
+                    var attr = {};
+
+                    if ( $(event.target).hasClass(".profile-image") ) {
+                        attr.thumb_url = data.image_url_4;
+                        this.$(".profile-token-large").css("background-image", "url(" + data.image_url_4 + ")");
+                    } else {
+                        attr.background_image_url = data.fullsize_url;
+                        this.$(".cover").css("background-image", "url(" + data.fullsize_url + ")");
+                    }
+
+                    this.model.save( attr );
                 }.bind(this)
             });
 
-
-
-        },
-
-        onChangeProfileImage: function() {
-            console.log('prof img updated')
-        },
-
-        saveBio: function() {
-            this.$(".display-name, .bio")
-                .removeClass("editing")
-                .prop("contenteditable", "false");
-            this.$(".profile-image-inputs").slideUp();
-
-            this.$(".save-bio").hide();
-            this.$(".edit-bio").show();
-
-            this.model.save({
-                "display-name": this.$(".display-name").text(),
-                bio: this.$(".bio").text()
-            })
-
-            return false;
         }
 
     });
