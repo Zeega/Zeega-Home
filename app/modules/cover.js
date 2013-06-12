@@ -1,9 +1,10 @@
 define([
     "app",
+    "libs/spin",
     "backbone"
 ],
 
-function( app ) {
+function( app, Spinner ) {
 
     var User = Backbone.Model.extend({
 
@@ -63,17 +64,6 @@ function( app ) {
             return false;
         },
 
-        // onChangeBackgroundImage: function( event ) {
-            
-        //     this.uploadImage( event );
-
-
-        // },
-
-        // onChangeProfileImage: function() {
-        //     console.log('prof img updated')
-        // },
-
         saveBio: function() {
             this.$(".display-name, .bio")
                 .removeClass("editing")
@@ -99,16 +89,36 @@ function( app ) {
             imageData = new FormData();
             imageData.append( "file", fileInput.files[0] );
 
-            var updateProgress = function( e ){
-                
+            var updateProgress = function( e ){};
 
+            $(event.target).fadeTo( 250, 0.1);
+            var opts = {
+                lines: 13, // The number of lines to draw
+                length: 5, // The length of each line
+                width: 2, // The line thickness
+                radius: 10, // The radius of the inner circle
+                corners: 1, // Corner roundness (0..1)
+                rotate: 0, // The rotation offset
+                direction: 1, // 1: clockwise, -1: counterclockwise
+                color: '#FFF', // #rgb or #rrggbb
+                speed: 1, // Rounds per second
+                trail: 60, // Afterglow percentage
+                shadow: true, // Whether to render a shadow
+                hwaccel: false, // Whether to use hardware acceleration
+                className: 'spinner', // The CSS class to assign to the spinner
+                zIndex: 2e9, // The z-index (defaults to 2000000000)
+                top: 'auto', // Top position relative to parent in px
+                left: 'auto' // Left position relative to parent in px
             };
-
+            
             if ( $(event.target).hasClass("profile-image") ) {
                 sizes ="4";
+                this.spinner = new Spinner(opts).spin( $(".profile-token-large")[0]);
             } else {
                 sizes = "7";
+                this.spinner = new Spinner(opts).spin( $(".cover")[0]);
             }
+
 
             $.ajax({
                 url: app.metadata.mediaServer + "image?sizes="+sizes,
@@ -137,6 +147,8 @@ function( app ) {
                         attr.background_image_url = data.fullsize_url;
                         this.$(".cover").css("background-image", "url(" + data.fullsize_url + ")");
                     }
+
+                    $(event.target).fadeTo( 500, 1);
 
                     this.model.save( attr );
                 }.bind(this)
