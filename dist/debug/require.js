@@ -17715,7 +17715,7 @@ function( app ) {
     var User = Backbone.Model.extend({
 
         url: function(){
-            return app.metadata.dataApi + "users/" + this.id;
+            return app.metadata.api + "users/" + this.id;
         }
 
     });
