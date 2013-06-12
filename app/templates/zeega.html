@@ -1,4 +1,10 @@
+<% if( cover_image != "" ) { %>
+
 <article class="card" style="background-image: url(<%=cover_image %>);" >
+
+<% } %>
+
+<%=user.display_name%>
   <div class="info-overlay">
     <div class="left-column">
       <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >

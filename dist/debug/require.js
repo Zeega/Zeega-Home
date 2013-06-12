@@ -501,9 +501,15 @@ return __p;
 this["JST"]["app/templates/zeega.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<article class="card" style="background-image: url('+
+__p+='';
+ if( cover_image != "" ) { 
+;__p+='\n\n<article class="card" style="background-image: url('+
 (cover_image )+
-');" >\n  <div class="info-overlay">\n    <div class="left-column">\n      <a data-bypass="true" class="profile-link" href="'+
+');" >\n\n';
+ } 
+;__p+='\n\n'+
+(user.display_name)+
+'\n  <div class="info-overlay">\n    <div class="left-column">\n      <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id )+
