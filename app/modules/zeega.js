@@ -75,7 +75,6 @@ function( app, ZeegaViewer ) {
         },
 
         onPlay: function( e ){
-            console.log("onplay!!")
             if( e.target.className != "profile-link" && e.target.className != "profile-token"){
                 var zeegaViewer = new ZeegaViewer({ model: this.model });
 

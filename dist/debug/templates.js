@@ -139,7 +139,7 @@ __p+='<article class="card" style="background-image: url('+
  if ( editable ) { 
 ;__p+='\n  <div class="edit-actions">\n    <a href="/editor/'+
 ( id )+
-'" class="edit-zeega btnz btnz-light">edit</a>\n    <a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
+'" class="edit-zeega btnz btnz-light" data-bypass="true" >edit</a>\n    <a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
  } 
 ;__p+='';
 }

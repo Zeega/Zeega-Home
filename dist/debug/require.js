@@ -525,7 +525,7 @@ __p+='<article class="card" style="background-image: url('+
  if ( editable ) { 
 ;__p+='\n  <div class="edit-actions">\n    <a href="/editor/'+
 ( id )+
-'" class="edit-zeega btnz btnz-light">edit</a>\n    <a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
+'" class="edit-zeega btnz btnz-light" data-bypass="true" >edit</a>\n    <a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
  } 
 ;__p+='';
 }
@@ -17614,24 +17614,28 @@ function( app, ZeegaViewer ) {
 
         template: "zeega",
         className: "zeega-card",
-        events:{
-            "click":"onPlay",
-            "click .delete-zeega": "deleteZeega"
-        },
-
-        onPlay: function( e ){
-            if( e.target.className != "profile-link" && e.target.className != "profile-token"){
-                var zeegaViewer = new ZeegaViewer({model: this.model});
-                $("body").append(zeegaViewer.render().view.el);
-                return false;
-            }
-        },
+        
         serialize: function() {
             return _.extend({
                     path: "http:" + app.metadata.hostname + app.metadata.directory
                 },
                 this.model.toJSON()
             );
+        },
+
+        events:{
+            "click article":"onPlay",
+            "click .delete-zeega": "deleteZeega"
+        },
+
+        onPlay: function( e ){
+            if( e.target.className != "profile-link" && e.target.className != "profile-token"){
+                var zeegaViewer = new ZeegaViewer({ model: this.model });
+
+                $("body").append(zeegaViewer.render().view.el);
+                return false;
+            }
+
         },
 
         deleteZeega: function() {
@@ -17641,6 +17645,8 @@ function( app, ZeegaViewer ) {
                     this.model.destroy();
                 }.bind(this));
             }
+
+            return false;
         }
     });
 
