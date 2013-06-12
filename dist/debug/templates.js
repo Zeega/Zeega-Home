@@ -107,7 +107,7 @@ var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<iframe src="'+
 (path )+
-'" endPage="true" hideChrome="true" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>\n<a href="#" class="modal-close">×</a>';
+'" endPage="true" hideChrome="true" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>\n<div class="modal-close">×</div>';
 }
 return __p;
 };
