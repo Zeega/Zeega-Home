@@ -60,24 +60,29 @@ function( app, ZeegaViewer ) {
 
         template: "zeega",
         className: "zeega-card",
-        events:{
-            "click":"onPlay",
-            "click .delete-zeega": "deleteZeega"
-        },
-
-        onPlay: function( e ){
-            if( e.target.className != "profile-link" && e.target.className != "profile-token"){
-                var zeegaViewer = new ZeegaViewer({model: this.model});
-                $("body").append(zeegaViewer.render().view.el);
-                return false;
-            }
-        },
+        
         serialize: function() {
             return _.extend({
                     path: "http:" + app.metadata.hostname + app.metadata.directory
                 },
                 this.model.toJSON()
             );
+        },
+
+        events:{
+            "click article":"onPlay",
+            "click .delete-zeega": "deleteZeega"
+        },
+
+        onPlay: function( e ){
+            console.log("onplay!!")
+            if( e.target.className != "profile-link" && e.target.className != "profile-token"){
+                var zeegaViewer = new ZeegaViewer({ model: this.model });
+
+                $("body").append(zeegaViewer.render().view.el);
+                return false;
+            }
+
         },
 
         deleteZeega: function() {
@@ -87,6 +92,8 @@ function( app, ZeegaViewer ) {
                     this.model.destroy();
                 }.bind(this));
             }
+
+            return false;
         }
     });
 
