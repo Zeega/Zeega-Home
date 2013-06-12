@@ -17838,7 +17838,7 @@ function( app ) {
                 success: function( data ) {
                     var attr = {};
 
-                    if ( $(event.target).hasClass(".profile-image") ) {
+                    if ( $(event.target).hasClass("profile-image") ) {
                         attr.thumb_url = data.image_url_4;
                         this.$(".profile-token-large").css("background-image", "url(" + data.image_url_4 + ")");
                     } else {
