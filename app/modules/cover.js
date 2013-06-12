@@ -160,5 +160,4 @@ function( app, Spinner ) {
 
     return Cover;
 
-
 });
