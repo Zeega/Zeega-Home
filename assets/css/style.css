@@ -677,6 +677,7 @@ article {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
+  background-position: center;
   background-color: white;
   background-image: url(../img/default_project_cover.png);
   width: 550px;
