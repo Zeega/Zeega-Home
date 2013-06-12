@@ -61,8 +61,10 @@ function( app, ZeegaViewer ) {
         template: "zeega",
         className: "zeega-card",
         events:{
-            "click":"onPlay"
+            "click":"onPlay",
+            "click .delete-zeega": "deleteZeega"
         },
+
         onPlay: function( e ){
             if( e.target.className != "profile-link" && e.target.className != "profile-token"){
                 var zeegaViewer = new ZeegaViewer({model: this.model});
@@ -76,6 +78,15 @@ function( app, ZeegaViewer ) {
                 },
                 this.model.toJSON()
             );
+        },
+
+        deleteZeega: function() {
+            if (confirm("Delete your Zeega?")) {
+                this.$el.slideUp(function() {
+                    this.remove();
+                    this.model.destroy();
+                }.bind(this));
+            }
         }
     });
 

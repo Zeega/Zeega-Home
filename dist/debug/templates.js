@@ -137,7 +137,9 @@ __p+='<article class="card" style="background-image: url('+
 (id )+
 '" class="play" data-bypass="true"></a>\n</article>\n\n';
  if ( editable ) { 
-;__p+='\n  <div class="edit-actions">\n    <a href="#" class="edit-zeega btnz btnz-light">edit</a><a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
+;__p+='\n  <div class="edit-actions">\n    <a href="/editor/'+
+( id )+
+'" class="edit-zeega btnz btnz-light">edit</a>\n    <a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
  } 
 ;__p+='';
 }
