@@ -55,23 +55,36 @@ a{
     }
 }
 
-.create-a-zeega{
-    position: absolute;
-    z-index:2;
-    width: 154px;
-    margin-left: 10px;
-    &:hover{
-        background-color:orangered;
+
+
+.btnz{
+    &.login{
+        background-color: rgba(136,136,136,0.8);
+        margin: 0 25px 0 10px;
+        z-index: 2;
+        &:hover{
+            background-color: rgba(136,136,136,1);
+        }
     }
-}
 
-.login{
-   
-    margin: 10px 25px 0 0; 
-    position: fixed;
-    z-index: 2;
-    right: 0;
+    &.bold-btnz{
 
+        position: fixed;
+
+        z-index:2;
+        margin: 10px 25px 0 0;
+        right: 0;
+        background-color: rgba(255,0,0,.8);
+        &:hover{
+                background-color: red;
+        }
+        &.join {
+            width: 55px;
+        }
+        &.create-a-zeega {
+            width: 154px;
+        }
+    }
 }
 
 .logged-in-user{

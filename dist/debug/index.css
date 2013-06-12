@@ -524,20 +524,29 @@ a.tag-link {
 a.tag-link:hover {
   background-color: orangered;
 }
-.create-a-zeega {
-  position: absolute;
+.btnz.login {
+  background-color: rgba(136, 136, 136, 0.8);
+  margin: 0 25px 0 10px;
   z-index: 2;
-  width: 154px;
-  margin-left: 10px;
 }
-.create-a-zeega:hover {
-  background-color: orangered;
+.btnz.login:hover {
+  background-color: #888888;
 }
-.login {
-  margin: 10px 25px 0 0;
+.btnz.bold-btnz {
   position: fixed;
   z-index: 2;
+  margin: 10px 25px 0 0;
   right: 0;
+  background-color: rgba(255, 0, 0, 0.8);
+}
+.btnz.bold-btnz:hover {
+  background-color: red;
+}
+.btnz.bold-btnz.join {
+  width: 55px;
+}
+.btnz.bold-btnz.create-a-zeega {
+  width: 154px;
 }
 .logged-in-user .profile-token {
   background: url(../img/default_profile.jpg) no-repeat;
