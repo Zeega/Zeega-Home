@@ -52,22 +52,30 @@ this["JST"]["app/templates/profile-cover.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<div class="cover" \n    ';
- if (background_image_url !=""){ 
-;__p+='\n    style ="background-image:url('+
+ if ( background_image_url != "") { 
+;__p+='\n        style ="background-image:url('+
 ( background_image_url )+
 ')" \n    ';
  } 
-;__p+='\n    >\n    <div class="profile-token-large" \n    ';
- if (thumbnail_url !=""){ 
-;__p+='\n    style="background-image:url('+
+;__p+='\n>\n    <div class="profile-token-large" \n        ';
+ if ( thumbnail_url !="") { 
+;__p+='\n        style="background-image:url('+
 ( thumbnail_url )+
-')"\n    ';
+')"\n        ';
  } 
-;__p+='\n    >\n    ></div>\n            <span class="headline">\n              <h2>'+
+;__p+='\n    ></div>\n\n    <span class="headline">\n        <h2 class="display-name">'+
 ( display_name )+
-'</h2>\n              <p class="bio">T'+
+'</h2>\n        <p class="bio">'+
 ( bio )+
-'</p>\n            </span>\n</div>';
+'</p>\n    </span>\n\n    ';
+ if ( editable ) { 
+;__p+='\n        <div class="edit-bio-wrapper">\n            <a href="#" class="edit-bio">edit</a>\n            <a href="#" class="save-bio">save</a>\n        </div>\n    ';
+ } 
+;__p+='\n\n</div>\n\n';
+ if ( editable ) { 
+;__p+='\n    <div class="profile-image-inputs">\n        <i class="icon-chevron-left"></i> Profile Image <input type="file" class="profile-image" name="profile-image" size="chars">\n        <i class="icon-chevron-up"></i> Background Image <input type="file" class="background-image" name="background-image" size="chars"> \n    </div>\n';
+ } 
+;__p+='\n';
 }
 return __p;
 };
@@ -109,25 +117,29 @@ var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<article class="card" style="background-image: url('+
 (cover_image )+
-');" >\n            <div class="info-overlay">\n                <div class="left-column">\n                  <a data-bypass="true" class="profile-link" href="'+
+');" >\n  <div class="info-overlay">\n    <div class="left-column">\n      <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id )+
-'" >\n                    <div class="profile-token" style="background-image: url('+
+'" >\n        <div class="profile-token" style="background-image: url('+
 ( user.thumbnail_url )+
-');"></div>\n                   </a>\n                </div>\n                <div class="right-column">\n                  <h1 class = "caption">'+
+');"></div>\n       </a>\n    </div>\n    <div class="right-column">\n      <h1 class = "caption">'+
 ( title )+
-'</h1>\n                  \n                  <div class="profile-name">\n                    <a data-bypass="true" class="profile-link" href="'+
+'</h1>\n      \n      <div class="profile-name">\n        <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id)+
-'" >\n                      '+
+'" >\n          '+
 (user.display_name)+
-'\n                    </a>\n                   \n                  </div>\n                 \n                </div>\n                  \n            \n            </div>\n        <a href="'+
+'\n        </a>\n      </div>\n    </div>\n  </div>\n  <a href="'+
 (path )+
 ''+
 (id )+
-'" class="play" data-bypass="true"></a>\n</article>';
+'" class="play" data-bypass="true"></a>\n</article>\n\n';
+ if ( editable ) { 
+;__p+='\n  <div class="edit-actions">\n    <a href="/edit-zeega" class="edit-zeega">edit</a> | <a href="/delete-zeega" class="delete-zeega">delete</a>\n  </div>\n';
+ } 
+;__p+='';
 }
 return __p;
 };

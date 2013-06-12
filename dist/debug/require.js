@@ -438,22 +438,30 @@ this["JST"]["app/templates/profile-cover.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<div class="cover" \n    ';
- if (background_image_url !=""){ 
-;__p+='\n    style ="background-image:url('+
+ if ( background_image_url != "") { 
+;__p+='\n        style ="background-image:url('+
 ( background_image_url )+
 ')" \n    ';
  } 
-;__p+='\n    >\n    <div class="profile-token-large" \n    ';
- if (thumbnail_url !=""){ 
-;__p+='\n    style="background-image:url('+
+;__p+='\n>\n    <div class="profile-token-large" \n        ';
+ if ( thumbnail_url !="") { 
+;__p+='\n        style="background-image:url('+
 ( thumbnail_url )+
-')"\n    ';
+')"\n        ';
  } 
-;__p+='\n    >\n    ></div>\n            <span class="headline">\n              <h2>'+
+;__p+='\n    ></div>\n\n    <span class="headline">\n        <h2 class="display-name">'+
 ( display_name )+
-'</h2>\n              <p class="bio">T'+
+'</h2>\n        <p class="bio">'+
 ( bio )+
-'</p>\n            </span>\n</div>';
+'</p>\n    </span>\n\n    ';
+ if ( editable ) { 
+;__p+='\n        <div class="edit-bio-wrapper">\n            <a href="#" class="edit-bio">edit</a>\n            <a href="#" class="save-bio">save</a>\n        </div>\n    ';
+ } 
+;__p+='\n\n</div>\n\n';
+ if ( editable ) { 
+;__p+='\n    <div class="profile-image-inputs">\n        <i class="icon-chevron-left"></i> Profile Image <input type="file" class="profile-image" name="profile-image" size="chars">\n        <i class="icon-chevron-up"></i> Background Image <input type="file" class="background-image" name="background-image" size="chars"> \n    </div>\n';
+ } 
+;__p+='\n';
 }
 return __p;
 };
@@ -495,25 +503,29 @@ var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<article class="card" style="background-image: url('+
 (cover_image )+
-');" >\n            <div class="info-overlay">\n                <div class="left-column">\n                  <a data-bypass="true" class="profile-link" href="'+
+');" >\n  <div class="info-overlay">\n    <div class="left-column">\n      <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id )+
-'" >\n                    <div class="profile-token" style="background-image: url('+
+'" >\n        <div class="profile-token" style="background-image: url('+
 ( user.thumbnail_url )+
-');"></div>\n                   </a>\n                </div>\n                <div class="right-column">\n                  <h1 class = "caption">'+
+');"></div>\n       </a>\n    </div>\n    <div class="right-column">\n      <h1 class = "caption">'+
 ( title )+
-'</h1>\n                  \n                  <div class="profile-name">\n                    <a data-bypass="true" class="profile-link" href="'+
+'</h1>\n      \n      <div class="profile-name">\n        <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id)+
-'" >\n                      '+
+'" >\n          '+
 (user.display_name)+
-'\n                    </a>\n                   \n                  </div>\n                 \n                </div>\n                  \n            \n            </div>\n        <a href="'+
+'\n        </a>\n      </div>\n    </div>\n  </div>\n  <a href="'+
 (path )+
 ''+
 (id )+
-'" class="play" data-bypass="true"></a>\n</article>';
+'" class="play" data-bypass="true"></a>\n</article>\n\n';
+ if ( editable ) { 
+;__p+='\n  <div class="edit-actions">\n    <a href="/edit-zeega" class="edit-zeega">edit</a> | <a href="/delete-zeega" class="delete-zeega">delete</a>\n  </div>\n';
+ } 
+;__p+='';
 }
 return __p;
 };
@@ -17506,11 +17518,26 @@ function( app ) {
 
         template: "zeega-viewer",
         className: "zeega-viewer",
+        
         events:{
-            "click":"onClick"
+            "click":"onClick",
+            "keypress": "onKeypress"
         },
+
+        initialize: function(){
+            $(window).keydown($.proxy(function( e ){this.onKeydown( e );}, this) );
+        },
+
         onClick: function() {
+
             this.$el.remove();
+            $(window).unbind("keypress");
+        },
+
+        onKeydown: function(e){
+            if (e.keyCode == 27){
+                this.onClick();
+            }
         },
         
         serialize: function() {
@@ -17535,6 +17562,9 @@ function( app, ZeegaViewer ) {
     Zeega = {};
     
     Zeega.Item = Backbone.Model.extend({
+        url: function(){
+            return app.metadata.api + "projects/" + this.id;
+        },
         initialize: function(){
             this.card = new Zeega.View({ model: this });
         }
@@ -17633,7 +17663,6 @@ function( app, Zeega ) {
         },
 
         serialize: function(){
-
             var headline = "Latest Zeegas";
 
             if( app.metadata.tags !== "" && app.metadata.tags == "homepage" ){
@@ -17693,23 +17722,79 @@ function( app ) {
 
     var Cover = {};
 
-
     Cover.HomeView = Backbone.View.extend({
-        
         template: "home-cover",
         className: "home-cover"
-
     });
 
     Cover.ProfileView = Backbone.View.extend({
         
         template: "profile-cover",
         className: "profile-cover",
+
         initialize: function() {
             this.model = new User( $.parseJSON(window.profileData) );
         },
+
         serialize: function() {
             return this.model.toJSON();
+        },
+
+        events: {
+            "click .edit-bio": "editBio",
+            "click .save-bio": "saveBio",
+
+            "keydown .display-name": "onKeydown",
+            "keydown .bio": "onKeydown",
+
+            "change input.profile-image": "onChangeProfileImage",
+            "change input.background-image": "onChangeBackgroundImage"
+        },
+
+        onKeydown: function( e ) {
+            if ( e.which == 13 ) {
+                this.$(".display-name, .bio").blur();
+
+                return false;
+            }
+        },
+
+        editBio: function() {
+            console.log(" edit bio")
+            this.$(".display-name, .bio")
+                .addClass("editing")
+                .prop("contenteditable", "true");
+            this.$(".profile-image-inputs").slideDown();
+
+            this.$(".edit-bio").hide();
+            this.$(".save-bio").show();
+
+            return false;
+        },
+
+        onChangeBackgroundImage: function() {
+            console.log('bg image updated')
+        },
+
+        onChangeProfileImage: function() {
+            console.log('prof img updated')
+        },
+
+        saveBio: function() {
+            this.$(".display-name, .bio")
+                .removeClass("editing")
+                .prop("contenteditable", "false");
+            this.$(".profile-image-inputs").slideUp();
+
+            this.$(".save-bio").hide();
+            this.$(".edit-bio").show();
+
+            this.model.save({
+                "display-name": this.$(".display-name").text(),
+                bio: this.$(".bio").text()
+            })
+
+            return false;
         }
 
     });

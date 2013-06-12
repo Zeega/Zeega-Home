@@ -10,6 +10,9 @@ function( app, ZeegaViewer ) {
     Zeega = {};
     
     Zeega.Item = Backbone.Model.extend({
+        url: function(){
+            return app.metadata.api + "projects/" + this.id;
+        },
         initialize: function(){
             this.card = new Zeega.View({ model: this });
         }

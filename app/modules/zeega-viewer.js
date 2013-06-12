@@ -12,11 +12,24 @@ function( app ) {
         className: "zeega-viewer",
         
         events:{
-            "click":"onClick"
+            "click":"onClick",
+            "keypress": "onKeypress"
+        },
+
+        initialize: function(){
+            $(window).keydown($.proxy(function( e ){this.onKeydown( e );}, this) );
         },
 
         onClick: function() {
+
             this.$el.remove();
+            $(window).unbind("keypress");
+        },
+
+        onKeydown: function(e){
+            if (e.keyCode == 27){
+                this.onClick();
+            }
         },
         
         serialize: function() {
