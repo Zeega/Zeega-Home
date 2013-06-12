@@ -141,7 +141,7 @@ function( app, Spinner ) {
                     var attr = {};
 
                     if ( $(event.target).hasClass("profile-image") ) {
-                        attr.thumb_url = data.image_url_4;
+                        attr.thumbnail_url = data.image_url_4;
                         this.$(".profile-token-large").css("background-image", "url(" + data.image_url_4 + ")");
                     } else {
                         attr.background_image_url = data.fullsize_url;
@@ -149,7 +149,7 @@ function( app, Spinner ) {
                     }
 
                     $(event.target).fadeTo( 500, 1);
-                    this.spinner.stop()
+                    this.spinner.stop();
                     this.model.save( attr );
                 }.bind(this)
             });
