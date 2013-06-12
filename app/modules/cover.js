@@ -149,7 +149,7 @@ function( app, Spinner ) {
                     }
 
                     $(event.target).fadeTo( 500, 1);
-
+                    this.spinner.stop()
                     this.model.save( attr );
                 }.bind(this)
             });
