@@ -502,7 +502,7 @@ header {
 }
 .ZEEGA-feed {
   min-height: 400px;
-  width: 650px;
+  width: 690px;
 }
 .ZEEGA-content-wrapper {
   width: 550px;
@@ -586,11 +586,26 @@ a.tag-link:hover {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
+  display: inline-block;
 }
 .btnz.join-zeega {
   font-size: 25px;
   background-color: red;
   padding: 10px 10px;
+}
+.btnz.btnz-light {
+  background-color: rgba(255, 255, 255, 0.5);
+  color: #444;
+}
+.btnz.btnz-light:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+.btnz.btnz-green {
+  background-color: limegreen;
+  color: #white;
+}
+.btnz + .btnz {
+  margin-left: 10px;
 }
 .ZEEGA-tab {
   background: orangered;
@@ -605,6 +620,9 @@ a.tag-link:hover {
   left: 10px;
   transition: all 0.5s;
   -webkit-transition: all 0.5s;
+}
+.ZEEGA-tab:hover {
+  padding-top: 10px;
 }
 .ZEEGA-tab .ZTab-logo {
   display: block;
@@ -848,7 +866,7 @@ article .play:hover {
 .cover .edit-bio-wrapper {
   position: absolute;
   bottom: 10px;
-  right: 20px;
+  right: 25px;
 }
 .cover .edit-bio-wrapper .save-bio {
   display: none;
@@ -892,6 +910,7 @@ article .play:hover {
 .cover .headline.home {
   bottom: 20px;
 }
+.cover h2,
 .cover .display-name {
   padding: 0 5px;
   margin: 0px 25px;

@@ -69,7 +69,7 @@ __p+='<div class="cover" \n    ';
 ( bio )+
 '</p>\n    </span>\n\n    ';
  if ( editable ) { 
-;__p+='\n        <div class="edit-bio-wrapper">\n            <a href="#" class="edit-bio">edit</a>\n            <a href="#" class="save-bio">save</a>\n        </div>\n    ';
+;__p+='\n        <div class="edit-bio-wrapper">\n            <a href="#" class="edit-bio btnz btnz-light">edit profile</a>\n            <a href="#" class="save-bio btnz btnz-green">save</a>\n        </div>\n    ';
  } 
 ;__p+='\n\n</div>\n\n';
  if ( editable ) { 
@@ -137,7 +137,7 @@ __p+='<article class="card" style="background-image: url('+
 (id )+
 '" class="play" data-bypass="true"></a>\n</article>\n\n';
  if ( editable ) { 
-;__p+='\n  <div class="edit-actions">\n    <a href="/edit-zeega" class="edit-zeega">edit</a> | <a href="/delete-zeega" class="delete-zeega">delete</a>\n  </div>\n';
+;__p+='\n  <div class="edit-actions">\n    <a href="#" class="edit-zeega btnz btnz-light">edit</a><a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
  } 
 ;__p+='';
 }
