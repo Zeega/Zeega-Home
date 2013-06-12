@@ -507,9 +507,7 @@ __p+='';
 (cover_image )+
 ');" >\n\n';
  } 
-;__p+='\n\n'+
-(user.display_name)+
-'\n  <div class="info-overlay">\n    <div class="left-column">\n      <a data-bypass="true" class="profile-link" href="'+
+;__p+='\n  <div class="info-overlay">\n    <div class="left-column">\n      <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id )+
