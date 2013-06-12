@@ -600,6 +600,10 @@ a.tag-link:hover {
 .btnz.btnz-light:hover {
   background-color: rgba(255, 255, 255, 0.95);
 }
+.btnz.btnz-green {
+  background-color: limegreen;
+  color: #white;
+}
 .btnz + .btnz {
   margin-left: 10px;
 }
