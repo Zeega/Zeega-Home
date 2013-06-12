@@ -74,7 +74,7 @@ function( app, Spinner ) {
             this.$(".edit-bio").show();
 
             this.model.save({
-                "display-name": this.$(".display-name").text(),
+                "display_name": this.$(".display-name").text(),
                 bio: this.$(".bio").text()
             });
 
