@@ -52,7 +52,6 @@ function( app ) {
         },
 
         editBio: function() {
-            console.log(" edit bio")
             this.$(".display-name, .bio")
                 .addClass("editing")
                 .prop("contenteditable", "true");
@@ -105,7 +104,7 @@ function( app ) {
 
             };
 
-            if ( $(event.target).hasClass(".profile-image") ) {
+            if ( $(event.target).hasClass("profile-image") ) {
                 sizes ="4";
             } else {
                 sizes = "7";
