@@ -506,6 +506,8 @@ __p+='';
 ;__p+='\n\n<article class="card" style="background-image: url('+
 (cover_image )+
 ');" >\n\n';
+ } else { 
+;__p+='\n\n<article class="card" >\n\n';
  } 
 ;__p+='\n  <div class="info-overlay">\n    <div class="left-column">\n      <a data-bypass="true" class="profile-link" href="'+
 (path )+
