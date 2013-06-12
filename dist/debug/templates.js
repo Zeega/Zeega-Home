@@ -107,7 +107,7 @@ var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<iframe src="'+
 (path )+
-'" endPage="true" hideChrome="true" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>\n<a href="#" class="modal-close">×</a>';
+'" endPage="true" hideChrome="true" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>\n<div class="modal-close">×</div>';
 }
 return __p;
 };
@@ -137,7 +137,9 @@ __p+='<article class="card" style="background-image: url('+
 (id )+
 '" class="play" data-bypass="true"></a>\n</article>\n\n';
  if ( editable ) { 
-;__p+='\n  <div class="edit-actions">\n    <a href="#" class="edit-zeega btnz btnz-light">edit</a><a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
+;__p+='\n  <div class="edit-actions">\n    <a href="/editor/'+
+( id )+
+'" class="edit-zeega btnz btnz-light" data-bypass="true" >edit</a>\n    <a href="#" class="delete-zeega btnz btnz-light">delete</a>\n  </div>\n';
  } 
 ;__p+='';
 }

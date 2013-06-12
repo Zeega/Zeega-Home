@@ -20,6 +20,7 @@
 
 <% if ( editable ) { %>
   <div class="edit-actions">
-    <a href="#" class="edit-zeega btnz btnz-light">edit</a><a href="#" class="delete-zeega btnz btnz-light">delete</a>
+    <a href="/editor/<%= id %>" class="edit-zeega btnz btnz-light" data-bypass="true" >edit</a>
+    <a href="#" class="delete-zeega btnz btnz-light">delete</a>
   </div>
 <% } %>

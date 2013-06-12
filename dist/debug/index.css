@@ -782,6 +782,7 @@ article .play:hover {
   position: absolute;
   text-decoration: none;
   color: #ccc;
+  cursor: pointer;
 }
 .zeega-viewer .modal-close:hover {
   text-decoration: none;
@@ -808,6 +809,9 @@ article .play:hover {
   width: 150px;
   margin-left: -175px;
   padding-top: 75px;
+}
+.sidebar .join-zeega {
+  display: inline;
 }
 .sidebar .logo-wrapper {
   height: 30px;

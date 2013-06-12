@@ -60,22 +60,39 @@ function( app, ZeegaViewer ) {
 
         template: "zeega",
         className: "zeega-card",
-        events:{
-            "click":"onPlay"
-        },
-        onPlay: function( e ){
-            if( e.target.className != "profile-link" && e.target.className != "profile-token"){
-                var zeegaViewer = new ZeegaViewer({model: this.model});
-                $("body").append(zeegaViewer.render().view.el);
-                return false;
-            }
-        },
+        
         serialize: function() {
             return _.extend({
                     path: "http:" + app.metadata.hostname + app.metadata.directory
                 },
                 this.model.toJSON()
             );
+        },
+
+        events:{
+            "click article":"onPlay",
+            "click .delete-zeega": "deleteZeega"
+        },
+
+        onPlay: function( e ){
+            if( e.target.className != "profile-link" && e.target.className != "profile-token"){
+                var zeegaViewer = new ZeegaViewer({ model: this.model });
+
+                $("body").append(zeegaViewer.render().view.el);
+                return false;
+            }
+
+        },
+
+        deleteZeega: function() {
+            if (confirm("Delete your Zeega?")) {
+                this.$el.slideUp(function() {
+                    this.remove();
+                    this.model.destroy();
+                }.bind(this));
+            }
+
+            return false;
         }
     });
 
