@@ -31,7 +31,7 @@ function( app, ZeegaViewer ) {
         },
         
         url: function() {
-            var url =  app.metadata.api + "projects/search?limit=" + this.limit + "&page=" + this.page;
+            var url =  app.metadata.api + "projects/search?limit=" + this.limit + "&page=" + this.page + "&sort=date-updated-desc";
  
             if( this.tags !== "" ){
                 url += "&tags=" + this.tags;
