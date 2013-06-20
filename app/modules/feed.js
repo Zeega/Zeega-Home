@@ -24,7 +24,7 @@ function( app, Zeega ) {
         },
 
         serialize: function(){
-            var headline = "Latest Zeegas";
+            var headline = "Recent Zeegas";
 
             if( app.metadata.tags !== "" && app.metadata.tags !== "homepage" ){
                 headline =  "#" + app.metadata.tags;
