@@ -17591,7 +17591,7 @@ function( app, ZeegaViewer ) {
         },
         
         url: function() {
-            var url =  app.metadata.api + "projects/search?limit=" + this.limit + "&page=" + this.page;
+            var url =  app.metadata.api + "projects/search?sort=date-updated-desc&limit=" + this.limit + "&page=" + this.page;
  
             if( this.tags !== "" ){
                 url += "&tags=" + this.tags;
