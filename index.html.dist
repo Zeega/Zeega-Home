@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
 
+    
     <meta name="zeega" content="zeega-home"
             data-directory="jmongo/web/"
             data-hostname="//dev.zeega.com/"
@@ -14,6 +15,8 @@
             data-tags="homepage"
             data-user-id="-1"
             data-profile-id="51afee2c8d34d4d711000e93"
+            data-media-server= "http://dev.zeega.com/kinok/"
+            data-path="/"
     />
 
 

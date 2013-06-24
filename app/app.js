@@ -9,7 +9,12 @@ define([
     var app = {
         // The root path to run the application.
         metadata: $("meta[name=zeega]").data(),
-        root: $("meta[name=zeega]").data("root")
+        root: $("meta[name=zeega]").data("root"),
+        emit: function( event, args ) {
+            // other things can be done here as well
+            this.trigger( event, args );
+        }
+
     };
 
     // Localize or create a new JavaScript Template object.

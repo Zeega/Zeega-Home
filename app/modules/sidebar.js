@@ -16,6 +16,12 @@ function( app ) {
                     path: "http:" + app.metadata.hostname + app.metadata.directory
                 }
             );
+        },
+        events: {
+            "click .join-zeega": "onSignUp"
+        },
+        onSignUp: function(){
+            app.emit("to_signup", {source: "sidebarButton" });
         }
 
     });

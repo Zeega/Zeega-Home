@@ -12,7 +12,7 @@ function( app ) {
         className: "zeega-viewer",
         
         events:{
-            "click":"onClick",
+            "click":"close",
             "keypress": "onKeypress"
         },
 
@@ -20,15 +20,15 @@ function( app ) {
             $(window).keydown($.proxy(function( e ){this.onKeydown( e );}, this) );
         },
 
-        onClick: function() {
-
+        close: function() {
+            window.history.pushState("", "Zeega", app.metadata.path );
             this.$el.remove();
             $(window).unbind("keypress");
         },
 
         onKeydown: function(e){
             if (e.keyCode == 27){
-                this.onClick();
+                this.close();
             }
         },
         

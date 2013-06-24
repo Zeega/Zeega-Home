@@ -477,13 +477,13 @@ __p+='<div class="about" />\n    \n    <div class="logo-wrapper"><span class="lo
  } 
 ;__p+='\n    </div>\n\n</div>\n\n<div class="explore">\n    <h2>\n        Explore:\n        <a data-bypass="true" href="'+
 (path )+
-'tag/bestof" class="tag-link">#bestof</a>\n        <a data-bypass="true" href="'+
+'tag/bestof" class="tag-link" name="bestof">#bestof</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/stories" class="tag-link">#stories</a>\n        <a data-bypass="true" href="'+
+'tag/stories" class="tag-link" name="stories">#stories</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/funny" class="tag-link">#funny</a>\n        <a data-bypass="true" href="'+
+'tag/funny" class="tag-link" name="funny">#funny</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/music" class="tag-link">#music</a>\n    </h2>\n</div>';
+'tag/music" class="tag-link" name="music">#music</a>\n    </h2>\n</div>';
 }
 return __p;
 };
@@ -17424,7 +17424,12 @@ define('app',[
     var app = {
         // The root path to run the application.
         metadata: $("meta[name=zeega]").data(),
-        root: $("meta[name=zeega]").data("root")
+        root: $("meta[name=zeega]").data("root"),
+        emit: function( event, args ) {
+            // other things can be done here as well
+            this.trigger( event, args );
+        }
+
     };
 
     // Localize or create a new JavaScript Template object.
@@ -17507,6 +17512,12 @@ function( app ) {
                     path: "http:" + app.metadata.hostname + app.metadata.directory
                 }
             );
+        },
+        events: {
+            "click .join-zeega": "onSignUp"
+        },
+        onSignUp: function(){
+            app.emit("to_signup", {source: "sidebarButton" });
         }
 
     });
@@ -17528,7 +17539,7 @@ function( app ) {
         className: "zeega-viewer",
         
         events:{
-            "click":"onClick",
+            "click":"close",
             "keypress": "onKeypress"
         },
 
@@ -17536,15 +17547,15 @@ function( app ) {
             $(window).keydown($.proxy(function( e ){this.onKeydown( e );}, this) );
         },
 
-        onClick: function() {
-
+        close: function() {
+            window.history.pushState("", "Zeega", app.metadata.path );
             this.$el.remove();
             $(window).unbind("keypress");
         },
 
         onKeydown: function(e){
             if (e.keyCode == 27){
-                this.onClick();
+                this.close();
             }
         },
         
@@ -17639,6 +17650,11 @@ function( app, ZeegaViewer ) {
                 var zeegaViewer = new ZeegaViewer({ model: this.model });
 
                 $("body").append(zeegaViewer.render().view.el);
+
+                window.history.pushState("", this.model.get("title"), "/" + this.model.id );
+
+
+
                 return false;
             }
 
@@ -18304,18 +18320,182 @@ function( app, SidebarView, FeedView, Cover, FooterView, Zeega ) {
 
 });
 
+define('analytics/analytics',[
+    "app",
+
+    "backbone"
+],
+
+function( app ) {
+
+    return Backbone.Model.extend({
+
+        loggingEnabled: true,
+
+        initialize: function() {
+            app.on( "all", this.onEvent, this );
+            if( !window.mixpanel ){
+                this.generateConsole();
+            }
+        },
+
+        onEvent: function( event, args ){
+            if(_.contains( this.plainEvents, event )){
+                this.trackEvent (event, args);
+            } else if( _.contains( this.modelEvents, event ) ) {
+                this.parseModelEvent (event, args);
+            } else {
+                //console.log("untracked event:: ", event, args );
+            }
+        },
+
+        parseModelEvent: function ( event, model ){
+            var params = {};
+            if( model.modelType == "frame" ){
+                params.layerCount = model.layers.length;
+            } else if ( model.modelType == "layer" ){
+                params = {
+                    type: model.get("type"),
+                    source: model.get("attr").archive ?  model.get("attr").archive : "none"
+                };
+            } else if ( model.modelType == "sequence" ){
+                params = {
+                    pageCount: model.frames.length
+                };
+            } else if ( model.modelType == "item" ){
+                params = {
+                    type: model.get("media_type"),
+                    source: model.get("archive") ?  model.get("archive") : "none"
+                };
+            }
+            
+            params = _.extend( params, model.eventData );
+
+            this.trackEvent( event, params );
+
+
+        },
+
+        setGlobals: function ( args ){
+
+            _.each(args, function (value, key){
+                var param = {};
+                param[ key ] = value;
+                mixpanel.register( param );
+            });
+        },
+
+        trackEvent: function ( event, args ){
+            mixpanel.track( event, args );
+        },
+
+        plainEvents: [
+        //editor
+            "project_preview",
+            "media_search",
+            "page_added",
+            "layer_font_change",
+            "toggle_help",
+            "help",
+            "preview_toggle_view",
+            "toggle_page_background",
+            "new_zeega",
+            "advance_toggle",
+          
+           // "view_item",
+
+            //player
+            
+            // "start_over",
+            // "mute_toggle",
+            // "fullscreen_toggle",
+            "zeega_view",
+            "favorite",
+            "unfavorite",
+            "viewed_to_end",
+
+
+            //mobile player
+            "swipe_to_play",
+
+            //community
+
+            "to_signup",
+
+        //shared
+
+            "share",
+            "to_profile",
+            "to_home"
+
+        ],
+
+        modelEvents: [
+        //editor
+            "page_delete",
+            "layer_added_success",
+            "layer_deleted",
+            "soundtrack_added_success",
+            "soundtrack_delete",
+            "pages_reordered",
+            "layers_reordered",
+            "select_link_page",
+            "link_new_page",
+            "unlink",
+            "init_link"
+
+
+        ],
+
+        generateConsole: function(){
+
+            var debug = this.loggingEnabled;
+
+            window.mixpanel = {
+                register: function (obj){
+                    if( debug ){
+                        console.log("registering global property::  " + _.keys(obj) + " : " + _.values(obj) );
+                    }
+                },                
+                track: function ( event, params ){
+                    if( debug ){
+                        console.log( "tracking event:: " + event, params );
+                    }
+                }
+            };
+        }
+
+    });
+
+});
 define('modules/initializer',[
     "app",
     // Modules
     "modules/layout-main",
+    "analytics/analytics",
     "backbone"
 ],
 
-function( app, MainLayout) {
+function( app, MainLayout, Analytics) {
 
     return Backbone.Model.extend({
         
         initialize: function() {
+            app.analytics = new Analytics();
+
+            app.analytics.setGlobals({
+                userId: app.metadata.userId,
+                app: "community",
+                context: "web",
+                path: app.metadata.path
+            });
+
+
+            $(".join-zeega").click(function(){ app.emit("to_signup"); });
+            $(".create-a-zeega").click(function(){ app.emit("new_zeega"); });
+
+
+
             this.insertLayout();
         },
 

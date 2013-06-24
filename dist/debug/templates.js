@@ -91,13 +91,13 @@ __p+='<div class="about" />\n    \n    <div class="logo-wrapper"><span class="lo
  } 
 ;__p+='\n    </div>\n\n</div>\n\n<div class="explore">\n    <h2>\n        Explore:\n        <a data-bypass="true" href="'+
 (path )+
-'tag/bestof" class="tag-link">#bestof</a>\n        <a data-bypass="true" href="'+
+'tag/bestof" class="tag-link" name="bestof">#bestof</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/stories" class="tag-link">#stories</a>\n        <a data-bypass="true" href="'+
+'tag/stories" class="tag-link" name="stories">#stories</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/funny" class="tag-link">#funny</a>\n        <a data-bypass="true" href="'+
+'tag/funny" class="tag-link" name="funny">#funny</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/music" class="tag-link">#music</a>\n    </h2>\n</div>';
+'tag/music" class="tag-link" name="music">#music</a>\n    </h2>\n</div>';
 }
 return __p;
 };
