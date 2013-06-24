@@ -17548,7 +17548,7 @@ function( app ) {
         },
 
         close: function() {
-            window.history.pushState("", "Zeega", app.metadata.root );
+            window.history.pushState("", "Zeega", "/" + app.metadata.root );
             this.$el.remove();
             $(window).unbind("keypress");
         },
