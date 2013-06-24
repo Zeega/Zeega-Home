@@ -21,7 +21,7 @@ function( app ) {
         },
 
         close: function() {
-            window.history.pushState(app.metadata.path, "Zeega", app.metadata.path );
+            window.history.pushState("", "Zeega", app.metadata.localPath );
             this.$el.remove();
             $(window).unbind("keypress");
         },
