@@ -17548,7 +17548,7 @@ function( app ) {
         },
 
         close: function() {
-            window.history.pushState("", "Zeega", app.metadata.localPath );
+            window.history.pushState("", "Zeega", app.metadata.root );
             this.$el.remove();
             $(window).unbind("keypress");
         },
@@ -17651,7 +17651,7 @@ function( app, ZeegaViewer ) {
 
                 $("body").append(zeegaViewer.render().view.el);
 
-                window.history.pushState("", this.model.get("title"), "/" + this.model.id );
+                window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
 
 
 
