@@ -736,7 +736,7 @@ article .info-overlay .left-column .profile-token {
 }
 article .info-overlay .right-column {
   height: 46px;
-  width: 200px;
+  width: 250px;
   position: relative;
   float: left;
 }
@@ -756,7 +756,7 @@ article .info-overlay .right-column .profile-name .zeega-views {
 }
 article .info-overlay .right-column h1 {
   font-size: 0.7em;
-  line-height: .85em;
+  line-height: 1.2em;
   margin: 0;
 }
 article .play {
