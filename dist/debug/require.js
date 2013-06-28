@@ -491,9 +491,9 @@ return __p;
 this["JST"]["app/templates/zeega-viewer.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<iframe src="'+
+__p+='<iframe \n    id="viewer-iframe"\n    src="'+
 (path )+
-'" endPage="true" hideChrome="true" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>\n<div class="modal-close">×</div>';
+'" \n    endPage="true" \n    hideChrome="true" \n    webkitAllowFullScreen \n    mozallowfullscreen \n    allowFullScreen\n></iframe>\n<div class="modal-close">×</div>';
 }
 return __p;
 };
@@ -17539,18 +17539,20 @@ function( app ) {
         className: "zeega-viewer",
         
         events:{
-            "click":"close",
-            "keypress": "onKeypress"
+            "click":"close"
         },
 
         initialize: function(){
             $(window).keydown($.proxy(function( e ){this.onKeydown( e );}, this) );
         },
+        afterRender: function(){
+            this.$("#viewer-iframe").load($.proxy(function( ){this.onViewerLoad( );}, this));
+        },
 
         close: function() {
             window.history.pushState("", "Zeega", "/" + app.metadata.root );
             this.$el.remove();
-            $(window).unbind("keypress");
+            $(window).unbind("keydown");
         },
 
         onKeydown: function(e){
@@ -17559,6 +17561,11 @@ function( app ) {
             }
         },
         
+        onViewerLoad: function(){
+            var id = $('#viewer-iframe').attr('src').split('/')[$('#viewer-iframe').attr('src').split('/').length -1 ];
+            window.history.pushState("", "", "/" + app.metadata.directory + id );
+        },
+
         serialize: function() {
             return {
                 path: "http:" + app.metadata.hostname + app.metadata.directory + this.model.id
@@ -17651,7 +17658,7 @@ function( app, ZeegaViewer ) {
 
                 $("body").append(zeegaViewer.render().view.el);
 
-                window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
+                //window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
 
 
 

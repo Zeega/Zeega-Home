@@ -80,7 +80,7 @@ function( app, ZeegaViewer ) {
 
                 $("body").append(zeegaViewer.render().view.el);
 
-                window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
+                //window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
 
 
 
