@@ -18528,10 +18528,22 @@ function(app, Initializer) {
     // Defining the application router, you can attach sub routers here.
     var Router = Backbone.Router.extend({
         routes: {
-            "": "index"
+            "": "index",
+            "@:username": "profile",
+            "tag/:tag": "tag"
         },
 
         index: function() {
+            initialize();
+        },
+
+        profile: function( username ){
+            console.log("profile ", username);
+            initialize();
+        },
+
+        tag: function( username ){
+            console.log("tag ", tag);
             initialize();
         }
 
