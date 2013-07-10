@@ -17550,7 +17550,7 @@ function( app ) {
         },
 
         close: function() {
-            window.history.pushState("", "Zeega", "/" + app.metadata.root );
+            window.history.pushState("", "Zeega", "/" + app.metadata.root + app.metadata.localPath );
             this.$el.remove();
             $(window).unbind("keydown");
         },
@@ -18538,10 +18538,12 @@ function(app, Initializer) {
         },
 
         profile: function( username ){
+            app.metadata.localPath = "@" + username;
             initialize();
         },
 
         tag: function( tag ){
+            app.metadata.localPath = "tag/" + tag;
             initialize();
         }
 

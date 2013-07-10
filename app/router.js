@@ -21,10 +21,12 @@ function(app, Initializer) {
         },
 
         profile: function( username ){
+            app.metadata.localPath = "@" + username;
             initialize();
         },
 
         tag: function( tag ){
+            app.metadata.localPath = "tag/" + tag;
             initialize();
         }
 

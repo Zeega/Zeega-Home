@@ -23,7 +23,7 @@ function( app ) {
         },
 
         close: function() {
-            window.history.pushState("", "Zeega", "/" + app.metadata.root );
+            window.history.pushState("", "Zeega", "/" + app.metadata.root + app.metadata.localPath );
             this.$el.remove();
             $(window).unbind("keydown");
         },
