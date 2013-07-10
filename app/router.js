@@ -21,12 +21,10 @@ function(app, Initializer) {
         },
 
         profile: function( username ){
-            console.log("profile ", username);
             initialize();
         },
 
-        tag: function( username ){
-            console.log("tag ", tag);
+        tag: function( tag ){
             initialize();
         }
 
