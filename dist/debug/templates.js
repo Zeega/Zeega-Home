@@ -69,7 +69,7 @@ __p+='<div class="cover" \n    ';
 ( bio )+
 '</p>\n    </span>\n\n    ';
  if ( editable ) { 
-;__p+='\n        <div class="edit-bio-wrapper">\n            <a href="#" class="edit-bio btnz btnz-light">edit profile</a>\n            <a href="#" class="save-bio btnz btnz-green">save</a>\n        </div>\n    ';
+;__p+='\n        <ul class="bottom-menu">\n            <li>\n                <a href="#" class="edit-bio btnz btnz-light">edit profile</a>\n            </li>\n            <li>\n                <a href="#" class="save-bio btnz btnz-green">save</a>\n            </li>\n            <li>\n                <a href="/settings" data-bypass="true" class="settings"></a>\n            </li>\n        </ul>\n    ';
  } 
 ;__p+='\n\n</div>\n\n';
  if ( editable ) { 

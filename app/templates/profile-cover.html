@@ -15,10 +15,17 @@
     </span>
 
     <% if ( editable ) { %>
-        <div class="edit-bio-wrapper">
-            <a href="#" class="edit-bio btnz btnz-light">edit profile</a>
-            <a href="#" class="save-bio btnz btnz-green">save</a>
-        </div>
+        <ul class="bottom-menu">
+            <li>
+                <a href="#" class="edit-bio btnz btnz-light">edit profile</a>
+            </li>
+            <li>
+                <a href="#" class="save-bio btnz btnz-green">save</a>
+            </li>
+            <li>
+                <a href="/settings" data-bypass="true" class="settings"></a>
+            </li>
+        </ul>
     <% } %>
 
 </div>
