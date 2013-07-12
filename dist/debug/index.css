@@ -965,10 +965,11 @@ article .play:hover {
   font-size: 1.7em;
   text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
 }
-.cover h2 small,
-.cover .display-name small {
-  font-size: 0.5em;
+.cover .username {
   color: white;
+  margin: 0 30px;
+  font-size: 15px;
+  text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
 }
 .cover .bio {
   padding: 0 5px;

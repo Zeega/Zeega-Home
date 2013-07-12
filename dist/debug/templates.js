@@ -65,9 +65,9 @@ __p+='<div class="cover" \n    ';
  } 
 ;__p+='\n    ></div>\n\n    <span class="headline">\n        <h2 class="display-name">'+
 ( display_name )+
-' <small>@'+
+'</h2>\n        <h3 class="username"><small>@'+
 ( username )+
-'</small></h2>\n        <p class="bio">'+
+'</small></h3>\n        <p class="bio">'+
 ( bio )+
 '</p>\n    </span>\n\n    ';
  if ( editable ) { 
