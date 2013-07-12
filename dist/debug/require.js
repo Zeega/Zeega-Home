@@ -18114,8 +18114,9 @@ function( app, Spinner ) {
 
     var User = Backbone.Model.extend({
 
-        url: function(){
-            return app.metadata.api + "users/" + this.id;
+        url: function() {
+            var https = app.metadata.api.replace("https","http").replace("http","https");
+            return https + "users/" + this.id;
         }
 
     });
