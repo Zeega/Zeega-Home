@@ -968,7 +968,7 @@ article .play:hover {
 .cover h2 small,
 .cover .display-name small {
   font-size: 0.5em;
-  color: red;
+  color: white;
 }
 .cover .bio {
   padding: 0 5px;
