@@ -17572,7 +17572,7 @@ function( app ) {
 
         serialize: function() {
             return {
-                path: "https:" + app.metadata.hostname + app.metadata.directory + this.model.id
+                path: "http:" + app.metadata.hostname + app.metadata.directory + this.model.id
             };
         }
     });
