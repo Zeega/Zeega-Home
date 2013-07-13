@@ -16,6 +16,7 @@ function( app ) {
         },
 
         initialize: function(){
+            this.url = window.location.href;
             $(window).keydown($.proxy(function( e ){this.onKeydown( e );}, this) );
         },
         afterRender: function(){
@@ -23,7 +24,7 @@ function( app ) {
         },
 
         close: function() {
-            window.history.pushState("", "Zeega", "/" + app.metadata.root + app.metadata.localPath );
+            window.history.pushState("", "Zeega", this.url );
             this.$el.remove();
             $(window).unbind("keydown");
         },
@@ -41,7 +42,7 @@ function( app ) {
 
         serialize: function() {
             return {
-                path: "http:" + app.metadata.hostname + app.metadata.directory + this.model.id
+                path: "https:" + app.metadata.hostname + app.metadata.directory + this.model.id
             };
         }
     });
