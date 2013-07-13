@@ -17593,7 +17593,8 @@ function( app, ZeegaViewer ) {
     
     Zeega.Item = Backbone.Model.extend({
         url: function(){
-            return app.metadata.api + "projects/" + this.id;
+            var https = app.metadata.api.replace("https", "http").replace("http","https");
+            return https + "projects/" + this.id;
         },
         initialize: function(){
             this.card = new Zeega.View({ model: this });
