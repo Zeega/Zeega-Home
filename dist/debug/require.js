@@ -17565,8 +17565,9 @@ function( app ) {
         },
         
         onViewerLoad: function(){
-            var id = $('#viewer-iframe').attr('src').split('/')[$('#viewer-iframe').attr('src').split('/').length -1 ];
-            window.history.pushState("", "", "/" + app.metadata.directory + id );
+            //var id = $('#viewer-iframe').attr('src').split('/')[$('#viewer-iframe').attr('src').split('/').length -1 ];
+            
+            window.history.pushState("", "", "/" + app.metadata.directory + this.model.id );
         },
 
         serialize: function() {
