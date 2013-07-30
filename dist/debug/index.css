@@ -601,6 +601,7 @@ a.tag-link:hover {
   font-size: 25px;
   background-color: red;
   padding: 10px 10px;
+  display: inline;
 }
 .btnz.delete-zeega {
   padding: 5px 8px;
@@ -822,9 +823,6 @@ article .play:hover {
   width: 150px;
   margin-left: -175px;
   padding-top: 75px;
-}
-.sidebar .join-zeega {
-  display: inline;
 }
 .sidebar .logo-wrapper {
   height: 30px;

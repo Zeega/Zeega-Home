@@ -53,7 +53,6 @@ function( app, Zeega ) {
 
             var loc = $(window).scrollTop() + $(window).innerHeight();
             var height = $("body")[0].scrollHeight;
-            
             if( height !== 0 && loc >= height - 500 && this.collection.more ){
                 this.$el.append("<div class='zeega-card'><article class='loading'></article> </div>");
                 this.collection.more = false;

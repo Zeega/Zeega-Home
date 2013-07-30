@@ -399,15 +399,25 @@ return __p;
 this["JST"]["app/templates/footer.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n            <a class="tag-link" data-bypass="true" href="'+
+__p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n            <a data-bypass="true" href="'+
 (path )+
-'tag/bestof" >#bestof</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/bestof" class="tag-link" name="bestof">#bestof</a>\n            <a data-bypass="true" href="'+
 (path )+
-'tag/stories" >#stories</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/music" class="tag-link" name="music">#music</a>\n            <a data-bypass="true" href="'+
 (path )+
-'tag/funny" >#funny</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/politics" class="tag-link" name="politics">#politics</a>\n            <a data-bypass="true" href="'+
 (path )+
-'tag/music" >#music</a>\n        </h1>\n    </span>\n    ';
+'tag/stories" class="tag-link" name="stories">#stories</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/funny" class="tag-link" name="funny">#funny</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/sports" class="tag-link" name="sports">#sports</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/zeegacard" class="tag-link" name="zeegacard">#zeegacard</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/tribute" class="tag-link" name="tribute">#tribute</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/todayinzeega" class="tag-link" name="todayinzeega">#dailyzeega</a>\n        </h1>\n    </span>\n    ';
  if (userId == -1 ){ 
 ;__p+='\n        <span >\n            <h1>\n                <a class="btnz join-zeega" href="'+
 (path )+
@@ -481,11 +491,21 @@ __p+='<div class="about" />\n    \n    <div class="logo-wrapper"><span class="lo
 (path )+
 'tag/bestof" class="tag-link" name="bestof">#bestof</a>\n        <a data-bypass="true" href="'+
 (path )+
+'tag/music" class="tag-link" name="music">#music</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/politics" class="tag-link" name="politics">#politics</a>\n        <a data-bypass="true" href="'+
+(path )+
 'tag/stories" class="tag-link" name="stories">#stories</a>\n        <a data-bypass="true" href="'+
 (path )+
 'tag/funny" class="tag-link" name="funny">#funny</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/music" class="tag-link" name="music">#music</a>\n    </h2>\n</div>';
+'tag/sports" class="tag-link" name="sports">#sports</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/tribute" class="tag-link" name="tribute">#tribute</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/zeegacard" class="tag-link" name="zeegacard">#zeegacard</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/todayinzeega" class="tag-link" name="todayinzeega">#dailyzeega</a>\n\n    </h2>\n</div>';
 }
 return __p;
 };
@@ -17614,14 +17634,15 @@ function( app, ZeegaViewer ) {
         },
         
         url: function() {
-            var url =  app.metadata.api + "projects/search?sort=date-tags-updated-desc&limit=" + this.limit + "&page=" + this.page;
+            var url =  app.metadata.api + "projects/search?limit=" + this.limit + "&page=" + this.page;
  
-            if( this.tags !== "" && this.tags !== "realtime" ){
-                url += "&tags=" + this.tags;
-            }
-
             if( this.profileId !== "" ){
                 url += "&user=" + this.profileId;
+                url += "&sort=date-created-desc";
+            }
+            else if( this.tags !== "" && this.tags !== "realtime" ){
+                url += "&tags=" + this.tags;
+                url += "&sort=date-tags-updated-desc";
             }
 
             return url;
@@ -17674,6 +17695,7 @@ function( app, ZeegaViewer ) {
 
         deleteZeega: function() {
             if (confirm("Delete your Zeega?")) {
+                app.emit("delete-zeega");
                 this.$el.slideUp(function() {
                     this.remove();
                     this.model.destroy();
@@ -17745,7 +17767,6 @@ function( app, Zeega ) {
 
             var loc = $(window).scrollTop() + $(window).innerHeight();
             var height = $("body")[0].scrollHeight;
-            
             if( height !== 0 && loc >= height - 500 && this.collection.more ){
                 this.$el.append("<div class='zeega-card'><article class='loading'></article> </div>");
                 this.collection.more = false;
@@ -18369,7 +18390,7 @@ function( app ) {
             } else if ( model.modelType == "layer" ){
                 params = {
                     type: model.get("type"),
-                    source: model.get("attr").archive ?  model.get("attr").archive : "none"
+                    api: model.get("attr").archive ?  model.get("attr").archive : "none"
                 };
             } else if ( model.modelType == "sequence" ){
                 params = {
@@ -18378,7 +18399,7 @@ function( app ) {
             } else if ( model.modelType == "item" ){
                 params = {
                     type: model.get("media_type"),
-                    source: model.get("archive") ?  model.get("archive") : "none"
+                    api: model.get("archive") ?  model.get("archive") : "none"
                 };
             }
             
@@ -18387,6 +18408,19 @@ function( app ) {
             this.trackEvent( event, params );
 
 
+        },
+
+        people: {
+            increment:function( attr ){
+                mixpanel.people.increment( attr );
+            },
+            set: function( obj ){
+                mixpanel.people.set( obj );
+            }
+        },
+
+        identify: function( id ){
+            mixpanel.identify( id );
         },
 
         setGlobals: function ( args ){
@@ -18413,6 +18447,7 @@ function( app ) {
             "preview_toggle_view",
             "toggle_page_background",
             "new_zeega",
+            "new_user",
             "advance_toggle",
           
            // "view_item",
@@ -18434,6 +18469,7 @@ function( app ) {
             //community
 
             "to_signup",
+            "delete-zeega",
 
         //shared
 
@@ -18451,11 +18487,12 @@ function( app ) {
             "soundtrack_added_success",
             "soundtrack_delete",
             "pages_reordered",
-            "layers_reordered",
-            "select_link_page",
-            "link_new_page",
-            "unlink",
-            "init_link"
+            "layers_reordered"
+
+            // "select_link_page",
+            // "link_new_page",
+            // "unlink",
+            // "init_link"
 
 
         ],
@@ -18469,10 +18506,27 @@ function( app ) {
                     if( debug ){
                         console.log("registering global property::  " + _.keys(obj) + " : " + _.values(obj) );
                     }
-                },                
+                },
                 track: function ( event, params ){
                     if( debug ){
                         console.log( "tracking event:: " + event, params );
+                    }
+                },
+                people: {
+                    set: function( obj ){
+                        if( debug ){
+                            console.log( "setting people", obj );
+                        }
+                    },
+                    increment: function( obj ){
+                        if( debug ){
+                            console.log( "increment", obj );
+                        }
+                    }
+                },
+                identify: function( id ){
+                    if( debug ){
+                        console.log( "identify", id );
                     }
                 }
             };
@@ -18502,12 +18556,6 @@ function( app, MainLayout, Analytics) {
                 context: "web",
                 path: app.metadata.path
             });
-
-
-            $(".join-zeega").click(function(){ app.emit("to_signup"); });
-            $(".create-a-zeega").click(function(){ app.emit("new_zeega"); });
-
-
 
             this.insertLayout();
         },

@@ -32,14 +32,15 @@ function( app, ZeegaViewer ) {
         },
         
         url: function() {
-            var url =  app.metadata.api + "projects/search?sort=date-tags-updated-desc&limit=" + this.limit + "&page=" + this.page;
+            var url =  app.metadata.api + "projects/search?limit=" + this.limit + "&page=" + this.page;
  
-            if( this.tags !== "" && this.tags !== "realtime" ){
-                url += "&tags=" + this.tags;
-            }
-
             if( this.profileId !== "" ){
                 url += "&user=" + this.profileId;
+                url += "&sort=date-created-desc";
+            }
+            else if( this.tags !== "" && this.tags !== "realtime" ){
+                url += "&tags=" + this.tags;
+                url += "&sort=date-tags-updated-desc";
             }
 
             return url;
@@ -92,6 +93,7 @@ function( app, ZeegaViewer ) {
 
         deleteZeega: function() {
             if (confirm("Delete your Zeega?")) {
+                app.emit("delete-zeega");
                 this.$el.slideUp(function() {
                     this.remove();
                     this.model.destroy();

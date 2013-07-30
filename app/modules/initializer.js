@@ -20,12 +20,6 @@ function( app, MainLayout, Analytics) {
                 path: app.metadata.path
             });
 
-
-            $(".join-zeega").click(function(){ app.emit("to_signup"); });
-            $(".create-a-zeega").click(function(){ app.emit("new_zeega"); });
-
-
-
             this.insertLayout();
         },
 

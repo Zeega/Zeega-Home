@@ -13,15 +13,25 @@ return __p;
 this["JST"]["app/templates/footer.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n            <a class="tag-link" data-bypass="true" href="'+
+__p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n            <a data-bypass="true" href="'+
 (path )+
-'tag/bestof" >#bestof</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/bestof" class="tag-link" name="bestof">#bestof</a>\n            <a data-bypass="true" href="'+
 (path )+
-'tag/stories" >#stories</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/music" class="tag-link" name="music">#music</a>\n            <a data-bypass="true" href="'+
 (path )+
-'tag/funny" >#funny</a>\n            <a class="tag-link" data-bypass="true" href="'+
+'tag/politics" class="tag-link" name="politics">#politics</a>\n            <a data-bypass="true" href="'+
 (path )+
-'tag/music" >#music</a>\n        </h1>\n    </span>\n    ';
+'tag/stories" class="tag-link" name="stories">#stories</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/funny" class="tag-link" name="funny">#funny</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/sports" class="tag-link" name="sports">#sports</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/zeegacard" class="tag-link" name="zeegacard">#zeegacard</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/tribute" class="tag-link" name="tribute">#tribute</a>\n            <a data-bypass="true" href="'+
+(path )+
+'tag/todayinzeega" class="tag-link" name="todayinzeega">#dailyzeega</a>\n        </h1>\n    </span>\n    ';
  if (userId == -1 ){ 
 ;__p+='\n        <span >\n            <h1>\n                <a class="btnz join-zeega" href="'+
 (path )+
@@ -95,11 +105,21 @@ __p+='<div class="about" />\n    \n    <div class="logo-wrapper"><span class="lo
 (path )+
 'tag/bestof" class="tag-link" name="bestof">#bestof</a>\n        <a data-bypass="true" href="'+
 (path )+
+'tag/music" class="tag-link" name="music">#music</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/politics" class="tag-link" name="politics">#politics</a>\n        <a data-bypass="true" href="'+
+(path )+
 'tag/stories" class="tag-link" name="stories">#stories</a>\n        <a data-bypass="true" href="'+
 (path )+
 'tag/funny" class="tag-link" name="funny">#funny</a>\n        <a data-bypass="true" href="'+
 (path )+
-'tag/music" class="tag-link" name="music">#music</a>\n    </h2>\n</div>';
+'tag/sports" class="tag-link" name="sports">#sports</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/tribute" class="tag-link" name="tribute">#tribute</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/zeegacard" class="tag-link" name="zeegacard">#zeegacard</a>\n        <a data-bypass="true" href="'+
+(path )+
+'tag/todayinzeega" class="tag-link" name="todayinzeega">#dailyzeega</a>\n\n    </h2>\n</div>';
 }
 return __p;
 };
