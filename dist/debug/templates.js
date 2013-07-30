@@ -53,7 +53,7 @@ return __p;
 this["JST"]["app/templates/layout-main.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n</div>';
+__p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n     <span class="scroll-to-top hidden" >\n            <h1>\n                <a class="btnz" href="#" > ↑ </a>\n            </h1>\n      </span>\n</div>';
 }
 return __p;
 };

@@ -524,6 +524,19 @@ a.tag-link {
 a.tag-link:hover {
   background-color: orangered;
 }
+.scroll-to-top {
+  position: fixed;
+  bottom: 0px;
+  right: 25px;
+  opacity: 1;
+  -moz-transition: opacity .25s linear;
+  -webkit-transition: opacity .25s linear;
+  -o-transition: opacity .25s linear;
+  transition: opacity .25s linear;
+}
+.scroll-to-top.hidden {
+  opacity: 0;
+}
 .btnz.login {
   background-color: rgba(136, 136, 136, 0.8);
   margin: 0 25px 0 10px;

@@ -11,6 +11,10 @@ function( app, Zeega ) {
         template: "feed",
         className: "ZEEGA-feed",
 
+        events: {
+            "click .scroll-to-top": function(){ window.scrollTo(0,1); }
+        },
+
         initialize: function(){
 
             this.collection.on( "add", function( model ){
@@ -59,6 +63,12 @@ function( app, Zeega ) {
                 this.collection.page ++;
                 this.collection.fetch();
             }
+            if( $(window).scrollTop() > 1000 && $(".scroll-to-top.hidden")[0]){
+                $(".scroll-to-top").removeClass("hidden");
+            } else if( $(window).scrollTop() < 1000 && !$(".scroll-to-top.hidden")[0] ) {
+                $(".scroll-to-top").addClass("hidden");
+            }
+            
         }
 
 

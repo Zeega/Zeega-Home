@@ -439,7 +439,7 @@ return __p;
 this["JST"]["app/templates/layout-main.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n</div>';
+__p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n     <span class="scroll-to-top hidden" >\n            <h1>\n                <a class="btnz" href="#" > ↑ </a>\n            </h1>\n      </span>\n</div>';
 }
 return __p;
 };
@@ -17725,6 +17725,10 @@ function( app, Zeega ) {
         template: "feed",
         className: "ZEEGA-feed",
 
+        events: {
+            "click .scroll-to-top": function(){ window.scrollTo(0,1); }
+        },
+
         initialize: function(){
 
             this.collection.on( "add", function( model ){
@@ -17773,6 +17777,12 @@ function( app, Zeega ) {
                 this.collection.page ++;
                 this.collection.fetch();
             }
+            if( $(window).scrollTop() > 1000 && $(".scroll-to-top.hidden")[0]){
+                $(".scroll-to-top").removeClass("hidden");
+            } else if( $(window).scrollTop() < 1000 && !$(".scroll-to-top.hidden")[0] ) {
+                $(".scroll-to-top").addClass("hidden");
+            }
+            
         }
 
 
