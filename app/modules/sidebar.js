@@ -10,6 +10,7 @@ function( app ) {
 
         template: "sidebar",
         className: "sidebar",
+
         serialize: function() {
             return  _.extend( app.metadata,
                 {
