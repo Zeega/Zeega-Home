@@ -4,11 +4,11 @@
     "modules/feed",
     "modules/cover",
     "modules/footer",
-    "modules/zeega",
+    "modules/zeega-projects.collection",
     "backbone"
 ],
 
-function( app, SidebarView, FeedView, Cover, FooterView, Zeega ) {
+function( app, SidebarView, FeedView, Cover, FooterView, ZeegaCollection ) {
 
     
     return Backbone.Layout.extend({
@@ -18,7 +18,7 @@ function( app, SidebarView, FeedView, Cover, FooterView, Zeega ) {
 
         beforeRender: function(){
             
-            zeegas = new Zeega.Collection( app.metadata );
+            zeegas = new ZeegaCollection( app.metadata );
             
             if( _.isUndefined( window.profileData )){
                 this.insertView( ".cover-wrapper", new Cover.HomeView() );

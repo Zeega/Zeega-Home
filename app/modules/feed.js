@@ -1,10 +1,9 @@
 define([
     "app",
-    "modules/zeega",
     "backbone"
 ],
 
-function( app, Zeega ) {
+function( app ) {
 
     return Backbone.View.extend({
 
