@@ -858,6 +858,7 @@ article.zeega-card a:hover {
   color: orangered;
 }
 .footer {
+  clear: both;
   display: none;
   padding-bottom: 50px;
 }
