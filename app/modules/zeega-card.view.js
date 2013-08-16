@@ -22,20 +22,16 @@ function( app, ZeegaViewer ) {
         },
 
         events:{
-            "click article":"onPlay",
+            "click .cover-image": "onPlay",
             "click .delete-zeega": "deleteZeega"
         },
 
-        onPlay: function( e ){
-            if( e.target.className != "profile-link" && e.target.className != "profile-token"){
-                var zeegaViewer = new ZeegaViewer({ model: this.model });
+        onPlay: function( e ) {
+            var zeegaViewer = new ZeegaViewer({ model: this.model });
 
-                $("body").append(zeegaViewer.render().view.el);
-
-                //window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
-                
-                return false;
-            }
+            $("body").append(zeegaViewer.render().view.el);
+            //window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
+            return false;
 
         },
 
