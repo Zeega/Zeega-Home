@@ -3,7 +3,7 @@ this["JST"] = this["JST"] || {};
 this["JST"]["app/templates/feed.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<h2>'+
+__p+='<h2 class="feed-headline">'+
 ( headline )+
 ' &darr;</h2>';
 }
@@ -53,7 +53,7 @@ return __p;
 this["JST"]["app/templates/layout-main.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n    <div class="sidebar-wrapper"></div>\n    <div class="content"></div>\n     <span class="scroll-to-top hidden" >\n            <h1>\n                <a class="btnz" href="#" > ↑ </a>\n            </h1>\n      </span>\n</div>';
+__p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n    <div class="content"></div>\n\n    <span class="scroll-to-top hidden" >\n        <h1>\n            <a class="btnz" href="#" > ↑ </a>\n        </h1>\n    </span>\n</div>';
 }
 return __p;
 };
@@ -95,13 +95,9 @@ return __p;
 this["JST"]["app/templates/sidebar.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="about" />\n    \n    <div class="logo-wrapper">\n        <span class="logo-mini"></span>\n    </div>\n\n';
- if( userId != -1 ) { 
-;__p+='\n    <div>\n        <h2>is a new form of interactive media. <a class="about-link" href="http://blog.zeega.com/about">Learn more.</a> <h2>\n        <br>\n        <a class="btnz join-zeega" href="'+
+__p+='<div class="about" />\n    \n    <div class="logo-wrapper">\n        <span class="logo-mini"></span>\n    </div>\n\n    <div>\n        <h2>\n            is the easiest way to create and share interactive videos.\n            <a class="about-link" href="http://blog.zeega.com/about">Learn more.</a>\n        <h2>\n        <br>\n        <a class="btnz join-zeega" href="'+
 (path )+
-'register" > Sign Up</a>\n    </div>\n';
- } 
-;__p+='\n\n</div>\n\n<div class="explore">\n    <h2>Explore:</h2>\n    <ul>\n        <li>\n            <a data-bypass="true" href="'+
+'register" > Sign Up</a>\n    </div>\n\n</div>\n\n<div class="explore">\n    <h2>Explore:</h2>\n    <ul>\n        <li>\n            <a data-bypass="true" href="'+
 (path )+
 'tag/bestof" class="tag-link" name="bestof">#bestof</a>\n        </li>\n        <li>\n            <a data-bypass="true" href="'+
 (path )+
@@ -171,9 +167,13 @@ __p+='<div class="left-col">\n  <a data-bypass="true" class="profile-link" href=
  } else { 
 ;__p+='views';
  } 
-;__p+='</div>\n  <div class="caption"><i class=\'icon-comment\'></i> '+
+;__p+='</div>\n';
+ if ( title !== "" ) { 
+;__p+='\n  <div class="caption">\n    <i class=\'icon-comment\'></i> '+
 ( title )+
-'</div>\n  ';
+'\n  </div>\n';
+ } 
+;__p+='\n  ';
  if ( editable ) { 
 ;__p+='\n    <div class="edit-actions">\n      <a href="/editor/'+
 ( id )+
