@@ -26,11 +26,9 @@ function( app, SidebarView, FeedView, Cover, FooterView, ZeegaCollection ) {
                 this.insertView( ".cover-wrapper", new Cover.ProfileView() );
             }
             
-            
-
-            this.insertView( ".sidebar-wrapper", new SidebarView() );
             this.insertView( ".content", new FeedView({ collection: zeegas }) );
             this.insertView( ".content", new FooterView() );
+            this.insertView( ".content", new SidebarView() );
         }
     });
 

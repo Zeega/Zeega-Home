@@ -502,16 +502,17 @@ header {
 }
 .ZEEGA-feed {
   min-height: 400px;
-  width: 690px;
+  width: 600px;
+  float: left;
+}
+.feed-headline {
+  margin-left: 148px;
 }
 .ZEEGA-content-wrapper {
-  width: 600px;
-  padding-top: 50px;
+  width: 770px;
+  padding-top: 20px;
   margin: 0 auto 0 auto;
   position: relative;
-}
-.ZEEGA-content-wrapper .sidebar-wrapper {
-  height: 0;
 }
 a {
   text-decoration: none;
@@ -754,7 +755,7 @@ article.zeega-card .cover-image .static {
   background-image: url(../img/static.gif);
   width: 100%;
   height: 100%;
-  opacity: 0.03;
+  opacity: 0.05;
 }
 article.zeega-card .cover-image .playbutton {
   opacity: 0.8;
@@ -818,10 +819,10 @@ article.zeega-card a:hover {
   height: -webkit-calc(100% - 200px);
 }
 .sidebar {
-  position: absolute;
-  right: -190px;
+  float: left;
   width: 150px;
   padding-top: 75px;
+  margin-left: 20px;
 }
 .sidebar .logo-wrapper {
   height: 30px;
