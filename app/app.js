@@ -10,6 +10,11 @@ define([
         // The root path to run the application.
         metadata: $("meta[name=zeega]").data(),
         root: $("meta[name=zeega]").data("root"),
+
+        getBaseUrl: function() {
+            return "http:" + this.metadata.hostname + this.metadata.directory;
+        },
+
         emit: function( event, args ) {
             // other things can be done here as well
             this.trigger( event, args );

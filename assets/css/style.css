@@ -476,6 +476,22 @@
 .icon-fullscreen {
   background-position: -456px -144px;
 }
+.icon-social {
+  height: 20px;
+  width: 20px;
+  display: block;
+  background: url(../img/sprite-social-share-33.png);
+  background-size: 80px 60px;
+}
+.icon-social.icon-twitter {
+  background-position: 0 20px;
+}
+.icon-social.icon-facebook {
+  background-position: -20px 20px;
+}
+.icon-social.icon-tumblr {
+  background-position: -40px 20px;
+}
 html {
   background: url(../img/graphpaper.png);
   font-family: 'Futura', sans-serif;
@@ -732,6 +748,13 @@ article.zeega-card .edit-actions {
   color: #333;
 }
 article.zeega-card .edit-actions .btnz {
+  background-color: #aaa;
+  color: white;
+  font-size: 12px;
+  font-family: helvetica;
+  height: 15px;
+  margin-left: 0;
+  margin-right: 5px;
   padding: 2px 15px;
 }
 article.zeega-card .remixers {
@@ -785,6 +808,29 @@ article.zeega-card a:active {
 }
 article.zeega-card a:hover {
   color: orangered;
+}
+article.zeega-card .share {
+  *zoom: 1;
+}
+article.zeega-card .share:before,
+article.zeega-card .share:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+article.zeega-card .share:after {
+  clear: both;
+}
+article.zeega-card .share ul {
+  list-style: none;
+  padding: 0;
+}
+article.zeega-card .share ul li {
+  float: left;
+  margin-right: 5px;
+}
+article.zeega-card .share input {
+  width: 200px;
 }
 .zeega-viewer {
   width: 100%;

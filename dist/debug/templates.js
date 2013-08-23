@@ -173,7 +173,17 @@ __p+='<div class="left-col">\n  <a data-bypass="true" class="profile-link" href=
 ( title )+
 '\n  </div>\n';
  } 
-;__p+='\n  ';
+;__p+='\n  <div class="share">\n    <ul>\n      <li>\n        <a href="'+
+( twitterShare )+
+'" target="blank"><i class="icon-social icon-twitter"></i></a>\n      </li>\n      <li>\n        <a href="'+
+( facebookShare )+
+'" target="blank"><i class="icon-social icon-facebook"></i></a>\n      </li>\n      <li>\n        <a href="'+
+( tumblrShare )+
+'" target="blank"><i class="icon-social icon-tumblr"></i></a>\n      </li>\n      <li>\n        <input type="text" value="'+
+( path )+
+''+
+( id )+
+'" onfocus="this.select()" onMouseUp="return false" readonly>\n      </li>\n    </ul>\n  </div>\n\n  ';
  if ( editable ) { 
 ;__p+='\n    <div class="edit-actions">\n      <a href="/editor/'+
 ( id )+

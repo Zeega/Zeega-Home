@@ -559,7 +559,17 @@ __p+='<div class="left-col">\n  <a data-bypass="true" class="profile-link" href=
 ( title )+
 '\n  </div>\n';
  } 
-;__p+='\n  ';
+;__p+='\n  <div class="share">\n    <ul>\n      <li>\n        <a href="'+
+( twitterShare )+
+'" target="blank"><i class="icon-social icon-twitter"></i></a>\n      </li>\n      <li>\n        <a href="'+
+( facebookShare )+
+'" target="blank"><i class="icon-social icon-facebook"></i></a>\n      </li>\n      <li>\n        <a href="'+
+( tumblrShare )+
+'" target="blank"><i class="icon-social icon-tumblr"></i></a>\n      </li>\n      <li>\n        <input type="text" value="'+
+( path )+
+''+
+( id )+
+'" onfocus="this.select()" onMouseUp="return false" readonly>\n      </li>\n    </ul>\n  </div>\n\n  ';
  if ( editable ) { 
 ;__p+='\n    <div class="edit-actions">\n      <a href="/editor/'+
 ( id )+
@@ -17467,6 +17477,11 @@ define('app',[
         // The root path to run the application.
         metadata: $("meta[name=zeega]").data(),
         root: $("meta[name=zeega]").data("root"),
+
+        getBaseUrl: function() {
+            return "http:" + this.metadata.hostname + this.metadata.directory;
+        },
+
         emit: function( event, args ) {
             // other things can be done here as well
             this.trigger( event, args );
@@ -18251,7 +18266,10 @@ function( app, ZeegaViewer ) {
         
         serialize: function() {
             return _.extend({
-                    path: "http:" + app.metadata.hostname + app.metadata.directory
+                    path: app.getBaseUrl(),
+                    twitterShare: this.getTwitterShareLink(),
+                    facebookShare: this.getFacebookShareLink(),
+                    tumblrShare: this.getTumblrShareLink()
                 },
                 this.model.toJSON()
             );
@@ -18269,6 +18287,27 @@ function( app, ZeegaViewer ) {
             //window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
             return false;
 
+        },
+
+        getTwitterShareLink: function() {
+            return "https://twitter.com/intent/tweet?original_referer=" + encodeURIComponent( app.getBaseUrl() ) + this.model.id +
+                "&text=" + encodeURIComponent( this.model.get("title")  + " made w/ @zeega") +
+                "&url=" + encodeURIComponent( app.getBaseUrl() ) + this.model.id;
+        },
+
+        getFacebookShareLink: function() {
+            return "http://www.facebook.com/sharer.php?u=" + encodeURIComponent( app.getBaseUrl() ) + this.model.id;
+        },
+
+        getTumblrShareLink: function() {
+            var html = "<p>" + this.model.get("title") + "</p>" +
+                "<p><a href='" + app.getBaseUrl() + this.model.id + "'>" +
+                "<strong>►&nbsp;Play&nbsp;Zeega&nbsp;►</strong></a>" +
+                "</p><p>by&nbsp;<a href='" + app.getBaseUrl() + "profile/" + this.model.id + "'>" + this.model.get("authors") + "</a></p>";
+
+            return "http://www.tumblr.com/share/photo?source=" + encodeURIComponent( this.model.get("cover_image") ) +
+                "&caption=" + encodeURIComponent( html ) +
+                "&click_thru="+ encodeURIComponent( app.getBaseUrl() ) + this.model.id;
         },
 
         deleteZeega: function() {
@@ -18296,10 +18335,13 @@ define('modules/zeega-projects.collection',[
 function( app, ZeegaViewer, ZeegaCardView ) {
 
     var ZeegaItem = Backbone.Model.extend({
+        
         url: function(){
             var https = app.metadata.api.replace("https", "http").replace("http","https");
+
             return https + "projects/" + this.id;
         },
+
         initialize: function(){
             this.card = new ZeegaCardView({ model: this });
         }
@@ -18315,8 +18357,6 @@ function( app, ZeegaViewer, ZeegaCardView ) {
 
         initialize: function( options ){
             _.extend( this, options );
-
-            console.log('coll', this)
         },
         
         url: function() {

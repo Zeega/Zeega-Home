@@ -34,6 +34,23 @@
     <i class='icon-comment'></i> <%= title %>
   </div>
 <% } %>
+  <div class="share">
+    <ul>
+      <li>
+        <a href="<%= twitterShare %>" target="blank"><i class="icon-social icon-twitter"></i></a>
+      </li>
+      <li>
+        <a href="<%= facebookShare %>" target="blank"><i class="icon-social icon-facebook"></i></a>
+      </li>
+      <li>
+        <a href="<%= tumblrShare %>" target="blank"><i class="icon-social icon-tumblr"></i></a>
+      </li>
+      <li>
+        <input type="text" value="<%= path %><%= id %>" onfocus="this.select()" onMouseUp="return false" readonly>
+      </li>
+    </ul>
+  </div>
+
   <% if ( editable ) { %>
     <div class="edit-actions">
       <a href="/editor/<%= id %>" class="edit-zeega btnz btnz-light" data-bypass="true" >edit</a>
