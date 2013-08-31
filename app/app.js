@@ -36,7 +36,7 @@ define([
 
     return _.extend(app, _App, {
         Backbone: Backbone,
-        $: jQuery,
+        $: jQuery
     }, Backbone.Events);
 
 });

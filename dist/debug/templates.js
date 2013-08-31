@@ -135,13 +135,67 @@ __p+='<div class="left-col">\n  <a data-bypass="true" class="profile-link" href=
 (user.id)+
 '" >\n      '+
 (user.display_name)+
-'\n    </a>\n  </div>\n  <ul class="remixers">\n<!--\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+'\n    </a>\n  </div>\n  <ul class="remixers">\n\n<!--\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
 (path )+
 'profile/'+
 (user.id )+
 '" >\n        <div class="user-token token-small" style="background-image: url('+
 ( user.thumbnail_url )+
-');"></div>\n      </a>\n    </li>\n-->\n  </ul>\n</div>\n\n\n<div class="right-col">\n  <div class="cover-image" style="\n      ';
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n    <li>\n      <a data-bypass="true" class="profile-link" href="'+
+(path )+
+'profile/'+
+(user.id )+
+'" >\n        <div class="user-token token-small" style="background-image: url('+
+( user.thumbnail_url )+
+');"></div>\n      </a>\n    </li>\n-->\n\n\n  </ul>\n</div>\n\n\n<div class="right-col">\n  <div class="cover-image" style="\n      ';
  if( cover_image != "" ) { 
 ;__p+='\n        background-image: url('+
 (cover_image )+
