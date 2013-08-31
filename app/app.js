@@ -1,30 +1,12 @@
 define([
+    "common/_app.common",
     "backbone.layoutmanager"
-], function() {
+], function( _App ) {
 
-    var meta = $("meta[name=zeega]");
-
-    // Provide a global location to place configuration settings and module
-    // creation.
-    var app = {
-        // The root path to run the application.
-        metadata: $("meta[name=zeega]").data(),
-        root: $("meta[name=zeega]").data("root"),
-
-        getBaseUrl: function() {
-            return "http:" + this.metadata.hostname + this.metadata.directory;
-        },
-
-        emit: function( event, args ) {
-            // other things can be done here as well
-            this.trigger( event, args );
-        }
-
-    };
+    var app = {};
 
     // Localize or create a new JavaScript Template object.
     var JST = window.JST = window.JST || {};
-
 
     // Curry the |set| method with a { silent: true } version
     // to avoid repetitious boilerplate code throughout project
@@ -33,53 +15,28 @@ define([
         return this.set.apply( this, args );
     };
         
-    // Configure LayoutManager with Backbone Boilerplate defaults.
     Backbone.LayoutManager.configure({
-        // Allow LayoutManager to augment Backbone.View.prototype.
         manage: true,
-
         prefix: "app/templates/",
 
         fetch: function(path) {
-            // Concatenate the file extension.
             path = path + ".html";
 
-            // If cached, use the compiled template.
             if (JST[path]) {
                 return JST[path];
             }
 
-            // Put fetch into `async-mode`.
             var done = this.async();
 
-            // Seek out the template asynchronously.
-            $.get(app.root + path, function(contents) {
+            $.get( app.getWebRoot() + path, function(contents) {
                 done(JST[path] = _.template(contents));
             });
         }
     });
 
-    // Mix Backbone.Events, modules, and layout management into the app object.
-    return _.extend(app, {
-
+    return _.extend(app, _App, {
         Backbone: Backbone,
-        // Create a custom object with a nested Views object.
-        module: function(additionalProps) {
-            return _.extend({ Views: {} }, additionalProps);
-        },
-
         $: jQuery,
-
-        // Helper for using layouts.
-        useLayout: function(options) {
-            // Create a new Layout with options.
-            var layout = new Backbone.Layout(_.extend({
-                el: "body"
-            }, options));
-
-            // Cache the refererence.
-            return this.layout = layout;
-        }
     }, Backbone.Events);
 
 });

@@ -6,7 +6,7 @@ require.config({
   deps: [ "../vendor/jam/require.config", "main"],
 
   paths: {
-
+    engineVendor: "../vendor",
     libs: "../assets/js/libs",
     plugins: "../assets/js/plugins",
     vendor: "../vendor"
