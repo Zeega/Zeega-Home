@@ -2,13 +2,14 @@
     "app",
     "modules/sidebar",
     "modules/feed",
-    "modules/cover",
+    "modules/cover-home",
+    "modules/cover-profile",
     "modules/footer",
     "modules/zeega-projects.collection",
     "backbone"
 ],
 
-function( app, SidebarView, FeedView, Cover, FooterView, ZeegaCollection ) {
+function( app, SidebarView, FeedView, CoverHome, CoverProfile, FooterView, ZeegaCollection ) {
 
     
     return Backbone.Layout.extend({
@@ -21,9 +22,9 @@ function( app, SidebarView, FeedView, Cover, FooterView, ZeegaCollection ) {
             zeegas = new ZeegaCollection( app.metadata );
             
             if( _.isUndefined( window.profileData )){
-                this.insertView( ".cover-wrapper", new Cover.HomeView() );
+                this.insertView( ".cover-wrapper", new CoverHome() );
             } else {
-                this.insertView( ".cover-wrapper", new Cover.ProfileView() );
+                this.insertView( ".cover-wrapper", new CoverProfile() );
             }
             
             this.insertView( ".content", new FeedView({ collection: zeegas }) );
