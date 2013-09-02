@@ -33,9 +33,9 @@ function( app, ZeegaViewer ) {
             var zeegaViewer = new ZeegaViewer({ model: this.model });
 
             $("body").append(zeegaViewer.render().view.el);
-            //window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
+            // window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
+            
             return false;
-
         },
 
         getTwitterShareLink: function() {
