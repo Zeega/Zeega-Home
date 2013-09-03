@@ -1,16 +1,16 @@
 define([
-    "app",
-    "modules/media-items/item.view"
+    "app"
 ],
 
-function( app, ItemView ) {
+function( app ) {
 
     return Backbone.Model.extend({
 
         view: null,
 
-        initialize: function() {
-            this.view = new ItemView({ model: this });
+        defaults: {
+            _status: "waiting",
+            _visible: false
         }
 
     });

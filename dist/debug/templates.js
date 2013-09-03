@@ -3,7 +3,7 @@ this["JST"] = this["JST"] || {};
 this["JST"]["app/templates/cover-home.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="cover homepage" >\n    <ul class="media-grid"></ul>\n\n    <span class="tagline">\n      <h2>Make the web you want</h2>\n    </span>\n</div>';
+__p+='<div class="cover homepage" >\n    <ul class="media-grid"></ul>\n\n    <span class="tagline">\n        <h2>Pick a GIF of the day to start a new Zeega</h2>\n    </span>\n</div>';
 }
 return __p;
 };
@@ -98,7 +98,9 @@ with(obj||{}){
 __p+='<a href="'+
 ( root )+
 'project_from_item/'+
-( id )+
+( archive )+
+'" class="corner-'+
+( Math.floor( Math.random() * 4 ) )+
 '"></a>';
 }
 return __p;

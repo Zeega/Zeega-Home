@@ -15,9 +15,9 @@
     li {
         display: block;
         float: left;
-        height: 100px;
-        width: 100px;
-        background-color: rgba(0,0,0,0.25);
+        height: 150px;
+        width: 150px;
+        // background-color: rgba(0,0,0,0.25);
         opacity: 1;
         transition: opacity 2s;
         -webkit-transition: opacity 2s;
@@ -32,10 +32,23 @@
             height: 100%;
             width: 100%;
             display: block;
+            background-image: url(../img/media-hover.png);
+            background-size: 500% 100%;
+            background-position: 0 0;
 
             &:hover {
-                background-image: url(../img/media-hover.png);
-                background-size: 100% 100%;
+                &.corner-0 {
+                    background-position: -100% 0;
+                }
+                &.corner-1 {
+                    background-position: -200% 0;
+                }
+                &.corner-2 {
+                    background-position: -300% 0;
+                }
+                &.corner-3 {
+                    background-position: -400% 0;
+                }
             }
         }
     }
