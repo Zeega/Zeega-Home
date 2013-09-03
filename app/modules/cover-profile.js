@@ -9,7 +9,7 @@ function( app, User, Spinner ) {
 
     return Backbone.View.extend({
         
-        template: "profile-cover",
+        template: "cover-profile",
         className: "profile-cover",
 
         initialize: function() {

@@ -9,8 +9,12 @@ require.config({
     engineVendor: "../vendor",
     libs: "../assets/js/libs",
     plugins: "../assets/js/plugins",
-    vendor: "../vendor"
+    vendor: "../vendor",
+    imagesLoaded: "common/libs/imagesLoaded"
+  },
 
+  shim: {
+    imagesLoaded: ["jquery"]
   }
 
 });

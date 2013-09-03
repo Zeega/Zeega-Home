@@ -1,0 +1,42 @@
+.media-preload {
+    height: 1px;
+    width: 1px;
+    position: absolute;
+    left: -1000%;
+    top: -1000%;
+}
+
+.media-grid {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+    width: 120%;
+
+    li {
+        display: block;
+        float: left;
+        height: 100px;
+        width: 100px;
+        background-color: rgba(0,0,0,0.25);
+        opacity: 1;
+        transition: opacity 2s;
+        -webkit-transition: opacity 2s;
+
+        &.invisible {
+            opacity: 0;
+            transition: opacity 2s;
+            -webkit-transition: opacity 2s;
+        }
+
+        a {
+            height: 100%;
+            width: 100%;
+            display: block;
+
+            &:hover {
+                background-image: url(../img/media-hover.png);
+                background-size: 100% 100%;
+            }
+        }
+    }
+}

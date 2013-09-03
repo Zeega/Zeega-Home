@@ -386,6 +386,48 @@ var requirejs, require, define;
 
 this["JST"] = this["JST"] || {};
 
+this["JST"]["app/templates/cover-home.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="cover homepage" >\n    <ul class="media-grid"></ul>\n\n    <span class="tagline">\n      <h2>Make the web you want</h2>\n    </span>\n</div>';
+}
+return __p;
+};
+
+this["JST"]["app/templates/cover-profile.html"] = function(obj){
+var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
+with(obj||{}){
+__p+='<div class="cover" \n    ';
+ if ( background_image_url != "") { 
+;__p+='\n        style ="background-image:url('+
+( background_image_url )+
+')" \n    ';
+ } 
+;__p+='\n>\n    <div class="profile-token-large" \n        ';
+ if ( thumbnail_url !="") { 
+;__p+='\n        style="background-image:url('+
+( thumbnail_url )+
+')"\n        ';
+ } 
+;__p+='\n    ></div>\n\n    <span class="headline">\n        <h2 class="display-name">'+
+( display_name )+
+'</h2>\n        <h3 class="username"><small>@'+
+( username )+
+'</small></h3>\n        <p class="bio">'+
+( bio )+
+'</p>\n    </span>\n\n    ';
+ if ( editable ) { 
+;__p+='\n        <ul class="bottom-menu">\n            <li>\n                <a href="#" class="edit-bio btnz btnz-light">edit profile</a>\n            </li>\n            <li>\n                <a href="#" class="save-bio btnz btnz-green">save</a>\n            </li>\n            <li>\n                <a href="/settings" data-bypass="true" class="settings"></a>\n            </li>\n        </ul>\n    ';
+ } 
+;__p+='\n\n</div>\n\n';
+ if ( editable ) { 
+;__p+='\n    <div class="profile-image-inputs">\n        <i class="icon-chevron-left"></i> Profile Image <input type="file" class="profile-image" name="profile-image" size="chars">\n        <i class="icon-chevron-up"></i> Background Image <input type="file" class="background-image" name="background-image" size="chars"> \n    </div>\n';
+ } 
+;__p+='\n';
+}
+return __p;
+};
+
 this["JST"]["app/templates/feed.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
@@ -428,14 +470,6 @@ __p+='\n    <span class="tags">\n        <h1>Explore more Zeegas...  <br>\n     
 return __p;
 };
 
-this["JST"]["app/templates/home-cover.html"] = function(obj){
-var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
-with(obj||{}){
-__p+='<div class="cover homepage" >\n    <span class="tagline">\n      <h2>Make the web you want</h2>\n    </span>\n</div>';
-}
-return __p;
-};
-
 this["JST"]["app/templates/layout-main.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
@@ -444,36 +478,14 @@ __p+='<div class="cover-wrapper"></div>\n<div class="ZEEGA-content-wrapper">\n  
 return __p;
 };
 
-this["JST"]["app/templates/profile-cover.html"] = function(obj){
+this["JST"]["app/templates/media-item.html"] = function(obj){
 var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
-__p+='<div class="cover" \n    ';
- if ( background_image_url != "") { 
-;__p+='\n        style ="background-image:url('+
-( background_image_url )+
-')" \n    ';
- } 
-;__p+='\n>\n    <div class="profile-token-large" \n        ';
- if ( thumbnail_url !="") { 
-;__p+='\n        style="background-image:url('+
-( thumbnail_url )+
-')"\n        ';
- } 
-;__p+='\n    ></div>\n\n    <span class="headline">\n        <h2 class="display-name">'+
-( display_name )+
-'</h2>\n        <h3 class="username"><small>@'+
-( username )+
-'</small></h3>\n        <p class="bio">'+
-( bio )+
-'</p>\n    </span>\n\n    ';
- if ( editable ) { 
-;__p+='\n        <ul class="bottom-menu">\n            <li>\n                <a href="#" class="edit-bio btnz btnz-light">edit profile</a>\n            </li>\n            <li>\n                <a href="#" class="save-bio btnz btnz-green">save</a>\n            </li>\n            <li>\n                <a href="/settings" data-bypass="true" class="settings"></a>\n            </li>\n        </ul>\n    ';
- } 
-;__p+='\n\n</div>\n\n';
- if ( editable ) { 
-;__p+='\n    <div class="profile-image-inputs">\n        <i class="icon-chevron-left"></i> Profile Image <input type="file" class="profile-image" name="profile-image" size="chars">\n        <i class="icon-chevron-up"></i> Background Image <input type="file" class="background-image" name="background-image" size="chars"> \n    </div>\n';
- } 
-;__p+='\n';
+__p+='<a href="'+
+( root )+
+'project_from_item/'+
+( id )+
+'"></a>';
 }
 return __p;
 };
@@ -18133,6 +18145,144 @@ function( app ) {
     });
 });
 
+(function(c,n){var k="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";c.fn.imagesLoaded=function(l){function m(){var b=c(h),a=c(g);d&&(g.length?d.reject(e,b,a):d.resolve(e));c.isFunction(l)&&l.call(f,e,b,a)}function i(b,a){b.src===k||-1!==c.inArray(b,j)||(j.push(b),a?g.push(b):h.push(b),c.data(b,"imagesLoaded",{isBroken:a,src:b.src}),o&&d.notifyWith(c(b),[a,e,c(h),c(g)]),e.length===j.length&&(setTimeout(m),e.unbind(".imagesLoaded")))}var f=this,d=c.isFunction(c.Deferred)?c.Deferred():
+0,o=c.isFunction(d.notify),e=f.find("img").add(f.filter("img")),j=[],h=[],g=[];e.length?e.bind("load.imagesLoaded error.imagesLoaded",function(b){i(b.target,"error"===b.type)}).each(function(b,a){var e=a.src,d=c.data(a,"imagesLoaded");if(d&&d.src===e)i(a,d.isBroken);else if(a.complete&&a.naturalWidth!==n)i(a,0===a.naturalWidth||0===a.naturalHeight);else if(a.readyState||a.complete)a.src=k,a.src=e}):m();return d?d.promise(f):f}})(jQuery);
+define("imagesLoaded", function(){});
+
+define('modules/media-items/item.view',[
+    "app",
+    "imagesLoaded"
+],
+
+function( app ) {
+
+    return Backbone.View.extend({
+        template: "media-item",
+        tagName: "li",
+        className: "media-item invisible",
+
+        serialize: function() {
+            return _.extend({ root: app.getWebRoot() }, this.model.toJSON() );
+        },
+
+        preloadRender: function() {
+
+            if ( this.model.get("media_type") == "Image" ) {
+                var $img = $("<img class='media-preload'>").attr("src", this.model.get("thumbnail_url"));
+
+                $img.imagesLoaded()
+                    .always(function() {
+                        $img.remove();
+                    })
+                    .done(function() {
+                        this.onDone();
+                    }.bind( this ))
+                    .fail(function() {
+                        this.onFail();
+                    }.bind( this ));
+
+                $("body").append( $img );
+            } else {
+                this.remove();
+            }
+        },
+
+        onDone: function() {
+            this.$el.css({
+                backgroundImage: "url(" + this.model.get("thumbnail_url") +")",
+                backgroundSize: "cover",
+                backgroundPosition: "center"
+            }).removeClass("invisible");
+            this.render();
+        },
+
+        onFail: function( el ) {
+            this.remove();
+        }
+
+    });
+});
+define('modules/media-items/item.model',[
+    "app",
+    "modules/media-items/item.view"
+],
+
+function( app, ItemView ) {
+
+    return Backbone.Model.extend({
+
+        view: null,
+
+        initialize: function() {
+            this.view = new ItemView({ model: this });
+        }
+
+    });
+});
+define('modules/media-items/item.collection',[
+    "app",
+    "modules/media-items/item.model"
+],
+
+function( app, ItemModel ) {
+
+    return Backbone.Collection.extend({
+
+        model: ItemModel,
+
+        parse: function( res ) {
+            return res.items;
+        }
+
+    });
+});
+define('modules/cover-home',[
+    "app",
+    "modules/media-items/item.collection"
+],
+
+function( app, MediaCollection ) {
+
+    return Backbone.View.extend({
+        template: "cover-home",
+        className: "home-cover",
+
+        mediaCollection: null,
+
+        initialize: function() {
+            if ( window.mediaJSON ) {
+                this.mediaCollection = new MediaCollection( $.parseJSON( window.mediaJSON ).items );
+            }
+        },
+
+        afterRender: function() {
+            if ( this.mediaCollection ) {
+                this.mediaCollection.each(function( item ) {
+                    this.$(".media-grid").append( item.view.el );
+                    item.view.preloadRender();
+                });
+            }
+        }
+
+    });
+});
+define('modules/user.model',[
+    "app"
+],
+
+function( app ) {
+
+    return Backbone.Model.extend({
+
+        url: function() {
+            var https = app.metadata.api.replace("https","http").replace("http","https");
+
+            return https + "users/" + this.id;
+        }
+
+    });
+
+});
 //fgnass.github.com/spin.js#v1.3
 
 /**
@@ -18482,33 +18632,18 @@ function( app ) {
   return Spinner
 
 }));
-define('modules/cover',[
+define('modules/cover-profile',[
     "app",
+    "modules/user.model",
     "libs/spin",
     "backbone"
 ],
 
-function( app, Spinner ) {
+function( app, User, Spinner ) {
 
-    var User = Backbone.Model.extend({
-
-        url: function() {
-            var https = app.metadata.api.replace("https","http").replace("http","https");
-            return https + "users/" + this.id;
-        }
-
-    });
-
-    var Cover = {};
-
-    Cover.HomeView = Backbone.View.extend({
-        template: "home-cover",
-        className: "home-cover"
-    });
-
-    Cover.ProfileView = Backbone.View.extend({
+    return Backbone.View.extend({
         
-        template: "profile-cover",
+        template: "cover-profile",
         className: "profile-cover",
 
         initialize: function() {
@@ -18640,10 +18775,7 @@ function( app, Spinner ) {
             });
 
         }
-
     });
-
-    return Cover;
 
 });
 define('modules/footer',[
@@ -18691,8 +18823,12 @@ function( app ) {
             this.url = window.location.href;
             $(window).keydown($.proxy(function( e ){this.onKeydown( e );}, this) );
         },
+
         afterRender: function(){
-            this.$("#viewer-iframe").load($.proxy(function( ){this.onViewerLoad( );}, this));
+            window.history.pushState("", "", "/" + app.metadata.directory + this.model.id );
+            this.$("#viewer-iframe").load($.proxy(function() {
+                this.onViewerLoad( );
+            }, this));
         },
 
         close: function() {
@@ -18710,7 +18846,7 @@ function( app ) {
         onViewerLoad: function(){
             //var id = $('#viewer-iframe').attr('src').split('/')[$('#viewer-iframe').attr('src').split('/').length -1 ];
             
-            window.history.pushState("", "", "/" + app.metadata.directory + this.model.id );
+            // window.history.pushState("", "", "/" + app.metadata.directory + this.model.id );
         },
 
         serialize: function() {
@@ -18758,9 +18894,9 @@ function( app, ZeegaViewer ) {
             var zeegaViewer = new ZeegaViewer({ model: this.model });
 
             $("body").append(zeegaViewer.render().view.el);
-            //window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
+            // window.history.pushState("", this.model.get("title"), "/" + app.metadata.directory + this.model.id );
+            
             return false;
-
         },
 
         getTwitterShareLink: function() {
@@ -18866,13 +19002,14 @@ function( app, ZeegaViewer, ZeegaCardView ) {
     "app",
     "modules/sidebar",
     "modules/feed",
-    "modules/cover",
+    "modules/cover-home",
+    "modules/cover-profile",
     "modules/footer",
     "modules/zeega-projects.collection",
     "backbone"
 ],
 
-function( app, SidebarView, FeedView, Cover, FooterView, ZeegaCollection ) {
+function( app, SidebarView, FeedView, CoverHome, CoverProfile, FooterView, ZeegaCollection ) {
 
     
     return Backbone.Layout.extend({
@@ -18885,9 +19022,9 @@ function( app, SidebarView, FeedView, Cover, FooterView, ZeegaCollection ) {
             zeegas = new ZeegaCollection( app.metadata );
             
             if( _.isUndefined( window.profileData )){
-                this.insertView( ".cover-wrapper", new Cover.HomeView() );
+                this.insertView( ".cover-wrapper", new CoverHome() );
             } else {
-                this.insertView( ".cover-wrapper", new Cover.ProfileView() );
+                this.insertView( ".cover-wrapper", new CoverProfile() );
             }
             
             this.insertView( ".content", new FeedView({ collection: zeegas }) );
@@ -19212,8 +19349,12 @@ require.config({
     engineVendor: "../vendor",
     libs: "../assets/js/libs",
     plugins: "../assets/js/plugins",
-    vendor: "../vendor"
+    vendor: "../vendor",
+    imagesLoaded: "common/libs/imagesLoaded"
+  },
 
+  shim: {
+    imagesLoaded: ["jquery"]
   }
 
 });
