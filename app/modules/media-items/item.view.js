@@ -91,6 +91,27 @@ function( app ) {
                 this.model.set("_visible", true );
                 if ( oldModel ) oldModel.set("_visible", false );
                 this.preloadSwitch();
+        },
+
+        events: {
+            "mouseenter": "onMouseEnter",
+            "mouseout": "onMouseOut"
+        },
+
+        onMouseEnter: function() {
+            if ( this.model.get("attributes").animate_url ) {
+                this.$el.css({
+                    backgroundImage: "url(" + this.model.get("attributes").animate_url +")"
+                });
+            }
+        },
+
+        onMouseOut: function() {
+            if ( this.model.get("attributes").animate_url ) {
+                this.$el.css({
+                    backgroundImage: "url(" + this.model.get("thumbnail_url") +")"
+                });
+            }
         }
 
     });
