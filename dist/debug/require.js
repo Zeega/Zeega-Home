@@ -515,7 +515,7 @@ var __p='';var print=function(){__p+=Array.prototype.join.call(arguments, '')};
 with(obj||{}){
 __p+='<iframe \n    id="viewer-iframe"\n    src="'+
 (path )+
-'" \n    endPage="true" \n    hideChrome="true" \n    webkitAllowFullScreen \n    mozallowfullscreen \n    allowFullScreen\n></iframe>\n<div class="modal-close">×</div>';
+'"\n    hideChrome="true" \n    webkitAllowFullScreen \n    mozallowfullscreen \n    allowFullScreen\n></iframe>\n<div class="modal-close">×</div>';
 }
 return __p;
 };
