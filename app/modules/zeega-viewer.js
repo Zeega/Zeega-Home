@@ -19,8 +19,12 @@ function( app ) {
             this.url = window.location.href;
             $(window).keydown($.proxy(function( e ){this.onKeydown( e );}, this) );
         },
+
         afterRender: function(){
-            this.$("#viewer-iframe").load($.proxy(function( ){this.onViewerLoad( );}, this));
+            window.history.pushState("", "", "/" + app.metadata.directory + this.model.id );
+            this.$("#viewer-iframe").load($.proxy(function() {
+                this.onViewerLoad( );
+            }, this));
         },
 
         close: function() {
@@ -38,7 +42,7 @@ function( app ) {
         onViewerLoad: function(){
             //var id = $('#viewer-iframe').attr('src').split('/')[$('#viewer-iframe').attr('src').split('/').length -1 ];
             
-            window.history.pushState("", "", "/" + app.metadata.directory + this.model.id );
+            // window.history.pushState("", "", "/" + app.metadata.directory + this.model.id );
         },
 
         serialize: function() {

@@ -1,30 +1,15 @@
 define([
     "app",
+    "modules/user.model",
     "libs/spin",
     "backbone"
 ],
 
-function( app, Spinner ) {
+function( app, User, Spinner ) {
 
-    var User = Backbone.Model.extend({
-
-        url: function() {
-            var https = app.metadata.api.replace("https","http").replace("http","https");
-            return https + "users/" + this.id;
-        }
-
-    });
-
-    var Cover = {};
-
-    Cover.HomeView = Backbone.View.extend({
-        template: "home-cover",
-        className: "home-cover"
-    });
-
-    Cover.ProfileView = Backbone.View.extend({
+    return Backbone.View.extend({
         
-        template: "profile-cover",
+        template: "cover-profile",
         className: "profile-cover",
 
         initialize: function() {
@@ -156,9 +141,6 @@ function( app, Spinner ) {
             });
 
         }
-
     });
-
-    return Cover;
 
 });

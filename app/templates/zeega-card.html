@@ -1,0 +1,108 @@
+<div class="left-col">
+  <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+    <div class="user-token token-medium" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+  </a>
+  <div class="profile-name">
+    <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id%>" >
+      <%=user.display_name%>
+    </a>
+  </div>
+  <ul class="remixers">
+
+<!--
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+    <li>
+      <a data-bypass="true" class="profile-link" href="<%=path %>profile/<%=user.id %>" >
+        <div class="user-token token-small" style="background-image: url(<%= user.thumbnail_url %>);"></div>
+      </a>
+    </li>
+-->
+
+
+  </ul>
+</div>
+
+
+<div class="right-col">
+  <div class="cover-image" style="
+      <% if( cover_image != "" ) { %>
+        background-image: url(<%=cover_image %>);
+      <% } %>
+      ">
+    <span class="playbutton"></span>
+    <div class="static"></div>
+  </div>
+  <div class="social-stats"><% if( favorite_count ) { %><i class='icon-heart'></i> <%= favorite_count %> <% if( favorite_count == 1 ) { %>favorite<% } else { %>favorites<% } %> <% } %><i class='icon-play'></i> <%= views %> <% if( views == 1 ) { %>view<% } else { %>views<% } %></div>
+<% if ( title !== "" ) { %>
+  <div class="caption">
+    <i class='icon-comment'></i> <%= title %>
+  </div>
+<% } %>
+  <div class="share">
+    <ul>
+      <li>
+        <a href="<%= twitterShare %>" target="blank"><i class="icon-social icon-twitter"></i></a>
+      </li>
+      <li>
+        <a href="<%= facebookShare %>" target="blank"><i class="icon-social icon-facebook"></i></a>
+      </li>
+      <li>
+        <a href="<%= tumblrShare %>" target="blank"><i class="icon-social icon-tumblr"></i></a>
+      </li>
+      <li>
+        <input type="text" value="<%= path %><%= id %>" onfocus="this.select()" onMouseUp="return false" readonly>
+      </li>
+    </ul>
+  </div>
+
+  <% if ( editable ) { %>
+    <div class="edit-actions">
+      <a href="/editor/<%= id %>" class="edit-zeega btnz btnz-light" data-bypass="true" >edit</a>
+      <a href="#" class="delete-zeega btnz btnz-light">delete</a>
+    </div>
+  <% } %>
+</div>
