@@ -27,8 +27,6 @@ function( app, ZeegaViewer, ZeegaCardView ) {
 
         initialize: function( options ){
             _.extend( this, options );
-
-            console.log('coll', this)
         },
         
         url: function() {
